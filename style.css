@@ -43,16 +43,7 @@ footer {
     margin-top: 2rem;
 }
 
-/* Home Page Video */
-.home-video video {
-    width: 100%;
-    height: auto;
-    max-height: 70vh;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Journey Page Gallery */
+/* Photo Gallery */
 .photo-gallery {
     text-align: center;
     padding: 2rem;
@@ -60,17 +51,27 @@ footer {
 
 .photo-gallery h2 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.photo-gallery p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
 }
 
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    gap: 1.5rem;
     padding: 0 1rem;
 }
 
-.gallery-grid img {
+.gallery-item {
+    text-align: center;
+}
+
+.gallery-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
@@ -78,8 +79,13 @@ footer {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.gallery-grid img:hover {
+.gallery-item img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+.gallery-item p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+}

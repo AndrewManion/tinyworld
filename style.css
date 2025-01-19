@@ -1,0 +1,52 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif; /* Font for the entire site */
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* Light gray background */
+  color: #333; /* Text color */
+}
+
+header {
+  background-color: #333; /* Dark background for the header */
+  color: white; /* White text for the header */
+  padding: 1rem;
+}
+
+header nav ul {
+  list-style: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Display menu items inline */
+  justify-content: center; /* Center menu items */
+}
+
+header nav ul li {
+  margin: 0 15px; /* Spacing between menu items */
+}
+
+header nav ul li a {
+  color: white; /* White links */
+  text-decoration: none; /* Remove underline from links */
+}
+
+header nav ul li a:hover {
+  text-decoration: underline; /* Underline links on hover */
+}
+
+main {
+  text-align: center; /* Center align text */
+  padding: 2rem;
+}
+
+video {
+  max-width: 80%; /* Limit video width */
+  border-radius: 10px; /* Rounded edges for the video */
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}

@@ -49,7 +49,7 @@ video {
 
 /* Styling for each photo item */
 .photo-item img {
-  width: 10%; /* Make images fully responsive */
+  width: 1%; /* Make images fully responsive */
   height: auto; /* Maintain image aspect ratio */
   display: block; /* Remove any extra spacing */
   border: 1px solid #ccc; /* Add a light gray border around images */

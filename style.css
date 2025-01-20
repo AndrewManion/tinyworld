@@ -1,17 +1,15 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
 }
 
 header {
-    background-color: #444;
+    background: #333;
     color: #fff;
-    padding: 1rem 0;
+    padding: 10px 0;
     text-align: center;
 }
 
@@ -32,54 +30,35 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-weight: bold;
 }
 
-footer {
+.video-container {
     text-align: center;
-    padding: 1rem 0;
-    background-color: #444;
-    color: #fff;
-    margin-top: 2rem;
+    padding: 20px;
 }
 
-/* Home Page Video */
-.home-video video {
-    width: 100%;
+.video-container video {
+    max-width: 90%;
     height: auto;
-    max-height: 70vh;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Journey Page Gallery */
-.photo-gallery {
+.gallery {
+    padding: 20px;
+}
+
+.gallery h2 {
     text-align: center;
-    padding: 2rem;
-}
-
-.photo-gallery h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 0 1rem;
+    gap: 15px;
 }
 
 .gallery-grid img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
 }
-
-.gallery-grid img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-

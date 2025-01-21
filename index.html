@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Metadata for character encoding and responsive design -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <!-- Link to the external stylesheet -->
-  <link rel="stylesheet" href="assets/style.css">
+  <title>Tiny World - Home</title>
+  <link rel="stylesheet" href="assets/style.css"> <!-- Link to external stylesheet -->
 </head>
 <body>
-  <!-- Site header section -->
+  <!-- Header section -->
   <header>
-    <h1>willkommen to tiny world</h1>
-    <!-- Navigation menu linking to other pages -->
+    <h1>Welcome to Tiny World</h1>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="journey.html">Journey</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="about.html">About</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="journey.html">Journey</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Main content section -->
+  <!-- Video section -->
   <main>
-    <!-- Embedded video with autoplay, muted, and controls -->
-    <video controls autoplay muted>
-      <!-- Source of the video file -->
-      <source src="assets/videos/San Juan del Sur skateboard scene.mp4" type="video/mp4">
-      <!-- Fallback message if the video is not supported -->
-      Your browser does not support the video tag.
-    </video>
+    <section>
+      <video controls autoplay muted loop>
+        <source src="assets/San Juan del Sur skateboard scene.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Tiny World</p>
+  </footer>
 </body>
 </html>
+

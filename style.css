@@ -1,77 +1,80 @@
-/* General body styling */
+/* General Reset */
+body, h1, p, nav, main, header {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  font-size: 16px;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
 }
 
-/* Header section styling */
+/* Header Styling */
 header {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header nav a {
-  color: purple;
-  text-decoration: none;
-  margin: 0 10px;
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
 }
 
-header nav a:hover {
-  text-decoration: underline;
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
 }
 
-/* Main content section styling */
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
 main {
-  padding: 20px;
-  text-align: center; /* Center-align main content */
+    padding: 20px;
 }
 
-/* Home page (index) video styling */
-main.index video {
-  max-width: 90vw; /* Scale video to fit 90% of viewport width */
-  max-height: 90vh; /* Scale video to fit 90% of viewport height */
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 0 auto; /* Center the video horizontally */
+/* Video Styling */
+video {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    object-fit: cover; /* Ensure the video covers the entire screen */
+    display: block;
+    margin: 0 auto;
+    background-color: black;
 }
 
-/* Photo gallery layout */
-.photo-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+/* Gallery Section */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center align images */
 }
 
-/* Photo item styling */
-.photo-gallery .photo-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center each photo and caption */
+.gallery article {
+    max-width: 100%;
+    width: calc(33% - 20px); /* 3 items per row with some gap */
+    text-align: center;
 }
 
-.photo-gallery .photo-item img {
-  max-width: 90vw; /* Ensure image fits within viewport width */
-  max-height: 90vh; /* Ensure image fits within viewport height */
-  width: auto; /* Maintain aspect ratio */
-  height: auto; /* Maintain aspect ratio */
-  margin: 0 auto; /* Center-align the image */
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.photo-gallery .photo-item p {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  text-align: center;
+.gallery p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 8px;
 }

@@ -50,10 +50,11 @@ video {
 /* Styling for each photo item */
 .photo-item img {
   width: 100%; /* Make images fully responsive */
-  max-width: 800px; /* Set maximum width for large screens */
   height: auto; /* Maintain image aspect ratio */
   display: block; /* Remove any extra spacing */
   border: 1px solid #ccc; /* Add a light gray border around images */
+  max-width: 100%; /* Ensure images never exceed the width of their container */
+  object-fit: contain; /* Keep the images' proportions intact */
 }
 
 /* Styling for captions under images */

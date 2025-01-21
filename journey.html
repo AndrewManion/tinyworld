@@ -4,53 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journey</title>
-    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <h1>Journey</h1>
-        <!-- Navigation Menu -->
         <nav>
             <a href="index.html">Home</a>
             <a href="journey.html">Journey</a>
             <a href="#about">About</a>
         </nav>
     </header>
-
-    <!-- Main Content Section -->
     <main>
-        <section class="gallery">
-            <!-- Start of photo list -->
-            <!-- Each 'article' represents an individual image and its description -->
-            <!-- Consider adding 'aria-label' or 'role' attributes for accessibility -->
-            
-            <article>
-                <img src="assets/images/Tiny%20Building_San%20Telmo.jpg" alt="Tiny Building in San Telmo">
-                <p>Tiny Building</p>
-            </article>
-
-            <!-- Repeat structure for all other images -->
-            <article>
-                <img src="assets/images/Street%20Art_San%20Telmo.jpg" alt="Street Art in San Telmo">
-                <p>Street Art</p>
-            </article>
-
-            <article>
-                <img src="assets/images/Market_San%20Telmo.jpg" alt="Market in San Telmo">
-                <p>Market</p>
-            </article>
-
-            <article>
-                <img src="assets/images/Cathedral%20at%20Night_San%20Telmo.jpg" alt="Cathedral at Night in San Telmo">
-                <p>Cathedral at Night</p>
-            </article>
-
-            <!-- Continue this pattern for all images -->
-
-            <!-- End of photo list -->
-        </section>
+        <section id="gallery" class="gallery"></section>
     </main>
+    <script>
+        // Photos in the desired order
+        const photoOrder = [
+            "Tiny Building_San Telmo",
+            "Street Art_San Telmo",
+            "Market_San Telmo",
+            "Cathedral at Night_San Telmo",
+            "City view from the bathroom shutter_San Telmo",
+            "Plaza Dorrego_San Telmo",
+            "Plaza Dorrego 2_San Telmo",
+            "Tango at Plaza Dorrego_San Telmo",
+            "Caminito_San Telmo",
+            "Caminito 2_San Telmo",
+            "Edifico_Buenos Aires",
+            "Lagoon_Patagonia",
+            "Campsite_Patagonia",
+            "Shelter_Patagonia",
+            "shelter2_Patagonia",
+            "dome_Patagonia",
+            "fitz lagoon_Patagonia",
+            "bridge_Patagonia",
+            "fitz roy_Patagonia",
+            "condor_Patagonia",
+            "condor2_Patagonia",
+            "condor3_Patagonia",
+            "condor4_Patagonia",
+            "dogs_Patagonia",
+            "mountains_Patagonia",
+            "horse_Patagonia",
+            "sunrise_Patagonia",
+            "house tour_mendoza",
+            "udos house_valparaiso",
+            "main house_valparaiso",
+            "main house 2_valparaiso",
+            "new construction_valparaiso",
+            "construction_valparaiso",
+            "construction2_valparaiso",
+            "wave pump_valparaiso",
+            "street art_valparaiso",
+            "ascensor_valparaiso",
+            "nerudas house_valparaiso"
+        ];
+
+        // Reference to the gallery section
+        const gallery = document.getElementById("gallery");
+
+        // Dynamically generate photo elements
+        photoOrder.forEach(photoName => {
+            const photoFileName = photoName.replace(/ /g, "%20") + ".jpg"; // Replace spaces for URL
+            const photoLabel = photoName.split("_")[0]; // Extract label without underscores
+
+            // Create and append elements
+            const article = document.createElement("article");
+            const img = document.createElement("img");
+            img.src = `assets/photos/${photoFileName}`;
+            img.alt = photoLabel;
+
+            const caption = document.createElement("p");
+            caption.textContent = photoLabel;
+
+            article.appendChild(img);
+            article.appendChild(caption);
+            gallery.appendChild(article);
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Journey</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="journey.html">Journey</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+    <main>
+        <section id="gallery" class="gallery"></section>
+    </main>
+    <script>
+        // Photos in the desired order
+        const photoOrder = [
+            "Tiny Building_San Telmo",
+            "Street Art_San Telmo",
+            "Market_San Telmo",
+            "Cathedral at Night_San Telmo",
+            "City view from the bathroom shutter_San Telmo",
+            "Plaza Dorrego_San Telmo",
+            "Plaza Dorrego 2_San Telmo",
+            "Tango at Plaza Dorrego_San Telmo",
+            "Caminito_San Telmo",
+            "Caminito 2_San Telmo",
+            "Edifico_Buenos Aires",
+            "Lagoon_Patagonia",
+            "Campsite_Patagonia",
+            "Shelter_Patagonia",
+            "shelter2_Patagonia",
+            "dome_Patagonia",
+            "fitz lagoon_Patagonia",
+            "bridge_Patagonia",
+            "fitz roy_Patagonia",
+            "condor_Patagonia",
+            "condor2_Patagonia",
+            "condor3_Patagonia",
+            "condor4_Patagonia",
+            "dogs_Patagonia",
+            "mountains_Patagonia",
+            "horse_Patagonia",
+            "sunrise_Patagonia",
+            "house tour_mendoza",
+            "udos house_valparaiso",
+            "main house_valparaiso",
+            "main house 2_valparaiso",
+            "new construction_valparaiso",
+            "construction_valparaiso",
+            "construction2_valparaiso",
+            "wave pump_valparaiso",
+            "street art_valparaiso",
+            "ascensor_valparaiso",
+            "nerudas house_valparaiso"
+        ];
+
+        // Reference to the gallery section
+        const gallery = document.getElementById("gallery");
+
+        // Dynamically generate photo elements
+        photoOrder.forEach(photoName => {
+            const photoFileName = photoName.replace(/ /g, "%20") + ".jpg"; // Replace spaces for URL
+            const photoLabel = photoName.split("_")[0]; // Extract label without underscores
+
+            // Create and append elements
+            const article = document.createElement("article");
+            const img = document.createElement("img");
+            img.src = `assets/photos/${photoFileName}`;
+            img.alt = photoLabel;
+
+            const caption = document.createElement("p");
+            caption.textContent = photoLabel;
+
+            article.appendChild(img);
+            article.appendChild(caption);
+            gallery.appendChild(article);
+        });
+    </script>
 </body>
 </html>

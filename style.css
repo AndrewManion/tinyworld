@@ -33,8 +33,8 @@ main {
 
 /* Video styling */
 video {
-  width: 100%; /* Make the video responsive */
-  max-width: 800px; /* Set maximum width for large screens */
+  width: 25%; /* Set video width to 25% of its original size */
+  height: auto; /* Maintain aspect ratio */
   display: block; /* Center the video element */
   margin: 20px auto; /* Add vertical and horizontal margins */
 }
@@ -49,12 +49,11 @@ video {
 
 /* Styling for each photo item */
 .photo-item img {
-  width: 100%; /* Make images fully responsive */
+  width: 25%; /* Set image width to 25% of its original size */
   height: auto; /* Maintain image aspect ratio */
   display: block; /* Remove any extra spacing */
   border: 1px solid #ccc; /* Add a light gray border around images */
-  max-width: 100%; /* Ensure images never exceed the width of their container */
-  object-fit: contain; /* Keep the images' proportions intact */
+  margin: 0 auto; /* Center-align images within their container */
 }
 
 /* Styling for captions under images */

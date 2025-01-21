@@ -4,6 +4,7 @@ body {
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
   background-color: #f4f4f4; /* Set light background color */
+  font-size: 16px; /* Base font size for the body */
 }
 
 /* Header section styling */
@@ -31,10 +32,16 @@ main {
   padding: 20px; /* Add padding for spacing */
 }
 
+/* Home page (index) text styling */
+main.index {
+  font-size: 18px; /* Increase font size for homepage text */
+  line-height: 1.6; /* Improve readability */
+}
+
 /* Video styling */
 video {
-  width: 25%; /* Set video width to 25% of its original size */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%; /* Make the video responsive */
+  max-width: 800px; /* Set maximum width for large screens */
   display: block; /* Center the video element */
   margin: 20px auto; /* Add vertical and horizontal margins */
 }
@@ -49,7 +56,7 @@ video {
 
 /* Styling for each photo item */
 .photo-item img {
-  width: 25%; /* Set image width to 25% of its original size */
+  width: 25%; /* Set image width to 25% */
   height: auto; /* Maintain image aspect ratio */
   display: block; /* Remove any extra spacing */
   border: 1px solid #ccc; /* Add a light gray border around images */
@@ -61,4 +68,5 @@ video {
   text-align: center; /* Center-align the captions */
   margin-top: 10px; /* Add spacing between image and caption */
   font-weight: bold; /* Make the captions bold */
+  font-size: 16px; /* Ensure captions are readable and not shrunk */
 }

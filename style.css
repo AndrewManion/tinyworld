@@ -1,82 +1,77 @@
 /* General body styling */
 body {
-  font-family: Arial, sans-serif; /* Set font style */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  background-color: #f4f4f4; /* Set light background color */
-  font-size: 16px; /* Base font size for the body */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  font-size: 16px;
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Header section styling */
 header {
-  background-color: #333; /* Dark background color for the header */
-  color: white; /* White text color for contrast */
-  padding: 1rem; /* Add padding for spacing */
-  text-align: center; /* Center the header text */
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 
-/* Navigation links styling */
 header nav a {
-  color: purple; /* Purple text color for links */
-  text-decoration: none; /* Remove underline from links */
-  margin: 0 10px; /* Add horizontal spacing between links */
+  color: purple;
+  text-decoration: none;
+  margin: 0 10px;
 }
 
-/* Add underline on hover for navigation links */
 header nav a:hover {
   text-decoration: underline;
 }
 
 /* Main content section styling */
 main {
-  padding: 20px; /* Add padding for spacing */
-  text-align: center; /* Center-align content */
+  padding: 20px;
+  text-align: center; /* Center-align main content */
 }
 
-/* Home page (index) text styling */
-main.index {
-  font-size: 18px; /* Increase font size for homepage text */
-  line-height: 1.6; /* Improve readability */
+/* Home page (index) video styling */
+main.index video {
+  max-width: 90vw; /* Scale video to fit 90% of viewport width */
+  max-height: 90vh; /* Scale video to fit 90% of viewport height */
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center the video horizontally */
 }
 
-/* Video styling */
-video {
-  max-width: 90vw; /* Scale video to 90% of viewport width */
-  max-height: 90vh; /* Scale video to 90% of viewport height */
-  width: auto; /* Maintain aspect ratio */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Center the video element */
-  margin: 0 auto; /* Center video horizontally */
-}
-
-/* Photo gallery grid layout */
+/* Photo gallery layout */
 .photo-gallery {
-  display: flex; /* Use flexbox for centering and layout */
-  flex-wrap: wrap; /* Allow wrapping of items */
-  justify-content: center; /* Center-align photos horizontally */
-  gap: 20px; /* Spacing between items */
-  margin-top: 20px; /* Add margin above the gallery */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-/* Styling for each photo item */
-.photo-item img {
-  max-width: 90vw; /* Scale image to 90% of viewport width */
-  max-height: 90vh; /* Scale image to 90% of viewport height */
+/* Photo item styling */
+.photo-gallery .photo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center each photo and caption */
+}
+
+.photo-gallery .photo-item img {
+  max-width: 90vw; /* Ensure image fits within viewport width */
+  max-height: 90vh; /* Ensure image fits within viewport height */
   width: auto; /* Maintain aspect ratio */
   height: auto; /* Maintain aspect ratio */
-  display: block; /* Center-align the image element */
-  margin: 0 auto; /* Center image horizontally */
-  border: 1px solid #ccc; /* Add a light gray border around images */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for aesthetics */
-  border-radius: 5px; /* Optional: Add rounded corners */
+  margin: 0 auto; /* Center-align the image */
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
-/* Styling for captions under images */
-.photo-item p {
-  text-align: center; /* Center-align the captions */
-  margin-top: 10px; /* Add spacing between image and caption */
-  font-weight: bold; /* Make the captions bold */
-  font-size: 16px; /* Ensure captions are readable and not shrunk */
+.photo-gallery .photo-item p {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
 }
-

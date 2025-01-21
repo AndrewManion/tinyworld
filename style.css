@@ -49,18 +49,21 @@ video {
 /* Photo gallery grid layout */
 .photo-gallery {
   display: grid; /* Use grid layout for photos */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid columns */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid columns */
   gap: 20px; /* Spacing between grid items */
   margin-top: 20px; /* Add margin above the gallery */
 }
 
 /* Styling for each photo item */
 .photo-item img {
-  width: 25%; /* Set image width to 25% */
-  height: auto; /* Maintain image aspect ratio */
+  width: 100%; /* Make the image fill its container */
+  max-width: 100%; /* Prevent overflow */
+  height: auto; /* Maintain aspect ratio */
   display: block; /* Remove any extra spacing */
   border: 1px solid #ccc; /* Add a light gray border around images */
   margin: 0 auto; /* Center-align images within their container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for aesthetics */
+  border-radius: 5px; /* Optional: Add rounded corners */
 }
 
 /* Styling for captions under images */
@@ -70,3 +73,4 @@ video {
   font-weight: bold; /* Make the captions bold */
   font-size: 16px; /* Ensure captions are readable and not shrunk */
 }
+

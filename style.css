@@ -5,6 +5,7 @@ body {
   padding: 0; /* Remove default padding */
   background-color: #f4f4f4; /* Set light background color */
   font-size: 16px; /* Base font size for the body */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Header section styling */
@@ -30,6 +31,7 @@ header nav a:hover {
 /* Main content section styling */
 main {
   padding: 20px; /* Add padding for spacing */
+  text-align: center; /* Center-align content */
 }
 
 /* Home page (index) text styling */
@@ -40,28 +42,32 @@ main.index {
 
 /* Video styling */
 video {
-  width: 100%; /* Make the video responsive */
-  max-width: 800px; /* Set maximum width for large screens */
+  max-width: 90vw; /* Scale video to 90% of viewport width */
+  max-height: 90vh; /* Scale video to 90% of viewport height */
+  width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
   display: block; /* Center the video element */
-  margin: 20px auto; /* Add vertical and horizontal margins */
+  margin: 0 auto; /* Center video horizontally */
 }
 
 /* Photo gallery grid layout */
 .photo-gallery {
-  display: grid; /* Use grid layout for photos */
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid columns */
-  gap: 20px; /* Spacing between grid items */
+  display: flex; /* Use flexbox for centering and layout */
+  flex-wrap: wrap; /* Allow wrapping of items */
+  justify-content: center; /* Center-align photos horizontally */
+  gap: 20px; /* Spacing between items */
   margin-top: 20px; /* Add margin above the gallery */
 }
 
 /* Styling for each photo item */
 .photo-item img {
-  width: 100%; /* Make the image fill its container */
-  max-width: 100%; /* Prevent overflow */
+  max-width: 90vw; /* Scale image to 90% of viewport width */
+  max-height: 90vh; /* Scale image to 90% of viewport height */
+  width: auto; /* Maintain aspect ratio */
   height: auto; /* Maintain aspect ratio */
-  display: block; /* Remove any extra spacing */
+  display: block; /* Center-align the image element */
+  margin: 0 auto; /* Center image horizontally */
   border: 1px solid #ccc; /* Add a light gray border around images */
-  margin: 0 auto; /* Center-align images within their container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for aesthetics */
   border-radius: 5px; /* Optional: Add rounded corners */
 }

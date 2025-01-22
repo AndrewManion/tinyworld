@@ -7,7 +7,7 @@ body, h1, p, nav, main, header {
 
 /* Body Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Courier New", Courier, monospace; /* Typewriter-style font */
     line-height: 1.6;
     background-color: #f4f4f9;
 }
@@ -77,4 +77,5 @@ video {
     font-size: 1.2rem;
     color: #333;
     margin-top: 8px;
+    font-family: "Courier New", Courier, monospace; /* Typewriter-style font */
 }

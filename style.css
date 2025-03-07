@@ -79,3 +79,15 @@ video {
     margin-top: 8px;
     font-family: "Courier New", Courier, monospace; /* Typewriter-style font */
 }
+
+/* Small Gallery */
+.small-gallery img {
+    width: 150px;
+    height: auto;
+}
+
+/* Large Gallery */
+.large-gallery img {
+    width: 300px;
+    height: auto;
+}

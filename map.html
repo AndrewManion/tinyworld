@@ -16,7 +16,7 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        var map = L.map('map').setView([20, 0], 2); // Center the map
+        var map = L.map('map').setView([20, 0], 2);
 
         // Add OpenStreetMap tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -24,16 +24,56 @@
         }).addTo(map);
 
         // Function to add a marker
-        function addMarker(lat, lon, title, link) {
-            L.marker([lat, lon]).addTo(map)
-                .bindPopup(`<b>${title}</b><br><a href="${link}">View More</a>`);
+        function addMarker(lat, lon, title, color) {
+            L.marker([lat, lon], {
+                icon: L.icon({
+                    iconUrl: `https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${color}`,
+                    iconSize: [21, 34],
+                    iconAnchor: [10, 34],
+                    popupAnchor: [1, -34]
+                })
+            }).addTo(map)
+            .bindPopup(`<b>${title}</b>`);
         }
 
-        // Add markers for different locations
-        addMarker(48.8584, 2.2945, "Eiffel Tower", "photos.html#eiffel");
-        addMarker(40.6892, -74.0445, "Statue of Liberty", "photos.html#liberty");
-        addMarker(27.1751, 78.0421, "Taj Mahal", "photos.html#taj");
-    </script>
+        // Add markers for specified locations
+        const locations = [
+            ["Buenos Aires, Argentina", -34.6037, -58.3816],
+            ["El Chalten, Argentina", -49.3286, -72.8869],
+            ["Valparaiso, Chile", -33.0472, -71.6127],
+            ["Medellin, Colombia", 6.2442, -75.5812],
+            ["New York, New York", 40.7128, -74.0060, "00FF00"], // Green
+            ["London, England", 51.5074, -0.1278],
+            ["Cardiff, Wales", 51.4816, -3.1791],
+            ["Caen, France", 49.1829, -0.3707],
+            ["Paris, France", 48.8566, 2.3522],
+            ["Feldkirch, Austria", 47.2333, 9.6],
+            ["St. Anton, Austria", 47.1286, 10.2641],
+            ["Innsbruck, Austria", 47.2692, 11.4041],
+            ["San Cassiano, Italy", 46.5775, 11.9333],
+            ["Kitzbuhel, Austria", 47.4476, 12.3926],
+            ["Salzburg, Austria", 47.8095, 13.0550],
+            ["Vienna, Austria", 48.2082, 16.3738],
+            ["Munich, Germany", 48.1351, 11.5820],
+            ["St. Moritz, Switzerland", 46.4970, 9.8418],
+            ["Cevio, Switzerland", 46.3167, 8.6000],
+            ["Bellinzona, Switzerland", 46.1930, 9.0221],
+            ["Como, Italy", 45.8080, 9.0852],
+            ["Milan, Italy", 45.4642, 9.1900],
+            ["Zermatt, Switzerland", 46.0207, 7.7491],
+            ["Geneva, Switzerland", 46.2044, 6.1432],
+            ["Chamonix, France", 45.9237, 6.8694],
+            ["Nice, France", 43.7102, 7.2620],
+            ["Cannes, France", 43.5528, 7.0174],
+            ["Agadir, Morocco", 30.4278, -9.5981],
+            ["Taghazout, Morocco", 30.5458, -9.7084],
+            ["Marrakech, Morocco", 31.6295, -7.9811],
+            ["Imsouane, Morocco", 30.8390, -9.8070]
+        ];
 
+        locations.forEach(([title, lat, lon, color = "FF0000"]) => {
+            addMarker(lat, lon, title, color);
+        });
+    </script>
 </body>
 </html>

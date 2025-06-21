@@ -1,105 +1,156 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subpage Title</title>
-<link rel="stylesheet" href="assets/style.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buenos Aires</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* Reset Word styles */
+    body, p {
+      margin: 0;
+      padding: 0;
+      font-family: "Courier New", Courier, monospace;
+      color: #333;
+      background-color: #f4f4f9;
+    }
 
+    header nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      background: linear-gradient(45deg, #333, #555);
+      margin-bottom: 2rem;
+    }
 
-<header>
+    header nav ul li {
+      margin: 0 15px;
+    }
+
+    header nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    header nav ul li a:hover {
+      color: #f4f4f9;
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+
+    /* Centered paragraphs */
+    .description {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 14pt;
+      line-height: 1.4;
+    }
+
+    /* Gallery grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.75rem; /* rounded-lg */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transform: scale(1.03);
+    }
+
+    /* Next button styling */
+    #next-btn {
+      display: block;
+      margin: 3rem auto 1rem;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1.25rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #next-btn:hover {
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
     <nav>
       <ul>
         <li><a href="index.html">home</a></li>
         <li><a href="journey.html">journey</a></li>
         <li><a href="portfolio.htm">portfolio</a></li>
         <li><a href="map.html">map</a></li>
-	    <li><a href="about.htm">about</a></li>
+        <li><a href="about.htm">about</a></li>
       </ul>
     </nav>
-</header>
+  </header>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buenos Aires</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <main>
+    <section class="description">
+      <p>First stop.</p>
+      <p>
+        I got off the plane from New York and had to get to the apartment quick,
+        I was still on the clock. I spent the first week working and settling in.
+        The next Tere arrived and we uncovered every stone in the city for three wonderful weeks in a blooming Buenos Aires.
+      </p>
+    </section>
 
+    <section class="gallery">
+      <img src="buenosaires_files/image001.webp" alt="Buenos Aires photo 1" />
+      <img src="buenosaires_files/image002.webp" alt="Buenos Aires photo 2" />
+      <img src="buenosaires_files/image003.webp" alt="Buenos Aires photo 3" />
+      <img src="buenosaires_files/image004.webp" alt="Buenos Aires photo 4" />
+      <img src="buenosaires_files/image005.webp" alt="Buenos Aires photo 5" />
+      <img src="buenosaires_files/image006.webp" alt="Buenos Aires photo 6" />
+      <img src="buenosaires_files/image007.webp" alt="Buenos Aires photo 7" />
+      <img src="buenosaires_files/image008.webp" alt="Buenos Aires photo 8" />
+      <img src="buenosaires_files/image009.webp" alt="Buenos Aires photo 9" />
+      <img src="buenosaires_files/image010.webp" alt="Buenos Aires photo 10" />
+      <img src="buenosaires_files/image011.webp" alt="Buenos Aires photo 11" />
+      <img src="buenosaires_files/image012.webp" alt="Buenos Aires photo 12" />
+      <img src="buenosaires_files/image013.webp" alt="Buenos Aires photo 13" />
+      <img src="buenosaires_files/image014.webp" alt="Buenos Aires photo 14" />
+      <img src="buenosaires_files/image015.webp" alt="Buenos Aires photo 15" />
+      <img src="buenosaires_files/image016.webp" alt="Buenos Aires photo 16" />
+      <img src="buenosaires_files/image017.webp" alt="Buenos Aires photo 17" />
+      <img src="buenosaires_files/image018.webp" alt="Buenos Aires photo 18" />
+      <img src="buenosaires_files/image019.webp" alt="Buenos Aires photo 19" />
+      <img src="buenosaires_files/image020.webp" alt="Buenos Aires photo 20" />
+      <img src="buenosaires_files/image021.webp" alt="Buenos Aires photo 21" />
+      <img src="buenosaires_files/image022.webp" alt="Buenos Aires photo 22" />
+      <img src="buenosaires_files/image023.webp" alt="Buenos Aires photo 23" />
+    </section>
 
-<body>
-			
-
-
-
-	<div class=WordSection1>
-
-	<p class=MsoNormal align=center style='text-align:center'><span
-	style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'>First stop.</span></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><span
-	style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'>I got off
-	the plane from New York and had to get to the apartment quick, I was still on
-	the clock. I spent the first week working and settling in. The next Tere
-	arrived and we uncovered every stone in the city for three wonderful weeks in a
-	blooming Buenos Aires.</span></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><span
-	style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'>�</span><img
-	width=624 height=419 src="buenosaires_files/image001.jpg"><span
-	style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'> </span><img
-	width=624 height=418 src="buenosaires_files/image002.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=420 id="Picture 10" src="buenosaires_files/image003.jpg"> <img
-	width=624 height=416 src="buenosaires_files/image004.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=416 src="buenosaires_files/image005.jpg"> <img width=624 height=416
-	id="Picture 24" src="buenosaires_files/image006.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=416 src="buenosaires_files/image007.jpg"> <img width=624 height=419
-	id="Picture 32" src="buenosaires_files/image008.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=419 id="Picture 33" src="buenosaires_files/image009.jpg"> <img
-	width=624 height=419 id="Picture 35" src="buenosaires_files/image010.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=416 id="Picture 36" src="buenosaires_files/image011.jpg"> <img
-	width=624 height=418 id="Picture 37" src="buenosaires_files/image012.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=504
-	height=756 id="Picture 1" src="buenosaires_files/image013.jpg"> <img
-	width=624 height=416 id="Picture 8" src="buenosaires_files/image014.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=419 id="Picture 9" src="buenosaires_files/image015.jpg"> <img width=624
-	height=416 id="Picture 11" src="buenosaires_files/image016.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=416 id="Picture 19" src="buenosaires_files/image017.jpg"> <img
-	width=624 height=416 id="Picture 20" src="buenosaires_files/image018.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=419 id="Picture 21" src="buenosaires_files/image019.jpg"> <img
-	width=624 height=416 id="Picture 22" src="buenosaires_files/image020.jpg"></p>
-
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-	height=416 id="Picture 30" src="buenosaires_files/image021.jpg"> <img
-	width=504 height=756 id="Picture 31" src="buenosaires_files/image022.jpg"></p>
-	
-	<p class=MsoNormal align=center style='text-align:center'><img width=624
-		height=416 id="Picture 32" src="buenosaires_files/image023.jpg"></p>
-	
-	</div>
-
-	<!-- Next Button -->
-	<a href="patagonia.htm">
-		<button id="next-btn">Next</button>
-	</a>
-
+    <a href="patagonia.htm">
+      <button id="next-btn">Next</button>
+    </a>
+  </main>
 </body>
 
 </html>

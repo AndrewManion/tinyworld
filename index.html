@@ -3,14 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tiny World - Home</title>
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
 
   <style>
     body {
@@ -19,13 +19,48 @@
   </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-900">
 
   <!-- Header -->
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="container mx-auto px-4 py-6 text-center">
       <h1 class="text-3xl font-bold text-gray-900">Välkommen till den lilla världen</h1>
     </div>
-    <nav class="container mx-auto px-4 pb-4 flex justify-center space-x-6 text-sm font-medium">
+    <nav class="container mx-auto px-4 pb-4 flex justify-center space-x-6 text-sm font-semibold">
       <a href="index.html" class="text-blue-600">home</a>
-      <a href="journey.html" c
+      <a href="journey.html" class="hover:text-blue-600">journey</a>
+      <a href="portfolio.htm" class="hover:text-blue-600">portfolio</a>
+      <a href="map.html" class="hover:text-blue-600">map</a>
+      <a href="interviews.html" class="hover:text-blue-600">interviews</a>
+      <a href="about.htm" class="hover:text-blue-600">about</a>
+    </nav>
+  </header>
+
+  <!-- Video Hero Section -->
+  <main class="relative w-full h-screen overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
+      <source src="assets/videos/San Juan del Sur skateboard scene.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay Content -->
+    <div
+      class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-center px-6 z-10">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 max-w-3xl">
+        small. microscopic. miniature. little. not big. petite. proportioned. fine.
+      </h2>
+      <a href="journey.html"
+        class="bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-lg text-lg font-semibold shadow-md">
+        begin
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center text-sm py-4">
+    <p>&copy; 2025 tiny world</p>
+  </footer>
+
+</body>
+
+</html>

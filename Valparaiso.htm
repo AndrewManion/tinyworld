@@ -1,371 +1,249 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
-<meta name=Generator content="Microsoft Word 15 (filtered)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:8.0pt;
-	margin-left:0in;
-	line-height:107%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{font-family:"Calibri",sans-serif;}
-.MsoPapDefault
-	{margin-bottom:8.0pt;
-	line-height:107%;}
- /* Page Definitions */
- @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
--->
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valparaiso</title>
 
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Courier Prime', monospace;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery img {
+      height: 300px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.98));
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 60px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+  </style>
 </head>
 
-<body lang=EN-US style='word-wrap:break-word'>
+<body class="bg-gray-50 text-gray-900">
 
-<div class=WordSection1>
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-4 flex justify-center space-x-6 text-sm font-semibold">
+     <a href="index.html" class="hover:text-blue-600">home</a>
+      <a href="journey.html" class="hover:text-blue-600">journey</a>
+	  <a href="interview.html" class="hover:text-blue-600">interview</a>
+      <a href="portfolio.htm" class="hover:text-blue-600">portfolio</a>
+      <a href="map.html" class="hover:text-blue-600">map</a>
+      <a href="about.htm" class="hover:text-blue-600">about</a>
+    </nav>
+  </header>
 
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'>Building in
-Accord with Nature</span></p>
+  <!-- Main content -->
+  <main class="max-w-5xl mx-auto px-4">
 
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'>The route
+    <section class="text-center my-8 space-y-4">
+      <p class="text-lg">Building in
+Accord with Nature.</p>
+      <p class="text-lg">The route
 from Patagonia to the Chilean coast brought me through the vineyards of
 Mendoza, atop the Andes mountains, up, down and around the emerald hills of
-Valpo, and finally to Udo’s home in Laguna Verde. I arrived in the trunk of
-Udo’s jeep and found Hendrik chopping wood. We gathered around the table and ate
+Valpo, and finally to Udo's home in Laguna Verde. I arrived in the trunk of
+Udo's jeep and found Hendrik chopping wood. We gathered around the table and ate
 palta for dinner that night and every other as the wood burning oven heated the
-clay walls around us and kept our toast warm. </span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=273 height=437 id="Picture 1" src="Valparaiso_files/image001.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=439 height=274 id="Picture 2" src="Valparaiso_files/image002.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=438 height=277 id="Picture 3" src="Valparaiso_files/image003.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=437 height=277 id="Picture 4" src="Valparaiso_files/image004.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=439 height=277 id="Picture 5" src="Valparaiso_files/image005.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=424 height=276 id="Picture 6" src="Valparaiso_files/image006.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=429 height=274 id="Picture 7" src="Valparaiso_files/image007.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=439 height=273 id="Picture 8" src="Valparaiso_files/image008.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=440 height=274 id="Picture 9" src="Valparaiso_files/image009.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=274 height=439 id="Picture 10" src="Valparaiso_files/image010.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=439 height=274 id="Picture 11" src="Valparaiso_files/image011.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=439 height=273 id="Picture 12" src="Valparaiso_files/image012.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=207 height=133 id="Picture 13" src="Valparaiso_files/image013.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=209 height=133 id="Picture 14" src="Valparaiso_files/image014.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=211 height=133 id="Picture 15" src="Valparaiso_files/image015.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=211 height=133 id="Picture 16" src="Valparaiso_files/image016.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=133 id="Picture 17" src="Valparaiso_files/image017.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=131 height=207 id="Picture 18" src="Valparaiso_files/image018.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=131 id="Picture 19" src="Valparaiso_files/image019.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=130 id="Picture 20" src="Valparaiso_files/image020.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=211 height=130 id="Picture 21" src="Valparaiso_files/image021.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=131 id="Picture 22" src="Valparaiso_files/image022.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=133 id="Picture 23" src="Valparaiso_files/image023.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=209 height=141 id="Picture 24" src="Valparaiso_files/image024.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=203 height=132 id="Picture 25" src="Valparaiso_files/image025.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=131 height=210 id="Picture 26" src="Valparaiso_files/image026.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=160 height=107 id="Picture 27" src="Valparaiso_files/image027.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=211 height=133 id="Picture 28" src="Valparaiso_files/image028.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=211 height=133 id="Picture 29" src="Valparaiso_files/image029.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=205 height=133 id="Picture 30" src="Valparaiso_files/image030.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=204 height=131 id="Picture 31" src="Valparaiso_files/image031.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=124 id="Picture 32" src="Valparaiso_files/image032.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=95 height=133 id="Picture 33" src="Valparaiso_files/image033.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=82 height=133 id="Picture 34" src="Valparaiso_files/image034.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=131 height=209 id="Picture 35" src="Valparaiso_files/image035.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=131 id="Picture 36" src="Valparaiso_files/image036.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=210 height=131 id="Picture 37" src="Valparaiso_files/image037.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=130 height=207 id="Picture 38" src="Valparaiso_files/image038.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=209 height=130 id="Picture 39" src="Valparaiso_files/image039.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=259 height=171 id="Picture 40" src="Valparaiso_files/image040.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=171 id="Picture 41" src="Valparaiso_files/image041.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=259 height=171 id="Picture 42" src="Valparaiso_files/image042.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=171 id="Picture 43" src="Valparaiso_files/image043.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=171 height=265 id="Picture 44" src="Valparaiso_files/image044.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=257 height=165 id="Picture 45" src="Valparaiso_files/image045.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=165 id="Picture 46" src="Valparaiso_files/image046.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=165 id="Picture 47" src="Valparaiso_files/image047.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=165 id="Picture 48" src="Valparaiso_files/image048.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=165 id="Picture 49" src="Valparaiso_files/image049.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=266 height=165 id="Picture 50" src="Valparaiso_files/image050.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=259 height=170 id="Picture 51" src="Valparaiso_files/image051.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=170 id="Picture 52" src="Valparaiso_files/image052.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=265 height=170 id="Picture 53" src="Valparaiso_files/image053.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=261 height=170 id="Picture 54" src="Valparaiso_files/image054.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=252 height=167 id="Picture 55" src="Valparaiso_files/image055.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=259 height=167 id="Picture 56" src="Valparaiso_files/image056.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=167 id="Picture 57" src="Valparaiso_files/image057.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=253 height=167 id="Picture 58" src="Valparaiso_files/image058.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=167 id="Picture 59" src="Valparaiso_files/image059.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=257 height=171 id="Picture 60" src="Valparaiso_files/image060.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=262 height=171 id="Picture 61" src="Valparaiso_files/image061.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=262 height=171 id="Picture 62" src="Valparaiso_files/image062.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=171 height=263 id="Picture 63" src="Valparaiso_files/image063.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=264 height=171 id="Picture 64" src="Valparaiso_files/image064.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=171 height=263 id="Picture 65" src="Valparaiso_files/image065.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=257 height=167 id="Picture 66" src="Valparaiso_files/image066.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=167 height=262 id="Picture 67" src="Valparaiso_files/image067.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=167 height=261 id="Picture 68" src="Valparaiso_files/image068.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=266 height=167 id="Picture 69" src="Valparaiso_files/image069.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=167 height=262 id="Picture 70" src="Valparaiso_files/image070.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=263 height=167 id="Picture 71" src="Valparaiso_files/image071.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=253 height=167 id="Picture 72" src="Valparaiso_files/image072.jpg"></span></p>
-
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:12.0pt;line-height:107%;font-family:"Courier New"'><img
-width=259 height=167 id="Picture 73" src="Valparaiso_files/image073.jpg"></span></p>
-
-<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
-"Courier New"'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
-"Courier New"'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
-"Courier New"'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
-"Courier New"'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
-"Courier New"'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
-"Courier New"'>&nbsp;</span></p>
-
-</div>
-
+clay walls around us and kept our toast warm.</p>
+    </section>
+
+    <section class="gallery" id="gallery">
+<img src="Valparaiso_files/image001.webp" data-full="Valparaiso_files/image001.jpg" alt="">
+<img src="Valparaiso_files/image002.webp" data-full="Valparaiso_files/image002.jpg" alt="">
+<img src="Valparaiso_files/image003.webp" data-full="Valparaiso_files/image003.jpg" alt="">
+<img src="Valparaiso_files/image004.webp" data-full="Valparaiso_files/image004.jpg" alt="">
+<img src="Valparaiso_files/image005.webp" data-full="Valparaiso_files/image005.jpg" alt="">
+<img src="Valparaiso_files/image006.webp" data-full="Valparaiso_files/image006.jpg" alt="">
+<img src="Valparaiso_files/image007.webp" data-full="Valparaiso_files/image007.jpg" alt="">
+<img src="Valparaiso_files/image008.webp" data-full="Valparaiso_files/image008.jpg" alt="">
+<img src="Valparaiso_files/image009.webp" data-full="Valparaiso_files/image009.jpg" alt="">
+<img src="Valparaiso_files/image010.webp" data-full="Valparaiso_files/image010.jpg" alt="">
+<img src="Valparaiso_files/image011.webp" data-full="Valparaiso_files/image011.jpg" alt="">
+<img src="Valparaiso_files/image012.webp" data-full="Valparaiso_files/image012.jpg" alt="">
+<img src="Valparaiso_files/image013.webp" data-full="Valparaiso_files/image013.jpg" alt="">
+<img src="Valparaiso_files/image014.webp" data-full="Valparaiso_files/image014.jpg" alt="">
+<img src="Valparaiso_files/image015.webp" data-full="Valparaiso_files/image015.jpg" alt="">
+<img src="Valparaiso_files/image016.webp" data-full="Valparaiso_files/image016.jpg" alt="">
+<img src="Valparaiso_files/image017.webp" data-full="Valparaiso_files/image017.jpg" alt="">
+<img src="Valparaiso_files/image018.webp" data-full="Valparaiso_files/image018.jpg" alt="">
+<img src="Valparaiso_files/image019.webp" data-full="Valparaiso_files/image019.jpg" alt="">
+<img src="Valparaiso_files/image020.webp" data-full="Valparaiso_files/image020.jpg" alt="">
+<img src="Valparaiso_files/image021.webp" data-full="Valparaiso_files/image021.jpg" alt="">
+<img src="Valparaiso_files/image022.webp" data-full="Valparaiso_files/image022.jpg" alt="">
+<img src="Valparaiso_files/image023.webp" data-full="Valparaiso_files/image023.jpg" alt="">
+<img src="Valparaiso_files/image024.webp" data-full="Valparaiso_files/image024.jpg" alt="">
+<img src="Valparaiso_files/image025.webp" data-full="Valparaiso_files/image025.jpg" alt="">
+<img src="Valparaiso_files/image026.webp" data-full="Valparaiso_files/image026.jpg" alt="">
+<img src="Valparaiso_files/image027.webp" data-full="Valparaiso_files/image027.jpg" alt="">
+<img src="Valparaiso_files/image028.webp" data-full="Valparaiso_files/image028.jpg" alt="">
+<img src="Valparaiso_files/image029.webp" data-full="Valparaiso_files/image029.jpg" alt="">
+<img src="Valparaiso_files/image030.webp" data-full="Valparaiso_files/image030.jpg" alt="">
+<img src="Valparaiso_files/image031.webp" data-full="Valparaiso_files/image031.jpg" alt="">
+<img src="Valparaiso_files/image032.webp" data-full="Valparaiso_files/image032.jpg" alt="">
+<img src="Valparaiso_files/image033.webp" data-full="Valparaiso_files/image033.jpg" alt="">
+<img src="Valparaiso_files/image034.webp" data-full="Valparaiso_files/image034.jpg" alt="">
+<img src="Valparaiso_files/image035.webp" data-full="Valparaiso_files/image035.jpg" alt="">
+<img src="Valparaiso_files/image036.webp" data-full="Valparaiso_files/image036.jpg" alt="">
+<img src="Valparaiso_files/image037.webp" data-full="Valparaiso_files/image037.jpg" alt="">
+<img src="Valparaiso_files/image038.webp" data-full="Valparaiso_files/image038.jpg" alt="">
+<img src="Valparaiso_files/image039.webp" data-full="Valparaiso_files/image039.jpg" alt="">
+<img src="Valparaiso_files/image040.webp" data-full="Valparaiso_files/image040.jpg" alt="">
+<img src="Valparaiso_files/image041.webp" data-full="Valparaiso_files/image041.jpg" alt="">
+<img src="Valparaiso_files/image042.webp" data-full="Valparaiso_files/image042.jpg" alt="">
+<img src="Valparaiso_files/image043.webp" data-full="Valparaiso_files/image043.jpg" alt="">
+<img src="Valparaiso_files/image044.webp" data-full="Valparaiso_files/image044.jpg" alt="">
+<img src="Valparaiso_files/image045.webp" data-full="Valparaiso_files/image045.jpg" alt="">
+<img src="Valparaiso_files/image046.webp" data-full="Valparaiso_files/image046.jpg" alt="">
+<img src="Valparaiso_files/image047.webp" data-full="Valparaiso_files/image047.jpg" alt="">
+<img src="Valparaiso_files/image048.webp" data-full="Valparaiso_files/image048.jpg" alt="">
+<img src="Valparaiso_files/image049.webp" data-full="Valparaiso_files/image049.jpg" alt="">
+<img src="Valparaiso_files/image050.webp" data-full="Valparaiso_files/image050.jpg" alt="">
+<img src="Valparaiso_files/image051.webp" data-full="Valparaiso_files/image051.jpg" alt="">
+<img src="Valparaiso_files/image052.webp" data-full="Valparaiso_files/image052.jpg" alt="">
+<img src="Valparaiso_files/image053.webp" data-full="Valparaiso_files/image053.jpg" alt="">
+<img src="Valparaiso_files/image054.webp" data-full="Valparaiso_files/image054.jpg" alt="">
+<img src="Valparaiso_files/image055.webp" data-full="Valparaiso_files/image055.jpg" alt="">
+<img src="Valparaiso_files/image056.webp" data-full="Valparaiso_files/image056.jpg" alt="">
+<img src="Valparaiso_files/image057.webp" data-full="Valparaiso_files/image057.jpg" alt="">
+<img src="Valparaiso_files/image058.webp" data-full="Valparaiso_files/image058.jpg" alt="">
+<img src="Valparaiso_files/image059.webp" data-full="Valparaiso_files/image059.jpg" alt="">
+<img src="Valparaiso_files/image060.webp" data-full="Valparaiso_files/image060.jpg" alt="">
+<img src="Valparaiso_files/image061.webp" data-full="Valparaiso_files/image061.jpg" alt="">
+<img src="Valparaiso_files/image062.webp" data-full="Valparaiso_files/image062.jpg" alt="">
+<img src="Valparaiso_files/image063.webp" data-full="Valparaiso_files/image063.jpg" alt="">
+<img src="Valparaiso_files/image064.webp" data-full="Valparaiso_files/image064.jpg" alt="">
+<img src="Valparaiso_files/image065.webp" data-full="Valparaiso_files/image065.jpg" alt="">
+
+</section>
+
+
+    <!-- Navigation Buttons -->
+    <div class="flex justify-between max-w-md mx-auto pb-10">
+      <a href="Mendoza.htm">
+        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">back</button>
+      </a>
+      <a href="UnitedKingdom.htm">
+        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">next</button>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="zoomed image">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const galleryImages = [...document.querySelectorAll('#gallery img')];
+    let currentIndex = -1;
+    let touchStartX = null;
+
+    function showImage(index) {
+      const fullRes = galleryImages[index].dataset.full || galleryImages[index].src;
+      lightboxImg.src = fullRes;
+      lightbox.style.display = 'flex';
+      currentIndex = index;
+    }
+
+    function hideLightbox() {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+      currentIndex = -1;
+    }
+
+    function showNext() {
+      if (currentIndex < galleryImages.length - 1) {
+        showImage(currentIndex + 1);
+      }
+    }
+
+    function showPrev() {
+      if (currentIndex > 0) {
+        showImage(currentIndex - 1);
+      }
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => showImage(index));
+    });
+
+    lightbox.addEventListener('click', hideLightbox);
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') hideLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      }
+    });
+
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+
+    lightbox.addEventListener('touchend', (e) => {
+      if (touchStartX === null) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) showNext(); else showPrev();
+      }
+      touchStartX = null;
+    });
+  </script>
 </body>
 
 </html>

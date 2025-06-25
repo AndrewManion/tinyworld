@@ -36,17 +36,19 @@
 
 <body class="bg-gray-50 text-gray-900">
 
-  <!-- Header -->
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <nav class="container mx-auto px-4 py-4 flex justify-center space-x-6 text-sm font-semibold">
-      <a href="index.html" class="hover:underline">home</a>
-      <a href="journey.html" class="hover:underline">journey</a>
-	  <a href="interviews.html" class="hover:underline">interviews</a>
-      <a href="portfolio.htm" class="hover:underline">portfolio</a>
-      <a href="map.html" class="hover:underline">map</a>
-      <a href="about.htm" class="hover:underline">about</a>
-    </nav>
-  </header>
+<!-- Header (Loaded via JS) -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div id="header-placeholder"></div>
+</header>
+
+<script>
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+</script>
+
 
   <!-- Main Content -->
   <main class="max-w-6xl mx-auto px-4 py-8">

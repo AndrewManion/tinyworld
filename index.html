@@ -21,25 +21,19 @@
 
 <body class="bg-gray-50 text-gray-900">
 
-  <!-- Header -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-6 text-center">
-      <h1 class="text-3xl font-bold text-gray-900">Välkommen till den lilla världen</h1>
-    </div>
-    <nav class="container mx-auto px-4 pb-4 flex justify-center space-x-6 text-sm font-semibold">
-       <a href="index.html" class="hover:underline">home</a>
-      <a href="journey.html" class="hover:underline">journey</a>
-	  <a href="interviews.html" class="hover:underline">interviews</a>
-      <a href="portfolio.htm" class="hover:underline">portfolio</a>
-      <a href="map.html" class="hover:underline">map</a>
-      <a href="about.htm" class="hover:underline">about</a>
-    </nav>
-  </header>
+<!-- Header -->
+<header class="bg-white shadow sticky top-0 z-50" id="site-header"></header>
+
+<!-- Welcome Title (moved outside shared header) -->
+<div class="container mx-auto px-4 py-6 text-center">
+  <h1 class="text-3xl font-bold text-gray-900">Välkommen till den lilla världen</h1>
+</div>
+
 
   <!-- Video Hero Section -->
   <main class="relative w-full h-screen overflow-hidden">
     <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-      <source src="assets/videos/San Juan del Sur skateboard scene.mp4" type="video/mp4" />
+      <source src="assets/videos/San Juan del Sur skateboard scene (compressed).mp4).mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
@@ -68,6 +62,15 @@
   <footer class="bg-white text-black text-center text-sm py-4">
     <p>&copy; 2025 tiny world</p>
   </footer>
+
+<script>
+  fetch("header.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("site-header").innerHTML = html;
+    });
+</script>
+
 
 </body>
 

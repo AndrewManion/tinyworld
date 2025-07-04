@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tiny World</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Courier Prime', monospace;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery img {
+      height: 300px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.98));
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 60px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+ <!-- Header (Loaded via JS) -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div id="header-placeholder"></div>
+</header>
+
+<script>
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+</script>
+
+  <!-- Main content -->
+  <main class="max-w-4xl mx-auto px-4 pt-8">
+
+    <!-- Hero Image -->
+    <section class="mb-8">
+      <img src="Interviews_files/image011.webp" alt="Interview Main Image" class="rounded-xl w-full h-auto shadow-md">
+    </section>
+
+    <!-- Interview Text -->
+    <section class="space-y-6 text-lg leading-relaxed pb-12">
+      <h1 class="text-2xl font-bold">Max Ahrent.</h1>
+      <h2 class="text-xl font-normal mt-1">Ark Des, Stockholm, Sweden</h2>
+
+     <p><strong>How long have you been working with Ark Des?</strong><br>
+      About five years now.</p>
+
+     <p><strong>What is your background in architecture?</strong><br>
+      I studied my first three years here in Sweden and then I did my masters in Copenhagen. I started off in architecture and working as an architect. I think it was a year after I graduated that I started doing research for exhibitions.</p>
+
+      <p><strong>How did you become a curator?</strong><br>
+      I started more as a researcher for exhibitions. Then I worked in different projects. Then I became a permanent employee of the curatorial staff. So yeah, I started working with the exhibition about Sigurd Lewerentz, which was a biographical exhibition about the Swedish architect. And then I got involved in the collections work. So now I'm responsible for developing part of the collections exhibition which is called unboxing. I don't know if you've if you experienced it when you visited, but it's, it's an idea where we everyday bring out new material from the collections, and view it and discuss it together with the visitors. It's every day. We will make some changes during the fall, because we're doing a merge with another museum, but, yeah, it’s every day between one and three, and during summer we won't do it on weekends. But we'll do every other day that we're open.</p>
+
+      <p><strong>How do you design the current collection?</strong><br>
+     We can say that we have like two different levels to the unboxing. The unboxing that we do every day, we spread it out. So, each curator gets one week where it's sort of theirs. They can curate that week how they want to. Some of them have chosen to invite guests and do something related to the permanent collections exhibition. Others have used the time and the space as sort of as a research space. To showcase something that they're currently researching or something that they're involved in. And some people have used it more as a way to let the public get more involved in what is showcased currently in the exhibition. So, for example, if we show a certain housing project, we're not able to show all the drawings from that housing project. So, it gives the visitor a more in-depth view of certain projects. And then we have a different level to where we have, on the first Tuesday of every month, we have an evening event where we invite in an architect, or an expert, or an architectural historian. And we make a more curated event where they are the experts and we act more as a moderator, as curators, and sometimes we we've invited in. We've invited in architects that are currently represented in the current collections exhibition. So, they get to talk about their sketch process that they've donated to the museum. Like some models or some sketchbooks. It also relates to the current exhibition that they're currently being exhibited in. And sometimes we have invited in a designer, a current designer, which isn't part of the collection, but they sort of get the access to our archive, and they come here and they dig around a little bit and see what they're interested in. And then they get to sort of showcase how some of the material and objects that are in our collection relate to their current practice. And to be fair, it's we also sort of as an experimental space. We've had the museum open now for almost a year, the new museum. And so, we've used this unboxing space sort of as a prototype space. Where we sometimes test new curatorial ideas.</p>
+
+      <p><strong>During my visit I noticed lots of earlier work, from the seventies especially, which was very forward thinking in terms of relating structures to the environment and working with nature. How do you think the natural environment in Sweden inspires these architectural trends?</strong><br>
+      I mean, we have a climate that, even if we look at references from the southern part of Europe, we're not really able to sometimes use their details, or their structures because we have a completely different climate. In some parts of Sweden, we have like an Arctic climate. And so, I think that we, as in the Nordic Region, we've had to sort of develop some type of new structure. Structures which sort of deal with us. It's mostly protection against the cold environment. And also structures that can be able to sort of switch from summer to winter. But, what's interesting about how we look at the climate, I think it has changed. Because before, some of the examples that we showcase from the seventies and sixties, it's much more like an ecological structure, living together with the forest, or living together with the nature, or living inside of a of a greenhouse. But I feel like, today, it's much more about sort of the reuse that we are talking about. It's not necessarily an esthetic. It's more about seeing what type of material that you could actually reuse and remix in different types of ways, and doesn't have to have to have a certain aesthetic necessarily connected to it. I think that's because what we wanted to showcase. Also with the exhibition design, we gave the task to an architectural firm that's called Arrhov Frick. What they decided to do is that, when we did this remodel of the entire museum, they said that we don't want to add any new materials. So, all the exhibition furniture, every vitrine, all the structures like the like large steel structures with curtains around it, those are all reused from previous exhibitions. So, they actually took down the entire… like they dismounted the previous museum and then they just remixed everything into new vitrines and furniture. Like, for example, the shape of the square, and all the vitrines, that's from a previous floor that we had, like a glass floor, that they just reused. So, I think that what we in the contemporary part of the exhibition also want to showcase is the exhibition design itself. That it has to do with sort of going from the nineteen-sixties and nineteen-seventies, where you had this idea of like an ecological town, or maybe living together, like inside a greenhouse. Now perhaps people, or architects, contemporary architects, work with seeing okay, “what material do we have?” and sort of remix them in a new way. But I think that that also perhaps happens globally and what's specific for Sweden, I think, is that we have to develop different details. Especially when it comes to windows and facades which deal with the shift in temperature from summer to winter.</p>
+
+      <p><strong>How are recycled materials utilized in Swedish building practices?</strong><br>
+      There's types of small initiatives in Sweden and also in Stockholm. One of them being, for example, Rivnings-Kartan, which translates to “the demolition map”. It is a project where you can sort of see ongoing demolitions. They’re trying to get people not to tear their houses down. But, if they are tearing them down, how do you reuse that material? So, I see that in the last few years initiatives on how you manage a process around reuse in the in the built environment has developed more in Sweden as well. It's actually happening nationally, so you can see what are the ongoing demolitions in each city.</p>
+
+      <p><strong>I saw an interesting idea about how to design for population growth in Stockholm by building silo-like structures so that housing becomes more available in neighborhoods which already exist, rather than creating new neighborhoods. Do you know about this project?</strong><br>
+      This is an architect called Anders Svensson. He did that in two-thousand-three. It was the idea of how to solve the housing crisis until, I think, two-thousand-thirty or something like that. And it's not meant to be a concrete idea, but an idea to see city planning in a different type of way, right? He has very avantgarde ideas when it comes to some of the design solutions and architecture. Anders Berensson, as well, has done a really interesting project called Bank of Norrland. This is also an idea project. It is an idea of how to sort of keep the forest that is being affected by storms. For example, we sometimes have problems when storms come here and lots of trees fall. What happens? How do you use these trees?</p>
+
+      <p><strong>Do you see any new ideas coming to the design of Swedish households? Passive houses or tiny houses?</strong><br>
+      I've seen some passive houses like that but it was a long, like, a long time ago, and I don't think that we any in our collection. But, hmm, who would know? Hmm. I visited some passive houses but, honestly, I haven't seen a lot of passive houses that have struck me as really interesting pieces of design. I think that probably says more about that the fact that I just haven't seen many. So, nothing really comes to mind when you say passive houses. But smaller houses, yes. For example, we had this project here at Ark Des where we, because they have a new housing law that says that you could basically build rooms in the apartment without windows, for example. So, yeah, a lot of people are obviously against it. But we sort of made a prototype of that apartment to see how people would react to it. We did seminars around it as well. Our initiative is to make a built prototype. And to get a sort of a debate around the situation. And to create a prototype so the people of this seminar could enter into this apartment structure and see. So, our job was basically just to lift this question and to create an experience where you could see how if you would implement these, these rules, how they would be in practicality. I know that they’re talking about it in Norway as well. How they manage… Like how little surface someone could live in, basically. Just to make the plans more “effective”, as they say, but essentially, it's cramming people into smaller spaces.</p>
+
+      <!-- Add more Q&A as needed -->
+    </section>
+
+   
+</section>
+
+    </section>
+
+  <!-- Navigation Buttons -->
+    <div class="flex justify-between max-w-md mx-auto pb-10">
+      <a href="PatriziaCevio.htm">
+        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">back</button>
+      </a>
+      <a href="JulianSkoga.htm">
+        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">next</button>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="zoomed image">
+  </div>
+
+  <!-- Script for Lightbox -->
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const galleryImages = [...document.querySelectorAll('#gallery img')];
+    let currentIndex = -1;
+    let touchStartX = null;
+
+    function showImage(index) {
+      const fullRes = galleryImages[index].dataset.full || galleryImages[index].src;
+      lightboxImg.src = fullRes;
+      lightbox.style.display = 'flex';
+      currentIndex = index;
+    }
+
+    function hideLightbox() {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+      currentIndex = -1;
+    }
+
+    function showNext() {
+      if (currentIndex < galleryImages.length - 1) {
+        showImage(currentIndex + 1);
+      }
+    }
+
+    function showPrev() {
+      if (currentIndex > 0) {
+        showImage(currentIndex - 1);
+      }
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => showImage(index));
+    });
+
+    lightbox.addEventListener('click', hideLightbox);
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') hideLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      }
+    });
+
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+
+    lightbox.addEventListener('touchend', (e) => {
+      if (touchStartX === null) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) showNext(); else showPrev();
+      }
+      touchStartX = null;
+    });
+  </script>
+</body>
+</html>

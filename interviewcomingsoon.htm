@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,10 +65,9 @@
     }
   </style>
 </head>
-
 <body class="bg-gray-50 text-gray-900">
 
-<!-- Header (Loaded via JS) -->
+ <!-- Header (Loaded via JS) -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
   <div id="header-placeholder"></div>
 </header>
@@ -82,39 +80,37 @@
     });
 </script>
 
-
   <!-- Main content -->
-  <main class="max-w-5xl mx-auto px-4">
+  <main class="max-w-4xl mx-auto px-4 pt-8">
 
-    <section class="text-center my-8 space-y-4">
-      <p class="text-lg">Jansen on Campus</p>
-      <p class="text-lg">I finally made it up north to see Angus in the academic atmosphere he'd fostered for himself. We spent the long weekend winding around canals and biking every direction from Utrecht. 
-
-</p>
+    <!-- Hero Image -->
+    <section class="mb-8">
+      <img src="Interviews_files/image000.webp" alt="Interview Main Image" class="rounded-xl w-full h-auto shadow-md">
     </section>
 
-    <section class="gallery" id="gallery">
-<img src="Utrecht_files/image001.webp" data-full="Utrecht_files/image001.webp" alt="">
-<img src="Utrecht_files/image002.webp" data-full="Utrecht_files/image002.webp" alt="">
-<img src="Utrecht_files/image003.webp" data-full="Utrecht_files/image003.webp" alt="">
-<img src="Utrecht_files/image004.webp" data-full="Utrecht_files/image004.webp" alt="">
-<img src="Utrecht_files/image005.webp" data-full="Utrecht_files/image005.webp" alt="">
+    <!-- Interview Text -->
+    <section class="space-y-6 text-lg leading-relaxed pb-12">
+      <h1 class="text-2xl font-bold">Who?</h1>
+      <h2 class="text-xl font-normal mt-1">Where?</h2>
 
+     <p><strong>I'm in Africa right now and I haven't found the time to write the transcript for this interview yet.</strong><br>
+      But I'll be right with you...</p>
 
+     
+      <!-- Add more Q&A as needed -->
+    </section>
 
-
-
-
-
+   
 </section>
 
+    </section>
 
-    <!-- Navigation Buttons -->
+  <!-- Navigation Buttons -->
     <div class="flex justify-between max-w-md mx-auto pb-10">
-      <a href="Dublin.htm">
+      <a href="interviews.html">
         <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">back</button>
       </a>
-      <a href="Sweden.htm">
+      <a href="interviews.html">
         <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">next</button>
       </a>
     </div>
@@ -126,6 +122,7 @@
     <img id="lightbox-img" src="" alt="zoomed image">
   </div>
 
+  <!-- Script for Lightbox -->
   <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -188,5 +185,4 @@
     });
   </script>
 </body>
-
 </html>

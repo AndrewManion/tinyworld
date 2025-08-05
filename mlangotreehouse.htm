@@ -28,6 +28,11 @@
     <div id="header-placeholder"></div>
   </header>
 
+    <audio autoplay loop hidden>
+  <source src="assets/audio/kifochamende.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
   <script>
     fetch("header.html")
       .then(response => response.text())
@@ -39,29 +44,29 @@
   <!-- Main content -->
   <main class="max-w-5xl mx-auto px-4 py-10 space-y-20">
 
-    <!-- Project Block 1 -->
+    <!-- Project Block 1 (text left, image right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-2 md:order-1">
         <h2 class="text-2xl font-semibold mb-2">Imagine...</h2>
-        <p class="text-gray-700">Everything you need to eat and to build is around you. The project is to make a habitation which is immersed in nature and built with the same or other recycled materials</p>
+        <p class="text-gray-700">Everything you need to eat and to build is around you. The project is to make a habitation which is immersed in nature and built with the same.</p>
       </div>
       <div class="order-1 md:order-2">
         <img src="mlangotreehouse_files/image001.webp" alt="Project 1" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
       </div>
     </section>
 
-    <!-- Project Block 2 -->
+    <!-- Project Block 2 (image left, text right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-1">
         <img src="mlangotreehouse_files/image002.webp" alt="Project 2" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
       </div>
       <div class="order-2">
         <h2 class="text-2xl font-semibold mb-2">Architraves:</h2>
-        <p class="text-gray-700">These casings came in handy to cover gaps and give a finished look around doors and windos. </p>
+        <p class="text-gray-700">These casings came in handy to cover gaps and give a finished look around doors and windows.</p>
       </div>
     </section>
 
-    <!-- Project Block 3 -->
+    <!-- Project Block 3 (text left, image right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-2 md:order-1">
         <h2 class="text-2xl font-semibold mb-2">Hesbo, the creator.</h2>
@@ -72,29 +77,37 @@
       </div>
     </section>
 
-     <!-- Project Block 4 -->
+  <!-- Project Video Block -->
+<section class="flex justify-center">
+  <video autoplay muted loop playsinline class="rounded-xl shadow-md w-full max-w-3xl object-cover max-h-[500px]">
+    <source src="assets/videos/treehouse.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+    <!-- Project Block 4 (image left, text right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
-      <div class="order-1 md:order-2">
-        <h2 class="text-2xl font-semibold mb-2">Mallet & Chisel</h2>
-        <p class="text-gray-700">Hand tools were the de-facto method for all adjustments</p>
+      <div class="order-1">
+        <img src="mlangotreehouse_files/image004.webp" alt="Project 4" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
       </div>
-      <div class="order-1 md:order-2">
-        <img src="mlangotreehouse_files/image004.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      <div class="order-2">
+        <h2 class="text-2xl font-semibold mb-2">Mallet & Chisel.</h2>
+        <p class="text-gray-700">Hand tools were the de-facto method for all adjustments.</p>
       </div>
     </section>
 
-     <!-- Project Block 5 -->
+    <!-- Project Block 5 (text left, image right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-2 md:order-1">
         <h2 class="text-2xl font-semibold mb-2">A step back:</h2>
-        <p class="text-gray-700">Looking at adding a touch of art to the railing safety. </p>
+        <p class="text-gray-700">Looking at adding a touch of art to the railing safety.</p>
       </div>
       <div class="order-1 md:order-2">
-        <img src="mlangotreehouse_files/image005.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+        <img src="mlangotreehouse_files/image005.webp" alt="Project 5" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
       </div>
     </section>
 
-    <!-- Navigation Buttons (Optional) -->
+    <!-- Navigation Buttons -->
     <div class="flex justify-between max-w-md mx-auto pt-10">
       <a href="mlangokitchen.htm">
         <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">Back</button>
@@ -106,4 +119,6 @@
 
   </main>
 
-</
+</body>
+
+</html>

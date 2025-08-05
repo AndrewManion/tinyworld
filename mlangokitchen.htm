@@ -28,6 +28,12 @@
     <div id="header-placeholder"></div>
   </header>
 
+  <audio autoplay loop hidden>
+  <source src="assets/audio/angukanayo.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
   <script>
     fetch("header.html")
       .then(response => response.text())
@@ -39,18 +45,18 @@
   <!-- Main content -->
   <main class="max-w-5xl mx-auto px-4 py-10 space-y-20">
 
-    <!-- Project Block 1 -->
+    <!-- Block 1 (text left, image right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-2 md:order-1">
-        <h2 class="text-2xl font-semibold mb-2">Art Immitates Life.</h2>
-        <p class="text-gray-700">Eucalyptus trees support a roof reeds.</p>
+        <h2 class="text-2xl font-semibold mb-2">Art Imitates Life.</h2>
+        <p class="text-gray-700">Eucalyptus trees support a roof of reeds.</p>
       </div>
       <div class="order-1 md:order-2">
         <img src="mlangokitchen_files/image001.webp" alt="Project 1" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
       </div>
     </section>
 
-    <!-- Project Block 2 -->
+    <!-- Block 2 (image left, text right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-1">
         <img src="mlangokitchen_files/image002.webp" alt="Project 2" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
@@ -61,7 +67,7 @@
       </div>
     </section>
 
-    <!-- Project Block 3 -->
+    <!-- Block 3 (text left, image right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-2 md:order-1">
         <h2 class="text-2xl font-semibold mb-2">On maneuvers.</h2>
@@ -71,44 +77,51 @@
         <img src="mlangokitchen_files/image003.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
       </div>
     </section>
-    
 
-     <!-- Project Block 4 -->
+    <!-- Project Video Block -->
+<section class="flex justify-center">
+  <video autoplay muted loop playsinline class="rounded-xl shadow-md w-full max-w-3xl object-cover max-h-[500px]">
+    <source src="assets/videos/kitchen.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+    <!-- Block 4 (image left, text right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
-      <div class="order-1 md:order-2">
+      <div class="order-1">
+        <img src="mlangokitchen_files/image004.webp" alt="Project 4" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      </div>
+      <div class="order-2">
         <h2 class="text-2xl font-semibold mb-2">Water flow.</h2>
         <p class="text-gray-700">The plastic deck sits on top of the reeds.</p>
       </div>
-      <div class="order-2 md:order-1">
-        <img src="mlangokitchen_files/image004.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
-      </div>
     </section>
 
-     <!-- Project Block 5 -->
+    <!-- Block 5 (text left, image right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
       <div class="order-2 md:order-1">
         <h2 class="text-2xl font-semibold mb-2">For the floors:</h2>
-        <p class="text-gray-700">Compaction, draining and leveling required.</p>
+        <p class="text-gray-700">Compaction, draining, and leveling required.</p>
       </div>
       <div class="order-1 md:order-2">
-        <img src="mlangokitchen_files/image005.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+        <img src="mlangokitchen_files/image005.webp" alt="Project 5" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
       </div>
     </section>
 
-         <!-- Project Block 6 -->
+    <!-- Block 6 (image left, text right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
-      <div class="order-1 md:order-2">
+      <div class="order-1">
+        <img src="mlangokitchen_files/image006.webp" alt="Project 6" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      </div>
+      <div class="order-2">
         <h2 class="text-2xl font-semibold mb-2">Redundant Frames.</h2>
         <p class="text-gray-700">The design was altered during construction and so we were left with a web.</p>
       </div>
-      <div class="order-2 md:order-1">
-        <img src="mlangokitchen_files/image006.webp" alt="Project 6" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
-      </div>
     </section>
 
-     <!-- Project Block 7 -->
+    <!-- Block 7 (text left, image right) -->
     <section class="grid md:grid-cols-2 items-center gap-8">
-      <div class="order-1 md:order-2">
+      <div class="order-2 md:order-1">
         <h2 class="text-2xl font-semibold mb-2">On to the next!</h2>
         <p class="text-gray-700">First thatch job done.</p>
       </div>
@@ -117,7 +130,7 @@
       </div>
     </section>
 
-    <!-- Navigation Buttons (Optional) -->
+    <!-- Navigation -->
     <div class="flex justify-between max-w-md mx-auto pt-10">
       <a href="mlangokitchen.htm">
         <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">Back</button>
@@ -129,4 +142,6 @@
 
   </main>
 
-</
+</body>
+
+</html>

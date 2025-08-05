@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Storyboard</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Courier Prime', monospace;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Header (Loaded via JS) -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div id="header-placeholder"></div>
+  </header>
+
+  <script>
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header-placeholder").innerHTML = data;
+      });
+  </script>
+
+  <!-- Main content -->
+  <main class="max-w-5xl mx-auto px-4 py-10 space-y-20">
+
+    <!-- Project Block 1 -->
+    <section class="grid md:grid-cols-2 items-center gap-8">
+      <div class="order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-2">Imagine...</h2>
+        <p class="text-gray-700">Everything you need to eat and to build is around you. The project is to make a habitation which is immersed in nature and built with the same or other recycled materials</p>
+      </div>
+      <div class="order-1 md:order-2">
+        <img src="mlangotreehouse_files/image001.webp" alt="Project 1" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      </div>
+    </section>
+
+    <!-- Project Block 2 -->
+    <section class="grid md:grid-cols-2 items-center gap-8">
+      <div class="order-1">
+        <img src="mlangotreehouse_files/image002.webp" alt="Project 2" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      </div>
+      <div class="order-2">
+        <h2 class="text-2xl font-semibold mb-2">Architraves:</h2>
+        <p class="text-gray-700">These casings came in handy to cover gaps and give a finished look around doors and windos. </p>
+      </div>
+    </section>
+
+    <!-- Project Block 3 -->
+    <section class="grid md:grid-cols-2 items-center gap-8">
+      <div class="order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-2">Hesbo, the creator.</h2>
+        <p class="text-gray-700">The master carpenter can imagine anything. But, does the tree or the balcony define the railing?</p>
+      </div>
+      <div class="order-1 md:order-2">
+        <img src="mlangotreehouse_files/image003.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      </div>
+    </section>
+
+     <!-- Project Block 4 -->
+    <section class="grid md:grid-cols-2 items-center gap-8">
+      <div class="order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-2">Mallet &</h2>
+        <p class="text-gray-700">The perfect tree does exist</p>
+      </div>
+      <div class="order-1 md:order-2">
+        <img src="mlangotreehouse_files/image004.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      </div>
+    </section>
+
+     <!-- Project Block 5 -->
+    <section class="grid md:grid-cols-2 items-center gap-8">
+      <div class="order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-2">Project Title Three</h2>
+        <p class="text-gray-700">Placeholder description for a third portfolio project. Continue adding these sections for each project you want to display.</p>
+      </div>
+      <div class="order-1 md:order-2">
+        <img src="mlangotreehouse_files/image005.webp" alt="Project 3" class="rounded-xl shadow-md w-full object-cover max-h-[400px]">
+      </div>
+    </section>
+
+    <!-- Navigation Buttons (Optional) -->
+    <div class="flex justify-between max-w-md mx-auto pt-10">
+      <a href="mlangokitchen.htm">
+        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">Back</button>
+      </a>
+      <a href="mlangokitchen.htm">
+        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">Next</button>
+      </a>
+    </div>
+
+  </main>
+
+</

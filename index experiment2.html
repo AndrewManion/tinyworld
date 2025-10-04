@@ -45,12 +45,14 @@
       justify-content: center;
       align-items: center;
       font-weight: bold;
-      color: rgba(0, 0, 0, 0.05);
+      color: black; /* solid black letters */
       white-space: nowrap;
       text-transform: uppercase;
       pointer-events: none;
       user-select: none;
       overflow: hidden;
+      opacity: 1;
+      transition: opacity 1s ease; /* dissolve effect */
     }
 
     #slideshow {
@@ -157,19 +159,21 @@
       currentIndex = (currentIndex + 1) % slides.length;
       const slide = slides[currentIndex];
 
-      // Fade out photo
+      // Fade out photo + word
       slideshow.style.opacity = 0;
+      backgroundWord.style.opacity = 0;
 
       setTimeout(() => {
-        // Update background word
+        // Update background word + color
         backgroundWord.textContent = slide.word;
         fitWord();
         body.style.backgroundColor = slide.bgColor;
 
-        // Fade in next photo
+        // After short delay, fade back in
         setTimeout(() => {
           slideshow.src = slide.src;
           slideshow.style.opacity = 1;
+          backgroundWord.style.opacity = 1;
         }, 500);
       }, 500);
     }
@@ -184,5 +188,4 @@
   </script>
 
 </body>
-
 </html>

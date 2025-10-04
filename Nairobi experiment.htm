@@ -1,0 +1,72 @@
+<section class="relative text-center my-8 space-y-4 overflow-visible">
+  <!-- Paint splats behind text -->
+  <div class="paint-splat" style="--x:10%;--y:0;--size:80px;--color:#FF6B6B;"></div>
+  <div class="paint-splat" style="--x:50%;--y:10px;--size:60px;--color:#FFD93D;"></div>
+  <div class="paint-splat" style="--x:80%;--y:-5px;--size:100px;--color:#6BCB77;"></div>
+
+  <p class="text-lg relative z-10">Nairobi and the Farm That Feeds It</p>
+  <p class="text-lg relative z-10">
+    When the pilot woke me up on the floor of the airport in Muscat, I didn't know where I was going. When we landed in Kenya, it made more sense. We came in over the mara in the afternoon sun. Just as quickly as we landed, I got myself to the outskirts of Nairobi, near Kibuku, to a camping tent set to overlook the forest farm. My real job, however, was to be apprentice to Esbon, the master carpenter.
+  </p>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="frame">
+    <img src="Albania_files/image001.webp" data-full="Albania_files/image001.webp" alt="">
+  </div>
+  <div class="frame">
+    <img src="Albania_files/image002.webp" data-full="Albania_files/image002.webp" alt="">
+  </div>
+  <div class="frame">
+    <img src="Albania_files/image003.webp" data-full="Albania_files/image003.webp" alt="">
+  </div>
+  <div class="frame">
+    <img src="Albania_files/image004.webp" data-full="Albania_files/image004.webp" alt="">
+  </div>
+  <div class="frame">
+    <img src="Albania_files/image005.webp" data-full="Albania_files/image005.webp" alt="">
+  </div>
+</section>
+
+<style>
+/* Dripping paint splats */
+.paint-splat {
+  position: absolute;
+  left: var(--x);
+  top: var(--y, 0);
+  width: var(--size);
+  height: var(--size);
+  background-color: var(--color);
+  border-radius: 50% 50% 60% 50% / 50% 60% 50% 50%;
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.paint-splat::after {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  left: 40%;
+  width: 20%;
+  height: 30%;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+/* Old-fashioned frames around gallery images */
+.frame {
+  display: inline-block;
+  padding: 12px;
+  border: 8px solid #8B4513; /* dark wood */
+  border-style: double;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background-color: #fff;
+}
+
+.frame img {
+  display: block;
+  border-radius: 4px;
+}
+</style>

@@ -13,28 +13,34 @@
     body {
       font-family: 'Courier Prime', monospace;
     }
+
+    #bouncer {
+      position: fixed; /* bounce relative to viewport */
+      width: 200px; /* adjust size as needed */
+      height: auto;
+      z-index: 1;
+      pointer-events: none;
+    }
   </style>
 </head>
 
 <body class="bg-gray-50 text-gray-900 h-screen flex flex-col overflow-hidden">
 
+  <!-- Bouncing Image -->
+  <img id="bouncer" src="assets/images/title/photo1.webp" alt="Bouncing Image" />
+
   <!-- Header -->
   <header class="bg-white shadow shrink-0">
     <div class="text-center px-4 py-4">
-      <h1 class="text-xl md:text-3xl font-bold text-gray-900">Karibu katika ulimwengu mdogo</h1>
+      <h1 class="text-xl md:text-3xl font-bold text-gray-900">छोटी दुनिया में आपका स्वागत है</h1>
     </div>
     <div id="site-nav"></div>
   </header>
 
   <!-- Main Content -->
   <main class="relative flex-1 w-full overflow-hidden">
-    <!-- Background Video -->
-    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-      <source src="assets/videos/San Juan del Sur skateboard scene (compressed).mp4" type="video/mp4" />
-    </video>
-
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-center px-4 z-10 overflow-auto">
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-black text-center px-4 z-10 overflow-auto">
       <h2 class="text-xl md:text-3xl font-bold mb-4 max-w-4xl flex flex-wrap justify-center gap-2">
         <span>pequeño.</span>
         <span>tiny.</span>
@@ -53,8 +59,9 @@
         <span>küçük.</span>
         <span>ndogo.</span>
         <span>mũhũũ.</span>
+        <span>छोटा.</span>
       </h2>
-      <a href="journey.html" class="text-white text-lg px-6 py-2 rounded hover:underline transition">
+      <a href="journey.html" class="text-black text-lg px-6 py-2 rounded hover:underline transition">
         start the journey
       </a>
     </div>
@@ -66,11 +73,62 @@
   </footer>
 
   <script>
+    // Load header
     fetch("header.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("site-nav").innerHTML = html;
       });
+
+    // Bouncing image logic
+    const bouncer = document.getElementById("bouncer");
+
+    const images = [
+      "assets/images/title/photo1.webp",
+      "assets/images/title/photo2.webp",
+      "assets/images/title/photo3.webp",
+      "assets/images/title/photo4.webp"
+    ];
+
+    // set initial image
+    bouncer.src = images[0];
+
+    let x = 100, y = 100;
+    let dx = 3, dy = 2;
+
+    function changeImage() {
+      const randomImg = images[Math.floor(Math.random() * images.length)];
+      bouncer.src = randomImg;
+    }
+
+    function animate() {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      const imgWidth = bouncer.offsetWidth;
+      const imgHeight = bouncer.offsetHeight;
+
+      x += dx;
+      y += dy;
+
+      // Bounce off left/right
+      if (x + imgWidth >= screenWidth || x <= 0) {
+        dx = -dx;
+        changeImage();
+      }
+
+      // Bounce off top/bottom
+      if (y + imgHeight >= screenHeight || y <= 0) {
+        dy = -dy;
+        changeImage();
+      }
+
+      bouncer.style.left = x + "px";
+      bouncer.style.top = y + "px";
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 
 </body>

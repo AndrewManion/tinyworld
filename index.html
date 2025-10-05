@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tiny World</title>
+  <title>tiny world</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
@@ -40,14 +40,14 @@
 
     @keyframes typing {
       from { width: 0; }
-      to { width: 19ch; } /* stops after the last Thai character */
+      to { width: 16ch; } /* stops after the last Thai character - ITERATE THIS! */
     }
 
     @keyframes blink-caret {
       50% { border-color: transparent; }
     }
 
-    /* Main layout like Public Records */
+    /* Main layout */
     #main {
       display: none;
       grid-template-columns: 1fr 350px;
@@ -150,32 +150,34 @@
   <div id="main" class="grid">
     <div id="left">
       <div id="site-nav"></div>
-      <div id="title">TINY WORLD</div>
+      <div id="title">tiny world</div>
       <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
       <div id="word">PEQUEÑO</div>
     </div>
 
     <div id="right">
-      <div class="menu-item" onclick="window.location.href='kophayam.html'">
-        <img src="assets/title/kophayam.webp" alt="Ko Phayam">
-        <span>KO PHAYAM</span>
+      <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'">
+        <img src="assets/title/esbon.webp" alt="Esbon">
+        <span>ESBON</span>
       </div>
-      <div class="menu-item" onclick="window.location.href='phuket.html'">
-        <img src="assets/title/phuket.webp" alt="Phuket">
-        <span>PHUKET</span>
+      <div class="menu-item" onclick="window.location.href='Copenhagen.htm'">
+        <img src="assets/title/copenhagen.webp" alt="Copenhagen">
+        <span>COPENHAGEN</span>
       </div>
-      <div class="menu-item" onclick="window.location.href='ladakh.html'">
-        <img src="assets/title/ladakh.webp" alt="Ladakh">
-        <span>LADAKH</span>
+      <div class="menu-item" onclick="window.location.href='GillesParis.htm'">
+        <img src="assets/title/gilles.webp" alt="Gilles">
+        <span>GILLES</span>
       </div>
-      <div class="menu-item" onclick="window.location.href='dharamshala.html'">
-        <img src="assets/title/dharamshala.webp" alt="Dharamshala">
-        <span>DHARAMSHALA</span>
+      <div class="menu-item" onclick="window.location.href='Morocco.htm'">
+        <img src="assets/title/morocco.webp" alt="Morocco">
+        <span>NAIROBI</span>
       </div>
-      <div class="menu-item" onclick="window.location.href='rishikesh.html'">
-        <img src="assets/title/rishikesh.webp" alt="Rishikesh">
-        <span>RISHIKESH</span>
+      <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'">
+        <img src="assets/title/brigitte.webp" alt="Briggite">
+        <span>BRIGITTE</span>
       </div>
+      
+      
     </div>
   </div>
 
@@ -209,8 +211,8 @@
     // Slideshow images and words
     const slides = [
       { src: "assets/images/buenosaires.webp", word: "PEQUEÑO" },
-      { src: "assets/images/patagonia.webp", word: "NGUILLEN" },
-      { src: "assets/images/mendoza.webp", word: "CHIQUITO" },
+      { src: "assets/images/patagonia_condor 4.webp", word: "NGUILLEN" },
+      { src: "assets/images/mendoza_house tour.webp", word: "CHIQUITO" },
       { src: "assets/images/valparaiso.webp", word: "PEQUEÑITO" },
       { src: "assets/images/uk.webp", word: "TINY" },
       { src: "assets/images/flers.webp", word: "PETIT" },

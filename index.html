@@ -1,359 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tiny world</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Courier Prime', monospace;
-      margin: 0;
-      height: 100vh;
-      width: 100vw;
-      background: #fff;
-      overflow: hidden;
-      cursor: none;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>tiny world</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+<style>
+  /* -------- FONTS -------- */
+  body {
+    font-family: 'Courier Prime', monospace;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    overflow-x: hidden;
+    cursor: none;
+    color: white;
+  }
 
-    /* Intro Screen */
-    #intro {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      z-index: 50;
-    }
+  /* -------- TYPEWRITER INTRO -------- */
+  #intro {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    z-index: 50;
+  }
 
-    #intro-text {
-      font-size: 6vw;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid black;
-      animation: typing 4s steps(19, end) 1s 1 normal both, blink-caret 0.7s step-end infinite;
-    }
+  #intro-text {
+    font-family: 'Courier Prime', monospace;
+    font-size: 8vw;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid black;
+    color: black;
+    animation: typing 4s steps(19, end) 1s 1 normal both, blink-caret 0.7s step-end infinite;
+  }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 16ch; }
-    }
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 16ch; }
+  }
+  @keyframes blink-caret {
+    50% { border-color: transparent; }
+  }
 
-    @keyframes blink-caret {
-      50% { border-color: transparent; }
-    }
+  /* -------- MAIN DESKTOP LAYOUT -------- */
+  #main {
+    display: none;
+    grid-template-columns: 1fr 280px;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Courier Prime', monospace;
+  }
 
-    /* Main Layout */
-    #main {
-      display: none;
-      grid-template-columns: 1fr 350px;
-      height: 100vh;
-      width: 100vw;
-      background: white;
-      overflow: hidden;
-    }
+  /* LEFT SIDE: image + word */
+  #left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    height: 100vh;
+    gap: 0.5rem; /* smaller gap between elements */
+  }
 
-    /* LEFT COLUMN */
-    #left {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 100%;
-    }
+  #title {
+    font-size: 5vw; /* smaller header */
+    font-weight: bold;
+    text-transform: lowercase;
+    margin: 0;
+    color: white;
+  }
 
-    #site-nav {
-      position: absolute;
-      top: 2rem;
-      left: 50%;
-      transform: translateX(-50%) scaleX(0.85);
-    }
+  #desktop-address {
+    font-size: 1rem; /* slightly smaller */
+    font-weight: bold;
+    margin: 0.3rem 0; /* smaller gap before slideshow */
+    color: white;
+    text-transform: lowercase;
+  }
 
-    #title {
-      font-size: 8vw;
-      font-weight: bold;
-      line-height: 1;
-      text-transform: lowercase;
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      margin: 0;
-    }
+  #slideshow {
+    max-height: 50vh; /* smaller so word fits below */
+    max-width: 80vw;
+    width: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    transition: opacity 0.6s ease-in-out;
+  }
 
-    #slideshow-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 60%;
-      width: 100%;
-      position: relative;
-    }
+  #word {
+    font-size: 1rem; /* match desktop address */
+    font-weight: bold;
+    text-transform: lowercase;
+    color: white;
+    margin: 0;
+  }
 
-    #slideshow {
-      width: 60%;
-      max-width: 700px;
-      border-radius: 8px;
-      object-fit: cover;
-      transition: opacity 1.2s ease-in-out;
-      image-rendering: auto;
-      margin-bottom: 1rem;
-    }
+  /* Right sidebar links */
+  #right {
+    border-left: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2rem;
+    gap: 0.5rem;
+  }
 
-    #word {
-      position: absolute;
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.3rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      opacity: 1;
-      transition: opacity 0.8s ease-in-out;
-    }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.3rem;
+    color: white;
+    background: black;
+  }
 
-    /* RIGHT SIDEBAR */
-    #right {
-      border-left: 2px solid black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 2rem;
-      gap: 2rem;
-      background: white;
-    }
+  .menu-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-right: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
 
-    .menu-item {
-      display: flex;
-      align-items: center;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
+  /* Hover effect for right menu items */
+  .menu-item:hover {
+    background: white;
+    color: black;
+  }
 
-    .menu-item:hover {
-      opacity: 0.6;
-    }
+  /* Cursors */
+  .dot-cursor {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: background 0.3s ease;
+  }
+  #intro-dot {
+    width: 25px;
+    height: 25px;
+    background: black;
+    display: block;
+  }
+  #main-dot {
+    width: 10px;
+    height: 10px;
+    background: white;
+    display: none;
+  }
 
-    .menu-item img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      object-position: center;
-      margin-right: 1rem;
-      border-radius: 6px;
-      flex-shrink: 0;
-    }
+  /* FLASH DURING SLIDES */
+  #flash {
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    z-index: 20;
+    transition: opacity 0.2s ease-in-out;
+  }
 
-    /* Custom cursors (desktop only) */
-    .dot-cursor {
-      position: fixed;
-      background: black;
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-    }
+  /* -------- MOBILE LAYOUT -------- */
+  @media (max-width: 768px) {
+    body { cursor: auto; overflow-y: auto; }
+    #main { display: none !important; }
+    #mobile { display: flex !important; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; padding: 1.5rem; background: #000; color: white; }
 
-    #intro-dot {
-      width: 25px;
-      height: 25px;
-    }
+    #mobile-title { font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; text-align: center; margin-bottom: 0.5rem; color: white; }
+    #mobile-address { display: block; font-weight: bold; margin-bottom: 1rem; text-align: center; color: white; }
 
-    #main-dot {
-      width: 10px;
-      height: 10px;
-      display: none;
-    }
+    .mobile-menu { width: 100%; text-align: center; font-weight: bold; text-transform: uppercase; border-top: 1px solid white; padding: 1rem 0; cursor: pointer; color: white; }
+    .mobile-menu:last-of-type { border-bottom: 1px solid white; }
+    .mobile-menu:hover { background: white; color: black; }
 
-    /* ----------------- MOBILE STYLES ----------------- */
-    @media (max-width: 768px) {
-      body {
-        cursor: auto;
-        overflow-y: auto;
-        height: auto;
-      }
-
-      #main {
-        display: none;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        height: auto;
-      }
-
-      #left {
-        height: auto;
-        padding: 2rem 1rem;
-      }
-
-      #title {
-        position: static;
-        font-size: 10vw;
-        margin-bottom: 2rem;
-      }
-
-      #slideshow-container {
-        height: auto;
-        width: 100%;
-      }
-
-      #slideshow {
-        width: 90%;
-        max-width: 100%;
-        border-radius: 8px;
-      }
-
-      #word {
-        position: static;
-        transform: none;
-        margin-top: 1rem;
-        font-size: 1.1rem;
-      }
-
-      #right {
-        border-left: none;
-        border-top: 2px solid black;
-        flex-direction: column;
-        align-items: center;
-        padding: 1.5rem 0;
-        gap: 1.5rem;
-      }
-
-      .menu-item {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .menu-item img {
-        width: 100px;
-        height: 100px;
-        margin: 0 0 0.5rem 0;
-      }
-
-      .dot-cursor {
-        display: none !important;
-      }
-    }
-  </style>
+    #mobile-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; margin-top: 1.5rem; }
+    .mobile-item { display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; }
+    .mobile-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+    .mobile-item span { margin-top: 0.3rem; font-weight: 800; font-size: 0.9rem; color: white; }
+  }
+</style>
 </head>
 <body>
-  <!-- Intro -->
-  <div id="intro">
-    <div id="intro-text">ยินดีต้อนรับสู่โลกเล็กๆ</div>
+
+<!-- INTRO -->
+<div id="intro">
+  <div id="intro-text">ยินดีต้อนรับสู่โลกเล็กๆ</div>
+</div>
+
+<!-- DESKTOP MAIN -->
+<div id="main" class="grid">
+  <div id="left">
+    <div id="title">tiny world</div>
+    <div id="desktop-address">56 หมู่ 1 ko phayam mueang ranong 85000</div>
+    <div id="flash"></div>
+    <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
+    <div id="word">pequeño</div>
   </div>
 
-  <!-- Main Layout -->
-  <div id="main" class="grid">
-    <div id="left">
-      <div id="site-nav"></div>
-      <div id="title">tiny world</div>
-
-      <div id="slideshow-container">
-        <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
-        <div id="word">PEQUEÑO</div>
-      </div>
+  <div id="right">
+    <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'">
+      <img src="assets/images/title/esbon.webp" alt="Esbon"><span>Esbon</span>
     </div>
-
-    <div id="right">
-      <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'">
-        <img src="assets/images/title/esbon.webp" alt="Esbon">
-        <span>ESBON</span>
-      </div>
-      <div class="menu-item" onclick="window.location.href='Copenhagen.htm'">
-        <img src="assets/images/title/copenhagen.webp" alt="Copenhagen">
-        <span>COPENHAGEN</span>
-      </div>
-      <div class="menu-item" onclick="window.location.href='GillesParis.htm'">
-        <img src="assets/images/title/gilles.webp" alt="Gilles">
-        <span>GILLES</span>
-      </div>
-      <div class="menu-item" onclick="window.location.href='Morocco.htm'">
-        <img src="assets/images/title/morocco.webp" alt="Morocco">
-        <span>NAIROBI</span>
-      </div>
-      <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'">
-        <img src="assets/images/title/brigitte.webp" alt="Briggite">
-        <span>BRIGITTE</span>
-      </div>
+    <div class="menu-item" onclick="window.location.href='Copenhagen.htm'">
+      <img src="assets/images/title/copenhagen.webp" alt="Copenhagen"><span>Copenhagen</span>
+    </div>
+    <div class="menu-item" onclick="window.location.href='GillesParis.htm'">
+      <img src="assets/images/title/gilles.webp" alt="Gilles"><span>Gilles</span>
+    </div>
+    <div class="menu-item" onclick="window.location.href='Morocco.htm'">
+      <img src="assets/images/title/morocco.webp" alt="Morocco"><span>Morocco</span>
+    </div>
+    <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'">
+      <img src="assets/images/title/brigitte.webp" alt="Brigitte"><span>Brigitte</span>
     </div>
   </div>
+</div>
 
-  <!-- Cursors -->
-  <div class="dot-cursor" id="intro-dot"></div>
-  <div class="dot-cursor" id="main-dot"></div>
+<!-- MOBILE VERSION -->
+<div id="mobile" style="display:none;">
+  <div id="mobile-title">TINY WORLD</div>
+  <div id="mobile-address">56 หมู่ 1 Ko phayam mueang ranong 85000</div>
 
-  <script>
-    // Load header
-    fetch("header.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("site-nav").innerHTML = html;
-      });
+  <div class="mobile-menu" onclick="window.location.href='journey.html'">JOURNEY</div>
+  <div class="mobile-menu" onclick="window.location.href='interviews.html'">INTERVIEW</div>
+  <div class="mobile-menu" onclick="window.location.href='portfolio.htm'">PORTFOLIO</div>
+  <div class="mobile-menu" onclick="window.location.href='map.html'">MAP</div>
+  <div class="mobile-menu" onclick="window.location.href='about.htm'">ABOUT</div>
 
-    const intro = document.getElementById('intro');
-    const main = document.getElementById('main');
-    const introDot = document.getElementById('intro-dot');
-    const mainDot = document.getElementById('main-dot');
+  <div id="mobile-gallery">
+    <div class="mobile-item" onclick="window.location.href='EsbonNgecha.htm'">
+      <img src="assets/images/title/esbon.webp" alt="Esbon"><span>Esbon</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='Copenhagen.htm'">
+      <img src="assets/images/title/copenhagen.webp" alt="Copenhagen"><span>Copenhagen</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='GillesParis.htm'">
+      <img src="assets/images/title/gilles.webp" alt="Gilles"><span>Gilles</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='Morocco.htm'">
+      <img src="assets/images/title/morocco.webp" alt="Morocco"><span>Morocco</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='BrigitteCannes.htm'">
+      <img src="assets/images/title/brigitte.webp" alt="Brigitte"><span>Brigitte</span>
+    </div>
+  </div>
+</div>
 
-    // Detect touch device (disable custom cursors)
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) {
-      introDot.style.display = 'none';
-      mainDot.style.display = 'none';
-      document.body.style.cursor = 'auto';
-    } else {
-      document.addEventListener('mousemove', e => {
-        introDot.style.left = e.clientX + 'px';
-        introDot.style.top = e.clientY + 'px';
-        mainDot.style.left = e.clientX + 'px';
-        mainDot.style.top = e.clientY + 'px';
-      });
-    }
+<!-- CURSORS -->
+<div class="dot-cursor" id="intro-dot"></div>
+<div class="dot-cursor" id="main-dot"></div>
 
-    // On click: hide intro, show main
-    intro.addEventListener('click', () => {
-      intro.style.display = 'none';
-      introDot.style.display = 'none';
-      main.style.display = 'grid';
-      if (!isTouchDevice) mainDot.style.display = 'block';
-    });
+<script>
+const intro = document.getElementById('intro');
+const main = document.getElementById('main');
+const mobile = document.getElementById('mobile');
+const introDot = document.getElementById('intro-dot');
+const mainDot = document.getElementById('main-dot');
+const slideshow = document.getElementById("slideshow");
+const word = document.getElementById("word");
+const flash = document.getElementById("flash");
 
-    // Slideshow and words
-    const slides = [
-      { src: "assets/images/buenosaires.webp", word: "PEQUEÑO" },
-      { src: "assets/images/patagonia_condor 4.webp", word: "NGUILLEN" },
-      { src: "assets/images/mendoza_house tour.webp", word: "CHIQUITO" },
-      { src: "assets/images/valparaiso.webp", word: "PEQUEÑITO" },
-      { src: "assets/images/uk.webp", word: "TINY" },
-      { src: "assets/images/flers.webp", word: "PETIT" },
-      { src: "assets/images/paris.webp", word: "MINUSCULE" },
-      { src: "assets/images/dolomites.webp", word: "PICCOLO" },
-      { src: "assets/images/kitzbuhel.webp", word: "WINZIG" }
-    ];
+document.addEventListener('mousemove', e => {
+  introDot.style.left = e.clientX + 'px';
+  introDot.style.top = e.clientY + 'px';
+  mainDot.style.left = e.clientX + 'px';
+  mainDot.style.top = e.clientY + 'px';
+});
 
-    let index = 0;
-    const slideshow = document.getElementById("slideshow");
-    const word = document.getElementById("word");
+const slides = [
+  { src: "assets/images/buenosaires.webp", word: "pequeño", orientation: "landscape" },
+  { src: "assets/images/patagonia_condor 4.webp", word: "nguillen", orientation: "landscape" },
+  { src: "assets/images/mendoza_house tour.webp", word: "chiquito", orientation: "portrait" },
+  { src: "assets/images/valparaiso.webp", word: "pequeñito", orientation: "landscape" },
+  { src: "assets/images/uk.webp", word: "tiny", orientation: "portrait" },
+  { src: "assets/images/flers.webp", word: "petit", orientation: "landscape" },
+  { src: "assets/images/paris.webp", word: "minuscule", orientation: "portrait" },
+  { src: "assets/images/dolomites.webp", word: "piccolo", orientation: "landscape" },
+  { src: "assets/images/kitzbuhel.webp", word: "winzig", orientation: "portrait" }
+];
 
-    function changeSlide() {
-      slideshow.style.opacity = 0;
-      word.style.opacity = 0;
-      setTimeout(() => {
-        index = (index + 1) % slides.length;
-        slideshow.src = slides[index].src;
-        word.textContent = slides[index].word;
-        slideshow.style.opacity = 1;
-        word.style.opacity = 1;
-      }, 600);
-    }
+// Preload images
+slides.forEach(slide => new Image().src = slide.src);
 
-    setInterval(changeSlide, 5000);
-  </script>
+let index = 0;
+slideshow.src = slides[0].src;
+word.textContent = slides[0].word;
+slideshow.style.objectFit = slides[0].orientation === "portrait" ? "contain" : "cover";
+
+function nextSlide() {
+  // show flash
+  flash.style.opacity = 1;
+
+  setTimeout(() => {
+    // change image and word together
+    index = (index + 1) % slides.length;
+    slideshow.src = slides[index].src;
+    word.textContent = slides[index].word;
+    slideshow.style.objectFit = slides[index].orientation === "portrait" ? "contain" : "cover";
+
+    // hide flash after change
+    flash.style.opacity = 0;
+  }, 200); // flash duration in ms
+}
+
+// Cursor color change on hover (desktop & mobile)
+document.querySelectorAll('.menu-item, .mobile-menu').forEach(item => {
+  item.addEventListener('mouseenter', () => mainDot.style.background = 'black');
+  item.addEventListener('mouseleave', () => mainDot.style.background = 'white');
+});
+
+// Start main view on intro click
+intro.addEventListener('click', () => {
+  intro.style.display = 'none';
+  introDot.style.display = 'none';
+  if(window.innerWidth <= 768){
+    mobile.style.display = 'flex';
+  } else {
+    main.style.display = 'grid';
+    mainDot.style.display = 'block';
+    setInterval(nextSlide, 4000);
+  }
+});
+</script>
+
+
 </body>
 </html>

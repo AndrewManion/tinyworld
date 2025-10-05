@@ -69,40 +69,66 @@
     text-align: center;
     padding: 1rem;
     height: 100vh;
-    gap: 0.5rem; /* smaller gap between elements */
+    gap: 0.5rem;
+    position: relative; /* allow z-index stacking */
+    z-index: 2;
+  }
+
+  #site-nav {
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
   #title {
-    font-size: 5vw; /* smaller header */
+    font-size: 5vw;
     font-weight: bold;
     text-transform: lowercase;
     margin: 0;
     color: white;
+    position: relative;
+    z-index: 3;
   }
 
   #desktop-address {
-    font-size: 1rem; /* slightly smaller */
+    font-size: 1rem;
     font-weight: bold;
-    margin: 0.3rem 0; /* smaller gap before slideshow */
+    margin: 0.3rem 0;
     color: white;
     text-transform: lowercase;
+    position: relative;
+    z-index: 3;
   }
 
   #slideshow {
-    max-height: 50vh; /* smaller so word fits below */
+    max-height: 50vh;
     max-width: 80vw;
     width: auto;
     object-fit: contain;
     border-radius: 6px;
     transition: opacity 0.6s ease-in-out;
+    position: relative;
+    z-index: 1;
   }
 
   #word {
-    font-size: 1rem; /* match desktop address */
+    font-size: 1rem;
     font-weight: bold;
     text-transform: lowercase;
     color: white;
     margin: 0;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* FLASH DURING SLIDES */
+  #flash {
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    z-index: 0; /* behind images and header */
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none; /* don’t block clicks */
   }
 
   /* Right sidebar links */
@@ -113,6 +139,8 @@
     justify-content: space-evenly;
     padding: 2rem;
     gap: 0.5rem;
+    position: relative;
+    z-index: 3;
   }
 
   .menu-item {
@@ -164,16 +192,6 @@
     display: none;
   }
 
-  /* FLASH DURING SLIDES */
-  #flash {
-    position: absolute;
-    inset: 0;
-    background: black;
-    opacity: 0;
-    z-index: 20;
-    transition: opacity 0.2s ease-in-out;
-  }
-
   /* -------- MOBILE LAYOUT -------- */
   @media (max-width: 768px) {
     body { cursor: auto; overflow-y: auto; }
@@ -204,10 +222,11 @@
 <!-- DESKTOP MAIN -->
 <div id="main" class="grid">
   <div id="left">
+    <div id="site-nav"></div> <!-- Header will load here -->
     <div id="title">tiny world</div>
     <div id="desktop-address">56 หมู่ 1 ko phayam mueang ranong 85000</div>
-    <div id="flash"></div>
     <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
+    <div id="flash"></div>
     <div id="word">pequeño</div>
   </div>
 
@@ -274,6 +293,15 @@ const slideshow = document.getElementById("slideshow");
 const word = document.getElementById("word");
 const flash = document.getElementById("flash");
 
+// Header load
+fetch("header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("site-nav").innerHTML = html;
+  })
+  .catch(err => console.error("Failed to load header:", err));
+
+// Mouse cursor
 document.addEventListener('mousemove', e => {
   introDot.style.left = e.clientX + 'px';
   introDot.style.top = e.clientY + 'px';
@@ -281,6 +309,7 @@ document.addEventListener('mousemove', e => {
   mainDot.style.top = e.clientY + 'px';
 });
 
+// Slides
 const slides = [
   { src: "assets/images/buenosaires.webp", word: "pequeño", orientation: "landscape" },
   { src: "assets/images/patagonia_condor 4.webp", word: "nguillen", orientation: "landscape" },
@@ -302,22 +331,17 @@ word.textContent = slides[0].word;
 slideshow.style.objectFit = slides[0].orientation === "portrait" ? "contain" : "cover";
 
 function nextSlide() {
-  // show flash
   flash.style.opacity = 1;
-
   setTimeout(() => {
-    // change image and word together
     index = (index + 1) % slides.length;
     slideshow.src = slides[index].src;
     word.textContent = slides[index].word;
     slideshow.style.objectFit = slides[index].orientation === "portrait" ? "contain" : "cover";
-
-    // hide flash after change
     flash.style.opacity = 0;
-  }, 200); // flash duration in ms
+  }, 200);
 }
 
-// Cursor color change on hover (desktop & mobile)
+// Cursor color change on hover
 document.querySelectorAll('.menu-item, .mobile-menu').forEach(item => {
   item.addEventListener('mouseenter', () => mainDot.style.background = 'black');
   item.addEventListener('mouseleave', () => mainDot.style.background = 'white');
@@ -336,7 +360,6 @@ intro.addEventListener('click', () => {
   }
 });
 </script>
-
 
 </body>
 </html>

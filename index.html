@@ -4,10 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tiny world</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
-
   <style>
     body {
       font-family: 'Courier Prime', monospace;
@@ -16,10 +14,10 @@
       width: 100vw;
       background: #fff;
       overflow: hidden;
-      cursor: url('assets/title/logo-cursor.png') 16 16, auto; /* camera-style cursor for intro */
+      cursor: none;
     }
 
-    /* Typewriter intro */
+    /* Intro Screen */
     #intro {
       position: fixed;
       inset: 0;
@@ -40,14 +38,14 @@
 
     @keyframes typing {
       from { width: 0; }
-      to { width: 15ch; } /* stops after the last Thai character - ITERATE THIS! */
+      to { width: 16ch; }
     }
 
     @keyframes blink-caret {
       50% { border-color: transparent; }
     }
 
-    /* Main layout */
+    /* Main Layout */
     #main {
       display: none;
       grid-template-columns: 1fr 350px;
@@ -55,48 +53,71 @@
       width: 100vw;
       background: white;
       overflow: hidden;
-      cursor: none;
     }
 
+    /* LEFT COLUMN */
     #left {
+      position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 2rem 3rem;
-      position: relative;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    #site-nav {
+      position: absolute;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0.85);
     }
 
     #title {
       font-size: 8vw;
       font-weight: bold;
       line-height: 1;
-      text-transform: uppercase;
+      text-transform: lowercase;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+    }
+
+    #slideshow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 60%;
+      width: 100%;
+      position: relative;
     }
 
     #slideshow {
-      position: absolute;
-      top: 50%;
-      left: 45%;
-      transform: translate(-50%, -50%);
-      width: 45%;
-      height: auto;
-      border-radius: 6px;
-      object-fit: contain;
-      transition: opacity 0.2s ease;
+      width: 60%;
+      max-width: 700px;
+      border-radius: 8px;
+      object-fit: cover;
+      transition: opacity 1.2s ease-in-out;
+      image-rendering: auto;
+      margin-bottom: 1rem;
     }
 
     #word {
       position: absolute;
-      bottom: 2rem;
+      bottom: 5%;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: bold;
       text-transform: uppercase;
+      opacity: 1;
+      transition: opacity 0.8s ease-in-out;
     }
 
-    /* Right sidebar links */
+    /* RIGHT SIDEBAR */
     #right {
       border-left: 2px solid black;
       display: flex;
@@ -104,6 +125,7 @@
       justify-content: center;
       padding: 2rem;
       gap: 2rem;
+      background: white;
     }
 
     .menu-item {
@@ -120,68 +142,82 @@
     }
 
     .menu-item img {
-      width: 100px;
-      height: auto;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
+      object-position: center;
       margin-right: 1rem;
       border-radius: 6px;
+      flex-shrink: 0;
     }
 
-    /* Custom cursor (black dot) */
+    /* Custom cursors */
     .dot-cursor {
       position: fixed;
-      width: 10px;
-      height: 10px;
       background: black;
       border-radius: 50%;
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 1000;
     }
+
+    #intro-dot {
+      width: 25px;
+      height: 25px;
+    }
+
+    #main-dot {
+      width: 10px;
+      height: 10px;
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <!-- Typewriter Intro -->
+  <!-- Intro -->
   <div id="intro">
     <div id="intro-text">ยินดีต้อนรับสู่โลกเล็กๆ</div>
   </div>
 
-  <!-- Main layout -->
+  <!-- Main Layout -->
   <div id="main" class="grid">
     <div id="left">
       <div id="site-nav"></div>
       <div id="title">tiny world</div>
-      <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
-      <div id="word">PEQUEÑO</div>
+
+      <div id="slideshow-container">
+        <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
+        <div id="word">PEQUEÑO</div>
+      </div>
     </div>
 
     <div id="right">
       <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'">
-        <img src="assets/title/esbon.webp" alt="Esbon">
+        <img src="assets/images/title/esbon.webp" alt="Esbon">
         <span>ESBON</span>
       </div>
       <div class="menu-item" onclick="window.location.href='Copenhagen.htm'">
-        <img src="assets/title/copenhagen.webp" alt="Copenhagen">
+        <img src="assets/images/title/copenhagen.webp" alt="Copenhagen">
         <span>COPENHAGEN</span>
       </div>
       <div class="menu-item" onclick="window.location.href='GillesParis.htm'">
-        <img src="assets/title/gilles.webp" alt="Gilles">
+        <img src="assets/images/title/gilles.webp" alt="Gilles">
         <span>GILLES</span>
       </div>
       <div class="menu-item" onclick="window.location.href='Morocco.htm'">
-        <img src="assets/title/morocco.webp" alt="Morocco">
+        <img src="assets/images/title/morocco.webp" alt="Morocco">
         <span>NAIROBI</span>
       </div>
       <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'">
-        <img src="assets/title/brigitte.webp" alt="Briggite">
+        <img src="assets/images/title/brigitte.webp" alt="Briggite">
         <span>BRIGITTE</span>
       </div>
-      
-      
     </div>
   </div>
 
-  <div class="dot-cursor" id="dot"></div>
+  <!-- Cursors -->
+  <div class="dot-cursor" id="intro-dot"></div>
+  <div class="dot-cursor" id="main-dot"></div>
 
   <script>
     // Load header
@@ -189,26 +225,30 @@
       .then(res => res.text())
       .then(html => {
         document.getElementById("site-nav").innerHTML = html;
-        document.getElementById("site-nav").style.transform = "scaleX(0.85)";
       });
 
-    // Typewriter intro
     const intro = document.getElementById('intro');
     const main = document.getElementById('main');
+    const introDot = document.getElementById('intro-dot');
+    const mainDot = document.getElementById('main-dot');
+
+    // Cursor tracking
+    document.addEventListener('mousemove', e => {
+      introDot.style.left = e.clientX + 'px';
+      introDot.style.top = e.clientY + 'px';
+      mainDot.style.left = e.clientX + 'px';
+      mainDot.style.top = e.clientY + 'px';
+    });
+
+    // Switch screens on click
     intro.addEventListener('click', () => {
       intro.style.display = 'none';
+      introDot.style.display = 'none';
       main.style.display = 'grid';
-      document.body.style.cursor = 'none'; // hide cursor entirely
+      mainDot.style.display = 'block';
     });
 
-    // Dot cursor follows mouse
-    const dot = document.getElementById('dot');
-    document.addEventListener('mousemove', e => {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-    });
-
-    // Slideshow images and words
+    // Slideshow and words
     const slides = [
       { src: "assets/images/buenosaires.webp", word: "PEQUEÑO" },
       { src: "assets/images/patagonia_condor 4.webp", word: "NGUILLEN" },
@@ -225,15 +265,19 @@
     const slideshow = document.getElementById("slideshow");
     const word = document.getElementById("word");
 
-    setInterval(() => {
-      index = (index + 1) % slides.length;
+    function changeSlide() {
       slideshow.style.opacity = 0;
+      word.style.opacity = 0;
       setTimeout(() => {
+        index = (index + 1) % slides.length;
         slideshow.src = slides[index].src;
         word.textContent = slides[index].word;
         slideshow.style.opacity = 1;
-      }, 300);
-    }, 4000);
+        word.style.opacity = 1;
+      }, 600);
+    }
+
+    setInterval(changeSlide, 5000);
   </script>
 </body>
 </html>

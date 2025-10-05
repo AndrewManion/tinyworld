@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tiny World - Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiny World</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
 
   <style>
     body {
@@ -15,72 +14,172 @@
       margin: 0;
       height: 100vh;
       width: 100vw;
+      background: #fff;
       overflow: hidden;
+      cursor: url('assets/title/logo-cursor.png') 16 16, auto; /* camera-style cursor for intro */
+    }
+
+    /* Typewriter intro */
+    #intro {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      z-index: 50;
+    }
+
+    #intro-text {
+      font-size: 6vw;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid black;
+      animation: typing 4s steps(19, end) 1s 1 normal both, blink-caret 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 19ch; } /* stops after the last Thai character */
+    }
+
+    @keyframes blink-caret {
+      50% { border-color: transparent; }
+    }
+
+    /* Main layout like Public Records */
+    #main {
+      display: none;
+      grid-template-columns: 1fr 350px;
+      height: 100vh;
+      width: 100vw;
+      background: white;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    #left {
       display: flex;
       flex-direction: column;
-      transition: background-color 1s ease;
-    }
-
-    header {
-      width: 100%;
-      z-index: 20;
-    }
-
-    #slideshow-container {
-      flex: 1;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 3rem;
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
     }
 
-    #background-word {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    #title {
+      font-size: 8vw;
       font-weight: bold;
-      color: black; /* solid black letters */
-      white-space: nowrap;
+      line-height: 1;
       text-transform: uppercase;
-      pointer-events: none;
-      user-select: none;
-      overflow: hidden;
-      opacity: 1;
-      transition: opacity 1s ease; /* dissolve effect */
     }
 
     #slideshow {
-      max-width: 90%;
-      max-height: 90%;
+      position: absolute;
+      top: 50%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      width: 45%;
+      height: auto;
+      border-radius: 6px;
       object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 10;
-      transition: opacity 1s ease;
-      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    #word {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Right sidebar links */
+    #right {
+      border-left: 2px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .menu-item:hover {
+      opacity: 0.6;
+    }
+
+    .menu-item img {
+      width: 100px;
+      height: auto;
+      object-fit: cover;
+      margin-right: 1rem;
+      border-radius: 6px;
+    }
+
+    /* Custom cursor (black dot) */
+    .dot-cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: black;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
     }
   </style>
 </head>
-
 <body>
-
-  <!-- Header -->
-  <header class="bg-white shadow-sm shrink-0">
-    <div id="site-nav"></div>
-  </header>
-
-  <!-- Slideshow -->
-  <div id="slideshow-container">
-    <div id="background-word">PEQUEÑO</div>
-    <img id="slideshow" src="assets/images/buenosaires.webp" alt="Slideshow Image">
+  <!-- Typewriter Intro -->
+  <div id="intro">
+    <div id="intro-text">ยินดีต้อนรับสู่โลกเล็กๆ</div>
   </div>
+
+  <!-- Main layout -->
+  <div id="main" class="grid">
+    <div id="left">
+      <div id="site-nav"></div>
+      <div id="title">TINY WORLD</div>
+      <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
+      <div id="word">PEQUEÑO</div>
+    </div>
+
+    <div id="right">
+      <div class="menu-item" onclick="window.location.href='kophayam.html'">
+        <img src="assets/title/kophayam.webp" alt="Ko Phayam">
+        <span>KO PHAYAM</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='phuket.html'">
+        <img src="assets/title/phuket.webp" alt="Phuket">
+        <span>PHUKET</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='ladakh.html'">
+        <img src="assets/title/ladakh.webp" alt="Ladakh">
+        <span>LADAKH</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='dharamshala.html'">
+        <img src="assets/title/dharamshala.webp" alt="Dharamshala">
+        <span>DHARAMSHALA</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='rishikesh.html'">
+        <img src="assets/title/rishikesh.webp" alt="Rishikesh">
+        <span>RISHIKESH</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dot-cursor" id="dot"></div>
 
   <script>
     // Load header
@@ -88,104 +187,51 @@
       .then(res => res.text())
       .then(html => {
         document.getElementById("site-nav").innerHTML = html;
+        document.getElementById("site-nav").style.transform = "scaleX(0.85)";
       });
 
+    // Typewriter intro
+    const intro = document.getElementById('intro');
+    const main = document.getElementById('main');
+    intro.addEventListener('click', () => {
+      intro.style.display = 'none';
+      main.style.display = 'grid';
+      document.body.style.cursor = 'none'; // hide cursor entirely
+    });
+
+    // Dot cursor follows mouse
+    const dot = document.getElementById('dot');
+    document.addEventListener('mousemove', e => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    });
+
+    // Slideshow images and words
     const slides = [
-      { src: "assets/images/buenosaires.webp", word: "PEQUEÑO", bgColor: "#f5f5f5" },
-      { src: "assets/images/patagonia.webp", word: "NGUILLEN", bgColor: "#e8f0f8" },
-      { src: "assets/images/mendoza.webp", word: "CHIQUITO", bgColor: "#f5f5f5" },
-      { src: "assets/images/valparaiso.webp", word: "PEQUEÑITO", bgColor: "#edf7f6" },
-      { src: "assets/images/uk.webp", word: "TINY", bgColor: "#f2f2f2" },
-      { src: "assets/images/flers.webp", word: "PETIT", bgColor: "#fafafa" },
-      { src: "assets/images/paris.webp", word: "MINUSCULE", bgColor: "#f5f5f5" },
-      { src: "assets/images/daffins.webp", word: "TOUTPETIT", bgColor: "#f0f0f0" },
-      { src: "assets/images/dolomites.webp", word: "PICCOLO", bgColor: "#f5f5f5" },
-      { src: "assets/images/kitzbuhel.webp", word: "WINZIG", bgColor: "#f7f7f7" },
-      { src: "assets/images/vienna.webp", word: "KLEIN", bgColor: "#f2f2f2" },
-      { src: "assets/images/munich.webp", word: "MINIK", bgColor: "#fafafa" },
-      { src: "assets/images/st.moritz.webp", word: "PICCOLO2", bgColor: "#f5f5f5" },
-      { src: "assets/images/munich2.webp", word: "TINYONE", bgColor: "#f0f0f0" },
-      { src: "assets/images/cevio.webp", word: "PIKKU", bgColor: "#f5f5f5" },
-      { src: "assets/images/zermatt.webp", word: "KLEINCHEN", bgColor: "#f7f7f7" },
-      { src: "assets/images/chamonix.webp", word: "PETIT2", bgColor: "#f2f2f2" },
-      { src: "assets/images/cannes.webp", word: "MINI", bgColor: "#fafafa" },
-      { src: "assets/images/morocco.webp", word: "SAGHIR", bgColor: "#f5f5f5" },
-      { src: "assets/images/andalucia.webp", word: "CHIQUITITO", bgColor: "#f0f0f0" },
-      { src: "assets/images/dublin.webp", word: "BEAGÁN", bgColor: "#f5f5f5" },
-      { src: "assets/images/utrecht.webp", word: "KLEIN2", bgColor: "#f7f7f7" },
-      { src: "assets/images/sweden.webp", word: "MYCKETLITEN", bgColor: "#f2f2f2" },
-      { src: "assets/images/copenhagen.webp", word: "LILLEBITTE", bgColor: "#fafafa" },
-      { src: "assets/images/paris2.webp", word: "MINUSCULE2", bgColor: "#f5f5f5" },
-      { src: "assets/images/mediterranean.webp", word: "TINY2", bgColor: "#f0f0f0" },
-      { src: "assets/images/napoli.webp", word: "PICCERILLO", bgColor: "#f5f5f5" },
-      { src: "assets/images/albania.webp", word: "IVOGËL", bgColor: "#f7f7f7" },
-      { src: "assets/images/istanbul.webp", word: "KÜÇÜK", bgColor: "#f2f2f2" },
-      { src: "assets/images/kenya.webp", word: "NDOGO", bgColor: "#fafafa" },
-      { src: "assets/images/masaimara.webp", word: "NDOGO2", bgColor: "#f5f5f5" }
+      { src: "assets/images/buenosaires.webp", word: "PEQUEÑO" },
+      { src: "assets/images/patagonia.webp", word: "NGUILLEN" },
+      { src: "assets/images/mendoza.webp", word: "CHIQUITO" },
+      { src: "assets/images/valparaiso.webp", word: "PEQUEÑITO" },
+      { src: "assets/images/uk.webp", word: "TINY" },
+      { src: "assets/images/flers.webp", word: "PETIT" },
+      { src: "assets/images/paris.webp", word: "MINUSCULE" },
+      { src: "assets/images/dolomites.webp", word: "PICCOLO" },
+      { src: "assets/images/kitzbuhel.webp", word: "WINZIG" }
     ];
 
+    let index = 0;
     const slideshow = document.getElementById("slideshow");
-    const backgroundWord = document.getElementById("background-word");
-    const body = document.body;
-    let currentIndex = 0;
-    const intervalTime = 5000;
+    const word = document.getElementById("word");
 
-    // Fit the word to full height but adjust if too long for width
-    function fitWord() {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const word = backgroundWord.textContent;
-      const testDiv = document.createElement('div');
-      testDiv.style.position = 'absolute';
-      testDiv.style.visibility = 'hidden';
-      testDiv.style.whiteSpace = 'nowrap';
-      testDiv.style.fontWeight = 'bold';
-      testDiv.style.textTransform = 'uppercase';
-      testDiv.textContent = word;
-      document.body.appendChild(testDiv);
-
-      let fontSize = vh;
-      testDiv.style.fontSize = fontSize + 'px';
-
-      if (testDiv.offsetWidth > vw) {
-        fontSize = fontSize * vw / testDiv.offsetWidth;
-      }
-
-      backgroundWord.style.fontSize = fontSize + 'px';
-      document.body.removeChild(testDiv);
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % slides.length;
-      const slide = slides[currentIndex];
-
-      // Fade out photo + word
+    setInterval(() => {
+      index = (index + 1) % slides.length;
       slideshow.style.opacity = 0;
-      backgroundWord.style.opacity = 0;
-
       setTimeout(() => {
-        // Update background word + color
-        backgroundWord.textContent = slide.word;
-        fitWord();
-        body.style.backgroundColor = slide.bgColor;
-
-        // After short delay, fade back in
-        setTimeout(() => {
-          slideshow.src = slide.src;
-          slideshow.style.opacity = 1;
-          backgroundWord.style.opacity = 1;
-        }, 500);
-      }, 500);
-    }
-
-    window.addEventListener("resize", fitWord);
-
-    // Initialize
-    backgroundWord.textContent = slides[0].word;
-    body.style.backgroundColor = slides[0].bgColor;
-    fitWord();
-    setInterval(nextSlide, intervalTime);
+        slideshow.src = slides[index].src;
+        word.textContent = slides[index].word;
+        slideshow.style.opacity = 1;
+      }, 300);
+    }, 4000);
   </script>
-
 </body>
 </html>

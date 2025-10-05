@@ -151,7 +151,7 @@
       flex-shrink: 0;
     }
 
-    /* Custom cursors */
+    /* Custom cursors (desktop only) */
     .dot-cursor {
       position: fixed;
       background: black;
@@ -170,6 +170,75 @@
       width: 10px;
       height: 10px;
       display: none;
+    }
+
+    /* ----------------- MOBILE STYLES ----------------- */
+    @media (max-width: 768px) {
+      body {
+        cursor: auto;
+        overflow-y: auto;
+        height: auto;
+      }
+
+      #main {
+        display: none;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        height: auto;
+      }
+
+      #left {
+        height: auto;
+        padding: 2rem 1rem;
+      }
+
+      #title {
+        position: static;
+        font-size: 10vw;
+        margin-bottom: 2rem;
+      }
+
+      #slideshow-container {
+        height: auto;
+        width: 100%;
+      }
+
+      #slideshow {
+        width: 90%;
+        max-width: 100%;
+        border-radius: 8px;
+      }
+
+      #word {
+        position: static;
+        transform: none;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+      }
+
+      #right {
+        border-left: none;
+        border-top: 2px solid black;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        gap: 1.5rem;
+      }
+
+      .menu-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .menu-item img {
+        width: 100px;
+        height: 100px;
+        margin: 0 0 0.5rem 0;
+      }
+
+      .dot-cursor {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -232,20 +301,27 @@
     const introDot = document.getElementById('intro-dot');
     const mainDot = document.getElementById('main-dot');
 
-    // Cursor tracking
-    document.addEventListener('mousemove', e => {
-      introDot.style.left = e.clientX + 'px';
-      introDot.style.top = e.clientY + 'px';
-      mainDot.style.left = e.clientX + 'px';
-      mainDot.style.top = e.clientY + 'px';
-    });
+    // Detect touch device (disable custom cursors)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) {
+      introDot.style.display = 'none';
+      mainDot.style.display = 'none';
+      document.body.style.cursor = 'auto';
+    } else {
+      document.addEventListener('mousemove', e => {
+        introDot.style.left = e.clientX + 'px';
+        introDot.style.top = e.clientY + 'px';
+        mainDot.style.left = e.clientX + 'px';
+        mainDot.style.top = e.clientY + 'px';
+      });
+    }
 
-    // Switch screens on click
+    // On click: hide intro, show main
     intro.addEventListener('click', () => {
       intro.style.display = 'none';
       introDot.style.display = 'none';
       main.style.display = 'grid';
-      mainDot.style.display = 'block';
+      if (!isTouchDevice) mainDot.style.display = 'block';
     });
 
     // Slideshow and words

@@ -81,6 +81,18 @@
     z-index: 10;
   }
 
+  /* WORD OVERLAY ON SLIDESHOW */
+  #slide-word {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    font-size: 3vw;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+    z-index: 5;
+    letter-spacing: 2px;
+  }
+
   /* RIGHT SIDE MENU */
   #right {
     border-left: 2px solid white;
@@ -95,7 +107,8 @@
   .menu-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
@@ -106,7 +119,12 @@
     border-bottom: 2px solid white;
   }
   .menu-item:last-child { border-bottom: none; }
-
+  .menu-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
   .menu-item:hover {
     background: white;
     color: black;
@@ -165,20 +183,34 @@
   <div id="left">
     <div id="site-nav"></div> <!-- Header loads here -->
     <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
+    <div id="slide-word">pequeño</div>
     <div id="flash"></div>
   </div>
 
   <div id="right">
-    <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'">Esbon</div>
-    <div class="menu-item" onclick="window.location.href='Valparaiso.htm'">Valparaiso</div>
-    <div class="menu-item" onclick="window.location.href='GillesParis.htm'">Gilles</div>
-    <div class="menu-item" onclick="window.location.href='Morocco.htm'">Morocco</div>
-    <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'">Brigitte</div>
+    <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'"> 
+      <img src="assets/images/title/esbon-placeholder.webp" alt="Esbon"><span>Esbon</span> 
+    </div> 
+    <div class="menu-item" onclick="window.location.href='Valparaiso.htm'"> 
+      <img src="assets/images/title/valparaiso-placeholder.webp" alt="Valparaiso"><span>Valparaiso</span> 
+    </div> 
+    <div class="menu-item" onclick="window.location.href='GillesParis.htm'"> 
+      <img src="assets/images/title/gilles-placeholder.webp" alt="Gilles"><span>Gilles</span> 
+    </div> 
+    <div class="menu-item" onclick="window.location.href='Morocco.htm'"> 
+      <img src="assets/images/title/morocco-placeholder.webp" alt="Morocco"><span>Morocco</span> 
+    </div> 
+    <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'"> 
+      <img src="assets/images/title/brigitte-placeholder.webp" alt="Brigitte"><span>Brigitte</span> 
+    </div> 
   </div>
 </div>
 
 <!-- MOBILE (unchanged) -->
 <div id="mobile" style="display:none;">
+  <div id="mobile-title">TINY WORLD</div>
+  <div id="mobile-address">56 หมู่ 1 Ko phayam mueang ranong 85000</div>
+  
   <div class="mobile-menu" onclick="window.location.href='journey.html'">JOURNEY</div>
   <div class="mobile-menu" onclick="window.location.href='interviews.html'">INTERVIEW</div>
   <div class="mobile-menu" onclick="window.location.href='portfolio.htm'">PORTFOLIO</div>
@@ -198,6 +230,7 @@ const introDot = document.getElementById('intro-dot');
 const mainDot = document.getElementById('main-dot');
 const slideshow = document.getElementById("slideshow");
 const flash = document.getElementById("flash");
+const slideWord = document.getElementById("slide-word");
 
 // Load header
 fetch("header.html")
@@ -213,25 +246,26 @@ document.addEventListener('mousemove', e => {
   mainDot.style.top = e.clientY + 'px';
 });
 
-// Slideshow
+// Slides with words
 const slides = [
-  "assets/images/buenosaires.webp",
-  "assets/images/patagonia_condor 4.webp",
-  "assets/images/mendoza_house tour.webp",
-  "assets/images/valparaiso.webp",
-  "assets/images/uk.webp",
-  "assets/images/flers.webp",
-  "assets/images/paris.webp",
-  "assets/images/dolomites.webp",
-  "assets/images/kitzbuhel.webp"
+  { src: "assets/images/buenosaires.webp", word: "pequeño" },
+  { src: "assets/images/patagonia_condor 4.webp", word: "nguillen" },
+  { src: "assets/images/mendoza_house tour.webp", word: "chiquito" },
+  { src: "assets/images/valparaiso.webp", word: "pequeñito" },
+  { src: "assets/images/uk.webp", word: "tiny" },
+  { src: "assets/images/flers.webp", word: "petit" },
+  { src: "assets/images/paris.webp", word: "minuscule" },
+  { src: "assets/images/dolomites.webp", word: "piccolo" },
+  { src: "assets/images/kitzbuhel.webp", word: "winzig" }
 ];
-slides.forEach(src => new Image().src = src);
+slides.forEach(s => new Image().src = s.src);
 let index = 0;
 function nextSlide() {
   flash.style.opacity = 1;
   setTimeout(() => {
     index = (index + 1) % slides.length;
-    slideshow.src = slides[index];
+    slideshow.src = slides[index].src;
+    slideWord.textContent = slides[index].word;
     flash.style.opacity = 0;
   }, 200);
 }
@@ -258,6 +292,5 @@ intro.addEventListener('click', () => {
   }
 });
 </script>
-
 </body>
 </html>

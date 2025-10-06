@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>tiny world</title>
+<title>Tiny World</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
 <style>
-  /* -------- FONTS -------- */
   body {
     font-family: 'Courier Prime', monospace;
     margin: 0;
@@ -29,9 +28,7 @@
     background: white;
     z-index: 50;
   }
-
   #intro-text {
-    font-family: 'Courier Prime', monospace;
     font-size: 8vw;
     white-space: nowrap;
     overflow: hidden;
@@ -39,16 +36,10 @@
     color: black;
     animation: typing 4s steps(19, end) 1s 1 normal both, blink-caret 0.7s step-end infinite;
   }
+  @keyframes typing { from { width: 0; } to { width: 16ch; } }
+  @keyframes blink-caret { 50% { border-color: transparent; } }
 
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 16ch; }
-  }
-  @keyframes blink-caret {
-    50% { border-color: transparent; }
-  }
-
-  /* -------- MAIN DESKTOP LAYOUT -------- */
+  /* -------- MAIN -------- */
   #main {
     display: none;
     grid-template-columns: 1fr 280px;
@@ -57,120 +48,84 @@
     background: black;
     overflow: hidden;
     position: relative;
-    font-family: 'Courier Prime', monospace;
   }
 
-  /* LEFT SIDE: image + word */
+  /* LEFT SIDE: fullscreen image */
   #left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
+    position: relative;
     height: 100vh;
-    gap: 0.5rem;
-    position: relative; /* allow z-index stacking */
-    z-index: 2;
+    width: 100%;
+    overflow: hidden;
   }
-
-  #site-nav {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  #title {
-    font-size: 5vw;
-    font-weight: bold;
-    text-transform: lowercase;
-    margin: 0;
-    color: white;
-    position: relative;
-    z-index: 3;
-  }
-
-  #desktop-address {
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 0.3rem 0;
-    color: white;
-    text-transform: lowercase;
-    position: relative;
-    z-index: 3;
-  }
-
   #slideshow {
-    max-height: 50vh;
-    max-width: 80vw;
-    width: auto;
-    object-fit: contain;
-    border-radius: 6px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: opacity 0.6s ease-in-out;
-    position: relative;
-    z-index: 1;
   }
-
-  #word {
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: lowercase;
-    color: white;
-    margin: 0;
-    position: relative;
-    z-index: 3;
-  }
-
-  /* FLASH DURING SLIDES */
   #flash {
     position: absolute;
     inset: 0;
     background: black;
     opacity: 0;
-    z-index: 0; /* behind images and header */
+    z-index: 0;
     transition: opacity 0.2s ease-in-out;
-    pointer-events: none; /* don’t block clicks */
+    pointer-events: none;
+  }
+  #site-nav {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
   }
 
-  /* Right sidebar links */
+  /* RIGHT SIDE MENU */
   #right {
     border-left: 2px solid white;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    padding: 2rem;
-    gap: 0.5rem;
+    padding: 2rem 0;
+    gap: 0;
     position: relative;
     z-index: 3;
   }
-
   .menu-item {
     display: flex;
     align-items: center;
-    font-weight: bold;
+    justify-content: center;
     text-transform: uppercase;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.3rem;
     color: white;
     background: black;
-  }
-
-  .menu-item img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    margin-right: 0.5rem;
-    border-radius: 6px;
+    padding: 1rem;
     transition: all 0.3s ease;
+    border-bottom: 2px solid white;
   }
+  .menu-item:last-child { border-bottom: none; }
 
-  /* Hover effect for right menu items */
   .menu-item:hover {
     background: white;
     color: black;
   }
 
-  /* Cursors */
+  /* Make header links match hover effect */
+  #site-nav a {
+    color: white;
+    background: black;
+    padding: 0.4rem 0.8rem;
+    margin: 0 0.3rem;
+    transition: all 0.3s ease;
+  }
+  #site-nav a:hover {
+    background: white;
+    color: black;
+  }
+
+  /* Cursor styling */
   .dot-cursor {
     position: fixed;
     border-radius: 50%;
@@ -179,36 +134,22 @@
     z-index: 1000;
     transition: background 0.3s ease;
   }
-  #intro-dot {
+  #intro-dot, #main-dot {
     width: 25px;
     height: 25px;
-    background: black;
-    display: block;
-  }
-  #main-dot {
-    width: 10px;
-    height: 10px;
     background: white;
     display: none;
   }
+  #intro-dot { background: black; display: block; }
 
-  /* -------- MOBILE LAYOUT -------- */
+  /* MOBILE */
   @media (max-width: 768px) {
     body { cursor: auto; overflow-y: auto; }
     #main { display: none !important; }
     #mobile { display: flex !important; flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; padding: 1.5rem; background: #000; color: white; }
-
-    #mobile-title { font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; text-align: center; margin-bottom: 0.5rem; color: white; }
-    #mobile-address { display: block; font-weight: bold; margin-bottom: 1rem; text-align: center; color: white; }
-
     .mobile-menu { width: 100%; text-align: center; font-weight: bold; text-transform: uppercase; border-top: 1px solid white; padding: 1rem 0; cursor: pointer; color: white; }
     .mobile-menu:last-of-type { border-bottom: 1px solid white; }
     .mobile-menu:hover { background: white; color: black; }
-
-    #mobile-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; margin-top: 1.5rem; }
-    .mobile-item { display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; }
-    .mobile-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
-    .mobile-item span { margin-top: 0.3rem; font-weight: 800; font-size: 0.9rem; color: white; }
   }
 </style>
 </head>
@@ -219,64 +160,30 @@
   <div id="intro-text">ยินดีต้อนรับสู่โลกเล็กๆ</div>
 </div>
 
-<!-- DESKTOP MAIN -->
+<!-- MAIN -->
 <div id="main" class="grid">
   <div id="left">
-    <div id="site-nav"></div> <!-- Header will load here -->
-    <div id="title">tiny world</div>
-    <div id="desktop-address">56 หมู่ 1 ko phayam mueang ranong 85000</div>
+    <div id="site-nav"></div> <!-- Header loads here -->
     <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
     <div id="flash"></div>
-    <div id="word">pequeño</div>
   </div>
 
   <div id="right">
-    <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'">
-      <img src="assets/images/title/esbon.webp" alt="Esbon"><span>Esbon</span>
-    </div>
-    <div class="menu-item" onclick="window.location.href='Copenhagen.htm'">
-      <img src="assets/images/title/copenhagen.webp" alt="Copenhagen"><span>Copenhagen</span>
-    </div>
-    <div class="menu-item" onclick="window.location.href='GillesParis.htm'">
-      <img src="assets/images/title/gilles.webp" alt="Gilles"><span>Gilles</span>
-    </div>
-    <div class="menu-item" onclick="window.location.href='Morocco.htm'">
-      <img src="assets/images/title/morocco.webp" alt="Morocco"><span>Morocco</span>
-    </div>
-    <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'">
-      <img src="assets/images/title/brigitte.webp" alt="Brigitte"><span>Brigitte</span>
-    </div>
+    <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'">Esbon</div>
+    <div class="menu-item" onclick="window.location.href='Valparaiso.htm'">Valparaiso</div>
+    <div class="menu-item" onclick="window.location.href='GillesParis.htm'">Gilles</div>
+    <div class="menu-item" onclick="window.location.href='Morocco.htm'">Morocco</div>
+    <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'">Brigitte</div>
   </div>
 </div>
 
-<!-- MOBILE VERSION -->
+<!-- MOBILE (unchanged) -->
 <div id="mobile" style="display:none;">
-  <div id="mobile-title">TINY WORLD</div>
-  <div id="mobile-address">56 หมู่ 1 Ko phayam mueang ranong 85000</div>
-
   <div class="mobile-menu" onclick="window.location.href='journey.html'">JOURNEY</div>
   <div class="mobile-menu" onclick="window.location.href='interviews.html'">INTERVIEW</div>
   <div class="mobile-menu" onclick="window.location.href='portfolio.htm'">PORTFOLIO</div>
   <div class="mobile-menu" onclick="window.location.href='map.html'">MAP</div>
   <div class="mobile-menu" onclick="window.location.href='about.htm'">ABOUT</div>
-
-  <div id="mobile-gallery">
-    <div class="mobile-item" onclick="window.location.href='EsbonNgecha.htm'">
-      <img src="assets/images/title/esbon.webp" alt="Esbon"><span>Esbon</span>
-    </div>
-    <div class="mobile-item" onclick="window.location.href='Copenhagen.htm'">
-      <img src="assets/images/title/copenhagen.webp" alt="Copenhagen"><span>Copenhagen</span>
-    </div>
-    <div class="mobile-item" onclick="window.location.href='GillesParis.htm'">
-      <img src="assets/images/title/gilles.webp" alt="Gilles"><span>Gilles</span>
-    </div>
-    <div class="mobile-item" onclick="window.location.href='Morocco.htm'">
-      <img src="assets/images/title/morocco.webp" alt="Morocco"><span>Morocco</span>
-    </div>
-    <div class="mobile-item" onclick="window.location.href='BrigitteCannes.htm'">
-      <img src="assets/images/title/brigitte.webp" alt="Brigitte"><span>Brigitte</span>
-    </div>
-  </div>
 </div>
 
 <!-- CURSORS -->
@@ -290,18 +197,15 @@ const mobile = document.getElementById('mobile');
 const introDot = document.getElementById('intro-dot');
 const mainDot = document.getElementById('main-dot');
 const slideshow = document.getElementById("slideshow");
-const word = document.getElementById("word");
 const flash = document.getElementById("flash");
 
-// Header load
+// Load header
 fetch("header.html")
   .then(res => res.text())
-  .then(html => {
-    document.getElementById("site-nav").innerHTML = html;
-  })
-  .catch(err => console.error("Failed to load header:", err));
+  .then(html => document.getElementById("site-nav").innerHTML = html)
+  .catch(err => console.error("Header load error:", err));
 
-// Mouse cursor
+// Cursor tracking
 document.addEventListener('mousemove', e => {
   introDot.style.left = e.clientX + 'px';
   introDot.style.top = e.clientY + 'px';
@@ -309,49 +213,43 @@ document.addEventListener('mousemove', e => {
   mainDot.style.top = e.clientY + 'px';
 });
 
-// Slides
+// Slideshow
 const slides = [
-  { src: "assets/images/buenosaires.webp", word: "pequeño", orientation: "landscape" },
-  { src: "assets/images/patagonia_condor 4.webp", word: "nguillen", orientation: "landscape" },
-  { src: "assets/images/mendoza_house tour.webp", word: "chiquito", orientation: "portrait" },
-  { src: "assets/images/valparaiso.webp", word: "pequeñito", orientation: "landscape" },
-  { src: "assets/images/uk.webp", word: "tiny", orientation: "portrait" },
-  { src: "assets/images/flers.webp", word: "petit", orientation: "landscape" },
-  { src: "assets/images/paris.webp", word: "minuscule", orientation: "portrait" },
-  { src: "assets/images/dolomites.webp", word: "piccolo", orientation: "landscape" },
-  { src: "assets/images/kitzbuhel.webp", word: "winzig", orientation: "portrait" }
+  "assets/images/buenosaires.webp",
+  "assets/images/patagonia_condor 4.webp",
+  "assets/images/mendoza_house tour.webp",
+  "assets/images/valparaiso.webp",
+  "assets/images/uk.webp",
+  "assets/images/flers.webp",
+  "assets/images/paris.webp",
+  "assets/images/dolomites.webp",
+  "assets/images/kitzbuhel.webp"
 ];
-
-// Preload images
-slides.forEach(slide => new Image().src = slide.src);
-
+slides.forEach(src => new Image().src = src);
 let index = 0;
-slideshow.src = slides[0].src;
-word.textContent = slides[0].word;
-slideshow.style.objectFit = slides[0].orientation === "portrait" ? "contain" : "cover";
-
 function nextSlide() {
   flash.style.opacity = 1;
   setTimeout(() => {
     index = (index + 1) % slides.length;
-    slideshow.src = slides[index].src;
-    word.textContent = slides[index].word;
-    slideshow.style.objectFit = slides[index].orientation === "portrait" ? "contain" : "cover";
+    slideshow.src = slides[index];
     flash.style.opacity = 0;
   }, 200);
 }
 
-// Cursor color change on hover
-document.querySelectorAll('.menu-item, .mobile-menu').forEach(item => {
-  item.addEventListener('mouseenter', () => mainDot.style.background = 'black');
-  item.addEventListener('mouseleave', () => mainDot.style.background = 'white');
-});
+// Hover color effect for cursor
+function setHoverEffect(selector) {
+  document.querySelectorAll(selector).forEach(item => {
+    item.addEventListener('mouseenter', () => mainDot.style.background = 'black');
+    item.addEventListener('mouseleave', () => mainDot.style.background = 'white');
+  });
+}
+setHoverEffect('.menu-item, .mobile-menu, #site-nav a');
 
-// Start main view on intro click
+// Transition from intro to main
 intro.addEventListener('click', () => {
   intro.style.display = 'none';
   introDot.style.display = 'none';
-  if(window.innerWidth <= 768){
+  if (window.innerWidth <= 768) {
     mobile.style.display = 'flex';
   } else {
     main.style.display = 'grid';

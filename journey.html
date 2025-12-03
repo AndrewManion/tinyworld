@@ -6,29 +6,16 @@
   <title>Journey</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Courier Prime', monospace;
     }
 
-    /* Bubble effect on hover */
+    /* Bubble hover effect */
     .tile {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .tile:hover {
-      transform: scale(1.3);
-      z-index: 10;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Make grid adapt smoothly */
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      justify-items: center;
-      align-items: start;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
     }
 
     .tile img {
@@ -43,255 +30,141 @@
       text-align: center;
       font-weight: bold;
     }
+
+    /* Grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      align-items: start;
+    }
   </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- Header (Loaded via JS) -->
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div id="header-placeholder"></div>
-  </header>
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div id="header-placeholder"></div>
+</header>
 
-  <script>
-    fetch("header.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("header-placeholder").innerHTML = data;
-      });
-  </script>
+<script>
+  fetch("header.html")
+    .then(r => r.text())
+    .then(data => document.getElementById("header-placeholder").innerHTML = data);
+</script>
 
-  <!-- Gallery -->
-  <main class="container mx-auto px-4 py-4">
-    <div class="grid-container">
+<!-- Gallery -->
+<main class="container mx-auto px-4 py-4">
 
-        <div class="tile bg-white shadow rounded-lg overflow-hidden">
-        <a href="Agra.htm">
-          <img src="assets/images/agra.webp" alt="Agra">
-          <p>Agra</p>
-        </a>
-      </div>
-      
-      <div class="tile bg-white shadow rounded-lg overflow-hidden">
-        <a href="MasaiMara.htm">
-          <img src="assets/images/masaimara.webp" alt="Masai Mara">
-          <p>Masai Mara</p>
-        </a>
-      </div>
+  <div class="grid-container" id="tileGrid"></div>
 
-      <div class="tile bg-white shadow rounded-lg overflow-hidden">
-        <a href="Nairobi.htm">
-          <img src="assets/images/nairobi.webp" alt="Nairobi">
-          <p>Ngecha</p>
-        </a>
-      </div>
+</main>
 
-      <div class="tile bg-white shadow rounded-lg overflow-hidden">
-        <a href="Istanbul.htm">
-          <img src="assets/images/istanbul.webp" alt="Istanbul">
-          <p>Istanbul</p>
-        </a>
-      </div>
+<script>
+/* -----------------------------
+   TEMPLATE ARRAY FOR ALL TILES
+   ----------------------------- */
+const tiles = [
+  { name: "Agra", img: "agra.webp" },
+  { name: "Masai Mara", img: "masaimara.webp" },
+  { name: "Ngecha", img: "nairobi.webp" },
+  { name: "Istanbul", img: "istanbul.webp" },
+  { name: "Albania", img: "albania.webp" },
+  { name: "Napoli", img: "napoli.webp" },
+  { name: "Mediterranean", img: "mediterranean.webp" },
+  { name: "Paris again", img: "paris2.webp" },
+  { name: "Copenhagen", img: "copenhagen.webp" },
+  { name: "Sweden", img: "sweden.webp" },
+  { name: "Utrecht", img: "utrecht.webp" },
+  { name: "Dublin", img: "dublin.webp" },
+  { name: "Andalucia", img: "andalucia.webp" },
+  { name: "Morocco", img: "morocco.webp" },
+  { name: "Cannes", img: "cannes.webp" },
+  { name: "Chamonix", img: "chamonix.webp" },
+  { name: "Zermatt", img: "zermatt.webp" },
+  { name: "Cevio", img: "cevio.webp" },
+  { name: "Munich Again", img: "munich2.webp" },
+  { name: "St.Moritz", img: "st.moritz.webp" },
+  { name: "Munich", img: "munich.webp" },
+  { name: "Vienna", img: "vienna.webp" },
+  { name: "Kitzbuhel", img: "kitzbuhel.webp" },
+  { name: "Dolomites", img: "dolomites.webp" },
+  { name: "Daffins", img: "daffins.webp" },
+  { name: "Paris", img: "paris.webp" },
+  { name: "Flers", img: "flers.webp" },
+  { name: "United Kingdom", img: "uk.webp" },
+  { name: "Valparaiso", img: "valparaiso.webp" },
+  { name: "Mendoza", img: "mendoza.webp" },
+  { name: "Patagonia", img: "patagonia.webp" },
+  { name: "Buenos Aires", img: "buenosaires.webp" }
+];
 
-      <div class="tile bg-white shadow rounded-lg overflow-hidden">
-        <a href="Albania.htm">
-          <img src="assets/images/albania.webp" alt="Albania">
-          <p>Albania</p>
-        </a>
-      </div>
+/* -----------------------------
+   BUILD THE GRID
+------------------------------ */
+const grid = document.getElementById("tileGrid");
 
-        <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/napoli.webp" alt="Napoli" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Napoli.htm">Napoli</a>
-        </p>
-      </div>
+tiles.forEach(t => {
+  const div = document.createElement("div");
+  div.className =
+    "tile bg-white shadow rounded-lg overflow-hidden";
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/mediterranean.webp" alt="Mediterranean" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Mediterranean.htm">Mediterranean</a>
-        </p>
-      </div>
+  div.innerHTML = `
+    <a href="${t.name.replace(/\s+/g, '')}.htm">
+      <img src="assets/images/${t.img}" alt="${t.name}">
+      <p>${t.name}</p>
+    </a>
+  `;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/paris2.webp" alt="Paris again" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Paris2.htm">Paris again</a>
-        </p>
-      </div>
+  grid.appendChild(div);
+});
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/copenhagen.webp" alt="Copenhagen" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Copenhagen.htm">Copenhagen</a>
-        </p>
-      </div>
+/* -----------------------------------------
+   BUBBLE PHYSICS — PUSH NEIGHBORING TILES
+------------------------------------------ */
+const allTiles = document.querySelectorAll(".tile");
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/sweden.webp" alt="Sweden" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Sweden.htm">Sweden</a>
-        </p>
-      </div>
+allTiles.forEach(tile => {
+  tile.addEventListener("mouseenter", () => {
+    tile.style.transform = "scale(1.3)";
+    tile.style.zIndex = 20;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/utrecht.webp" alt="Utrecht" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Utrecht.htm">Utrecht</a>
-        </p>
-      </div>
+    pushNeighbors(tile, 1);
+  });
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/dublin.webp" alt="Dublin" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Dublin.htm">Dublin</a>
-        </p>
-      </div>
+  tile.addEventListener("mouseleave", () => {
+    tile.style.transform = "scale(1)";
+    tile.style.zIndex = 1;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/andalucia.webp" alt="Andalucia" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Andalucia.htm">Andalucia</a>
-        </p>
-      </div>
+    pushNeighbors(tile, 0);
+  });
+});
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/morocco.webp" alt="Morocco" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Morocco.htm">Morocco</a>
-        </p>
-      </div>
+/* Apply offset to siblings */
+function pushNeighbors(activeTile, power) {
+  allTiles.forEach(tile => {
+    if (tile === activeTile) return;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/cannes.webp" alt="Cannes" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Cannes.htm">Cannes</a>
-        </p>
-      </div>
+    const rect1 = activeTile.getBoundingClientRect();
+    const rect2 = tile.getBoundingClientRect();
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/chamonix.webp" alt="Chamonix" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Chamonix.htm">Chamonix</a>
-        </p>
-      </div>
+    const dx = rect2.x - rect1.x;
+    const dy = rect2.y - rect1.y;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/zermatt.webp" alt="Zermatt" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Zermatt.htm">Zermatt</a>
-        </p>
-      </div>
+    const dist = Math.sqrt(dx*dx + dy*dy);
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/cevio.webp" alt="Cevio" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Cevio.htm">Cevio</a>
-        </p>
-      </div>
+    if (dist < 250) {
+      const pushX = (dx / dist) * 20 * power;
+      const pushY = (dy / dist) * 20 * power;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/munich2.webp" alt="Munich Again" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Munich2.htm">Munich Again</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/st.moritz.webp" alt="St.Moritz" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="St.Moritz.htm">St.Moritz</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/munich.webp" alt="Munich" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Munich.htm">Munich</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/vienna.webp" alt="Vienna" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Vienna.htm">Vienna</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/kitzbuhel.webp" alt="Kitzbuhel" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Kitzbuhel.htm">Kitzbuhel</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/dolomites.webp" alt="Dolomites" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Dolomites.htm">Dolomites</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/daffins.webp" alt="Daffins" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Daffins.htm">Daffins</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/paris.webp" alt="Paris" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Paris.htm">Paris</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/flers.webp" alt="Flers" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Flers.htm">Flers</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/uk.webp" alt="United Kingdom" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="UnitedKingdom.htm">United Kingdom</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/valparaiso.webp" alt="Valparaiso" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Valparaiso.htm">Valparaiso</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/mendoza.webp" alt="Mendoza" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="Mendoza.htm">Mendoza</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/patagonia.webp" alt="Patagonia" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="patagonia.htm">Patagonia</a>
-        </p>
-      </div>
-
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="assets/images/buenosaires.webp" alt="Buenos Aires" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="buenosaires.htm">Buenos Aires</a>
-        </p>
-      </div>
-
-  
-    </div>
-  </main>
+      tile.style.transform = power
+        ? `translate(${pushX}px, ${pushY}px)`
+        : `translate(0px, 0px)`;
+    }
+  });
+}
+</script>
 
 </body>
 </html>

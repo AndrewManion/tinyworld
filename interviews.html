@@ -6,209 +6,159 @@
   <title>Interviews</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Courier Prime', monospace;
+    }
+
+    /* Tile hover effect */
+    .tile {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .tile img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    .tile p {
+      margin-top: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+      color: black;
+    }
+
+    .tile a:hover p {
+      text-decoration: underline;
+    }
+
+    /* Grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      align-items: start;
     }
   </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- Navigation -->
-<!-- Header (Loaded via JS) -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
   <div id="header-placeholder"></div>
 </header>
 
 <script>
   fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header-placeholder").innerHTML = data;
-    });
+    .then(r => r.text())
+    .then(data => document.getElementById("header-placeholder").innerHTML = data);
 </script>
 
-  <!-- Hero Section -->
+<!-- Hero Section -->
 <section class="text-center py-4 bg-white">
   <h1 class="text-2xl mb-6">meet the people</h1>
 </section>
 
-  <!-- Gallery -->
-  <main class="container mx-auto px-4 py-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Gallery -->
+<main class="container mx-auto px-4 py-4">
+  <div class="grid-container" id="tileGrid"></div>
+</main>
 
-      <!-- Repeat for each interview -->
-     
-         <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image022.webp" alt="Els" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Els</a>
-        </p>
-      </div>   
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image021.webp" alt="Bernard" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Bernard</a>
-        </p>
-      </div> 
-     
-     
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image020.webp" alt="Mani" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Mani</a>
-        </p>
-      </div>
+<script>
+/* -----------------------------
+   INTERVIEWS ARRAY
+------------------------------ */
+const interviews = [
+  { name: "Els", img: "image022.webp", href: "interviewcomingsoon.htm" },
+  { name: "Bernard", img: "image021.webp", href: "interviewcomingsoon.htm" },
+  { name: "Mani", img: "image020.webp", href: "interviewcomingsoon.htm" },
+  { name: "Kimiti", img: "image019.webp", href: "interviewcomingsoon.htm" },
+  { name: "Esbon", img: "image018.webp", href: "interviewcomingsoon.htm" },
+  { name: "Yanzi", img: "image017.webp", href: "interviewcomingsoon.htm" },
+  { name: "Hülya", img: "image016.webp", href: "interviewcomingsoon.htm" },
+  { name: "Gilles", img: "image015.webp", href: "interviewcomingsoon.htm" },
+  { name: "Ellen", img: "image000.webp", href: "interviewcomingsoon.htm" },
+  { name: "Barney", img: "image013.webp", href: "interviewcomingsoon.htm" },
+  { name: "Lise", img: "image012.webp", href: "LiseChristiania.htm" },
+  { name: "Max", img: "image011.webp", href: "MaxArkDes.htm" },
+  { name: "Julian", img: "image010.webp", href: "JulianSkoga.htm" },
+  { name: "Karin", img: "image009.webp", href: "KarinEcotopia.htm" },
+  { name: "Martin", img: "image008.webp", href: "MartinRindo.htm" },
+  { name: "Tuve", img: "image007.webp", href: "TuveAskerod.htm" },
+  { name: "Krim", img: "image006.webp", href: "KrimTagounite.htm" },
+  { name: "Fabian", img: "image005.webp", href: "FabianSidi.htm" },
+  { name: "Omar", img: "image004.webp", href: "OmarImsouane.htm" },
+  { name: "Brigitte", img: "image003.webp", href: "BrigitteCannes.htm" },
+  { name: "Alexandra", img: "image002.webp", href: "AlexandraChamonix.htm" },
+  { name: "Patrizia", img: "image001.webp", href: "PatriziaCevio.htm" }
+];
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image019.webp" alt="Kimiti" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Kimiti</a>
-        </p>
-      </div>
-    
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image018.webp" alt="Esbon" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Esbon</a>
-        </p>
-      </div>
-     
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image017.webp" alt="Yanzi" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Yanzi</a>
-        </p>
-      </div>
-      
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image016.webp" alt="Hülya" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Hülya</a>
-        </p>
-      </div>
-     
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image015.webp" alt="Gilles" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Gilles</a>
-        </p>
-      </div>
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image000.webp" alt="Ellen" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Ellen</a>
-        </p>
-      </div>
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image013.webp" alt="Barney" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="interviewcomingsoon.htm">Barney</a>
-        </p>
-      </div>
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image012.webp" alt="Lise" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="LiseChristiania.htm">Lise</a>
-        </p>
-      </div>
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image011.webp" alt="Max" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="MaxArkDes.htm">Max</a>
-        </p>
-      </div>
+/* -----------------------------
+   BUILD THE GRID
+------------------------------ */
+const grid = document.getElementById("tileGrid");
 
-       <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image010.webp" alt="Julian" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="JulianSkoga.htm">Julian</a>
-        </p>
-      </div>
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image009.webp" alt="Karin" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="KarinEcotopia.htm">Karin</a>
-        </p>
-      </div>
+interviews.forEach(i => {
+  const div = document.createElement("div");
+  div.className = "tile bg-white shadow rounded-lg overflow-hidden";
 
-        <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image008.webp" alt="Martin" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="MartinRindo.htm">Martin</a>
-        </p>
-      </div>
+  div.innerHTML = `
+    <a href="${i.href}">
+      <img src="Interviews_files/${i.img}" alt="${i.name}">
+      <p>${i.name}</p>
+    </a>
+  `;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image007.webp" alt="Tuve" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="TuveAskerod.htm">Tuve</a>
-        </p>
-      </div>
-      
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image006.webp" alt="Krim" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="KrimTagounite.htm">Krim</a>
-        </p>
-      </div>
+  grid.appendChild(div);
+});
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image005.webp" alt="Fabian" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="FabianSidi.htm">Fabian</a>
-        </p>
-      </div>
+/* -----------------------------
+   HOVER EFFECTS WITH PUSH
+------------------------------ */
+const allTiles = document.querySelectorAll(".tile");
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image004.webp" alt="Omar" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="OmarImsouane.htm">Omar</a>
-        </p>
-      </div>
+allTiles.forEach(tile => {
+  tile.addEventListener("mouseenter", () => {
+    tile.style.transform = "scale(1.3)";
+    tile.style.zIndex = 20;
+    pushNeighbors(tile, 1);
+  });
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image003.webp" alt="Brigitte" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="BrigitteCannes.htm">Brigitte</a>
-        </p>
-      </div>
+  tile.addEventListener("mouseleave", () => {
+    tile.style.transform = "scale(1)";
+    tile.style.zIndex = 1;
+    pushNeighbors(tile, 0);
+  });
+});
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image002.webp" alt="Alexandra" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="AlexandraChamonix.htm">Alexandra</a>
-        </p>
-      </div>
+function pushNeighbors(activeTile, power) {
+  allTiles.forEach(tile => {
+    if (tile === activeTile) return;
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="Interviews_files/image001.webp" alt="Patrizia" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="PatriziaCevio.htm">Patrizia</a>
-        </p>
-      </div>
+    const rect1 = activeTile.getBoundingClientRect();
+    const rect2 = tile.getBoundingClientRect();
 
-      
+    const dx = rect2.x - rect1.x;
+    const dy = rect2.y - rect1.y;
 
-     
+    const dist = Math.sqrt(dx*dx + dy*dy);
 
-      
+    if (dist < 250) {
+      const pushX = (dx / dist) * 20 * power;
+      const pushY = (dy / dist) * 20 * power;
 
-     
-
-
-
-
-    </div>
-  </main>
+      tile.style.transform = power
+        ? `translate(${pushX}px, ${pushY}px)`
+        : `translate(0px, 0px)`;
+    }
+  });
+}
+</script>
 
 </body>
 </html>

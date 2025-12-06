@@ -6,75 +6,139 @@
   <title>Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Courier Prime', monospace;
+    }
+
+    /* Tile hover effect */
+    .tile {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .tile img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    .tile p {
+      margin-top: 0.5rem;
+      text-align: center;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Grid layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      align-items: start;
     }
   </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
 
-<!-- Header (Loaded via JS) -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
   <div id="header-placeholder"></div>
 </header>
 
 <script>
   fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header-placeholder").innerHTML = data;
-    });
+    .then(r => r.text())
+    .then(data => document.getElementById("header-placeholder").innerHTML = data);
 </script>
 
 
-<!-- Hero Section -->
-<section class="text-center py-4 bg-white">
-  <h1 class="text-2xl mb-6">select works</h1>
-</section>
+<!-- Portfolio Grid -->
+<main class="container mx-auto px-4 py-4">
+  <div class="grid-container" id="portfolioGrid"></div>
+</main>
 
-  <!-- Gallery -->
-  <main class="container mx-auto px-4 py-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<script>
+/* -----------------------------
+   PORTFOLIO ITEMS ARRAY
+------------------------------ */
+const portfolioItems = [
+  {
+    name: "Tree House",
+    img: "mlangotreehouse_files/image001.webp",
+    href: "mlangotreehouse.htm"
+  },
+  {
+    name: "Earth Kitchen",
+    img: "mlangokitchen_files/image001.webp",
+    href: "mlangokitchen.htm"
+  }
+];
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="mlangotreehouse_files/image001.webp" alt="Tree House. Mlango Farm." class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="mlangotreehouse.htm">Tree House</a>
-        </p>
-          </div>
+/* -----------------------------
+   BUILD GRID
+------------------------------ */
+const grid = document.getElementById("portfolioGrid");
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="mlangokitchen_files/image001.webp" alt="Kitchen Expansion. Mlango Farm" class="w-full h-48 object-cover">
-        <p class="p-4 text-center text-black hover:underline">
-          <a href="mlangokitchen.htm">Earth Kitchen</a>
-        </p>
-          </div>
+portfolioItems.forEach(i => {
+  const div = document.createElement("div");
+  div.className = "tile bg-white shadow rounded-lg overflow-hidden";
 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="portfolio_files/image007.webp" alt="Outside in Project. Columbia University." class="w-full h-48 object-cover">
-     <p class="p-4 text-center text-black">Outside in Project. Columbia University.</p>
-          </div>
+  div.innerHTML = `
+    <a href="${i.href}">
+      <img src="${i.img}" alt="${i.name}">
+      <p>${i.name}</p>
+    </a>
+  `;
 
-		 
-      <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="portfolio_files/image009.webp" alt="Outside in Project. Columbia University." class="w-full h-48 object-cover">
-     <p class="p-4 text-center text-black">Outside in Project. Columbia University.</p>
-          </div>
+  grid.appendChild(div);
+});
 
-		  <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="portfolio_files/image011.webp" alt="Shanghai Tower Analysis. Columbia University." class="w-full h-48 object-cover">
-     <p class="p-4 text-center text-black">Shanghai Tower Analysis. Columbia University.</p>
-          </div>
+/* -----------------------------
+   BUBBLE / PUSH EFFECT
+------------------------------ */
+const allTiles = document.querySelectorAll(".tile");
 
-		  <div class="bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition">
-        <img src="portfolio_files/image003.webp" alt="Shanghai Tower Analysis. Columbia University." class="w-full h-48 object-cover">
-     <p class="p-4 text-center text-black">Shanghai Tower Analysis. Columbia University.</p>
-          </div>
+allTiles.forEach(tile => {
+  tile.addEventListener("mouseenter", () => {
+    tile.style.transform = "scale(1.3)";
+    tile.style.zIndex = 20;
+    pushNeighbors(tile, 1);
+  });
 
-    </div>
-  </main>
+  tile.addEventListener("mouseleave", () => {
+    tile.style.transform = "scale(1)";
+    tile.style.zIndex = 1;
+    pushNeighbors(tile, 0);
+  });
+});
+
+function pushNeighbors(activeTile, power) {
+  allTiles.forEach(tile => {
+    if (tile === activeTile) return;
+
+    const rect1 = activeTile.getBoundingClientRect();
+    const rect2 = tile.getBoundingClientRect();
+
+    const dx = rect2.x - rect1.x;
+    const dy = rect2.y - rect1.y;
+
+    const dist = Math.sqrt(dx*dx + dy*dy);
+
+    if (dist < 250) {
+      const pushX = (dx / dist) * 20 * power;
+      const pushY = (dy / dist) * 20 * power;
+
+      tile.style.transform = power
+        ? `translate(${pushX}px, ${pushY}px)`
+        : `translate(0px, 0px)`;
+    }
+  });
+}
+</script>
 
 </body>
 </html>

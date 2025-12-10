@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <title>Journey</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 
@@ -12,7 +12,7 @@
       font-family: 'Courier Prime', monospace;
     }
 
-    /* Tile hover effect */
+    /* Bubble hover effect */
     .tile {
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       position: relative;
@@ -28,14 +28,13 @@
     .tile p {
       margin-top: 0.5rem;
       text-align: center;
-      color: black;
       font-weight: bold;
     }
 
-    /* Grid layout */
+    /* Grid */
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.5rem;
       justify-items: center;
       align-items: start;
@@ -55,67 +54,94 @@
     .then(data => document.getElementById("header-placeholder").innerHTML = data);
 </script>
 
-
-<!-- Portfolio Grid -->
+<!-- Gallery -->
 <main class="container mx-auto px-4 py-4">
-  <div class="grid-container" id="portfolioGrid"></div>
+
+  <div class="grid-container" id="tileGrid"></div>
+
 </main>
 
 <script>
 /* -----------------------------
-   PORTFOLIO ITEMS ARRAY
------------------------------- */
-const portfolioItems = [
-  {
-    name: "Tree House",
-    img: "mlangotreehouse_files/image001.webp",
-    href: "mlangotreehouse.htm"
-  },
-  {
-    name: "Earth Kitchen",
-    img: "mlangokitchen_files/image001.webp",
-    href: "mlangokitchen.htm"
-  }
+   TEMPLATE ARRAY FOR ALL TILES
+   ----------------------------- */
+const tiles = [
+  { name: "Agra", img: "agra.webp" },
+  { name: "Masai Mara", img: "masaimara.webp" },
+  { name: "Ngecha", img: "nairobi.webp" },
+  { name: "Istanbul", img: "istanbul.webp" },
+  { name: "Albania", img: "albania.webp" },
+  { name: "Napoli", img: "napoli.webp" },
+  { name: "Mediterranean", img: "mediterranean.webp" },
+  { name: "Paris again", img: "paris2.webp" },
+  { name: "Copenhagen", img: "copenhagen.webp" },
+  { name: "Sweden", img: "sweden.webp" },
+  { name: "Utrecht", img: "utrecht.webp" },
+  { name: "Dublin", img: "dublin.webp" },
+  { name: "Andalucia", img: "andalucia.webp" },
+  { name: "Morocco", img: "morocco.webp" },
+  { name: "Cannes", img: "cannes.webp" },
+  { name: "Chamonix", img: "chamonix.webp" },
+  { name: "Zermatt", img: "zermatt.webp" },
+  { name: "Cevio", img: "cevio.webp" },
+  { name: "Munich Again", img: "munich2.webp" },
+  { name: "St.Moritz", img: "st.moritz.webp" },
+  { name: "Munich", img: "munich.webp" },
+  { name: "Vienna", img: "vienna.webp" },
+  { name: "Kitzbuhel", img: "kitzbuhel.webp" },
+  { name: "Dolomites", img: "dolomites.webp" },
+  { name: "Daffins", img: "daffins.webp" },
+  { name: "Paris", img: "paris.webp" },
+  { name: "Flers", img: "flers.webp" },
+  { name: "United Kingdom", img: "uk.webp" },
+  { name: "Valparaiso", img: "valparaiso.webp" },
+  { name: "Mendoza", img: "mendoza.webp" },
+  { name: "Patagonia", img: "patagonia.webp" },
+  { name: "Buenos Aires", img: "buenosaires.webp" }
 ];
 
 /* -----------------------------
-   BUILD GRID
+   BUILD THE GRID
 ------------------------------ */
-const grid = document.getElementById("portfolioGrid");
+const grid = document.getElementById("tileGrid");
 
-portfolioItems.forEach(i => {
+tiles.forEach(t => {
   const div = document.createElement("div");
-  div.className = "tile bg-white shadow rounded-lg overflow-hidden";
+  div.className =
+    "tile bg-white shadow rounded-lg overflow-hidden";
 
   div.innerHTML = `
-    <a href="${i.href}">
-      <img src="${i.img}" alt="${i.name}">
-      <p>${i.name}</p>
+    <a href="${t.name.replace(/\s+/g, '')}.htm">
+      <img src="assets/images/${t.img}" alt="${t.name}">
+      <p>${t.name}</p>
     </a>
   `;
 
   grid.appendChild(div);
 });
 
-/* -----------------------------
-   BUBBLE / PUSH EFFECT
------------------------------- */
+/* -----------------------------------------
+   BUBBLE PHYSICS — PUSH NEIGHBORING TILES
+------------------------------------------ */
 const allTiles = document.querySelectorAll(".tile");
 
 allTiles.forEach(tile => {
   tile.addEventListener("mouseenter", () => {
     tile.style.transform = "scale(1.3)";
     tile.style.zIndex = 20;
+
     pushNeighbors(tile, 1);
   });
 
   tile.addEventListener("mouseleave", () => {
     tile.style.transform = "scale(1)";
     tile.style.zIndex = 1;
+
     pushNeighbors(tile, 0);
   });
 });
 
+/* Apply offset to siblings */
 function pushNeighbors(activeTile, power) {
   allTiles.forEach(tile => {
     if (tile === activeTile) return;

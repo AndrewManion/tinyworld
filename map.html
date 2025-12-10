@@ -26,11 +26,18 @@
     }
 
     #map {
-      height: 600px;
+      height: 90vh;
       width: 100%;
       border-radius: 0.75rem;
-      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.25);
-      border: 2px solid #333;
+      border: 2px solid #222;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    /* Prevent fallback icon issues */
+    .leaflet-marker-icon,
+    .leaflet-marker-shadow {
+      image-rendering: auto;
     }
   </style>
 </head>
@@ -38,32 +45,76 @@
 <body class="bg-black text-gray-100">
 
   <!-- Header -->
-  <header class="bg-black shadow-sm sticky top-0 z-50">
+  <header class="bg-black sticky top-0 z-50 shadow-md shadow-white/10">
     <div id="header-placeholder"></div>
   </header>
 
   <script>
     fetch("header.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("header-placeholder").innerHTML = data;
-      });
+      .then(r => r.text())
+      .then(t => document.getElementById("header-placeholder").innerHTML = t);
   </script>
 
-  <!-- ⭐️ THIS WAS MISSING — THE MAP CONTAINER -->
+  <!-- Map -->
   <div class="p-4">
     <div id="map"></div>
   </div>
 
   <script>
-    const map = L.map('map').setView([35, -5], 4);
+    /*******************************
+     * 1. FIX DEFAULT ICONS
+     *******************************/
+    delete L.Icon.Default.prototype._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl:
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+      iconUrl:
+        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+      shadowUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png"
+    });
 
-    /* Dark mode tiles */
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; CartoDB & OpenStreetMap contributors'
-    }).addTo(map);
+    /*******************************
+     * 2. INVERT TILE Y (SOUTH-UP)
+     *******************************/
+    L.TileLayer.InvertY = L.TileLayer.extend({
+      getTileUrl: function (coords) {
+        const invertedY = this._globalTileRange.max.y - coords.y;
+        return L.Util.template(this._url, {
+          s: this._getSubdomain(coords),
+          x: coords.x,
+          y: invertedY,
+          z: this._getZoomForUrl()
+        });
+      }
+    });
 
-    /* Colorful icons */
+    /*******************************
+     * 3. CREATE WORLD MAP (NO WRAP)
+     *******************************/
+    const map = L.map("map", {
+      worldCopyJump: false,
+      maxBoundsViscosity: 1.0,
+      maxBounds: [
+        [-90, -180],
+        [90, 180]
+      ]
+    }).setView([0, 0], 2);
+
+    /*******************************
+     * 4. ADD DARK BASE MAP (INVERTED)
+     *******************************/
+    new L.TileLayer.InvertY(
+      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+      {
+        noWrap: true,
+        continuousWorld: false
+      }
+    ).addTo(map);
+
+    /*******************************
+     * 5. MARKER COLORS
+     *******************************/
     const colors = [
       "red", "orange", "yellow", "green", "blue",
       "purple", "pink", "cyan", "lime", "magenta"
@@ -86,8 +137,9 @@
       });
     }
 
-    
-    /* Locations */
+    /*******************************
+     * 6. LOCATIONS (YOUR LIST)
+     *******************************/
     const locations = [
       ["Buenos Aires, Argentina", -34.6037, -58.3816],
       ["El Chalten, Argentina", -49.3286, -72.8869],
@@ -105,7 +157,7 @@
       ["Kitzbuhel, Austria", 47.4476, 12.3926],
       ["Salzburg, Austria", 47.8095, 13.0550],
       ["Vienna, Austria", 48.2082, 16.3738],
-      ["Munich, Germany", 48.1351, 11.5820],
+      ["Munich, German y", 48.1351, 11.5820],
       ["St. Moritz, Switzerland", 46.4970, 9.8418],
       ["Cevio, Switzerland", 46.3167, 8.6000],
       ["Bellinzona, Switzerland", 46.1930, 9.0221],
@@ -189,7 +241,9 @@
       ["11 Briar Oak Drive, Weston CT", 41.2109, -73.3807]
     ];
 
-    /* Add markers */
+    /*******************************
+     * 7. ADD MARKERS
+     *******************************/
     locations.forEach(([name, lat, lon]) => {
       const color = randomColor();
       L.marker([lat, lon], { icon: coloredIcon(color) })
@@ -199,4 +253,5 @@
   </script>
 
 </body>
+
 </html>

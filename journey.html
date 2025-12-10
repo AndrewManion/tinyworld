@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Courier Prime', monospace;
+    }
+
+    .tile {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .tile img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    .tile p {
+      margin-top: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      align-items: start;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div id="header-placeholder"></div>
+</header>
+
+<script>
+  fetch("header.html")
+    .then(r => r.text())
+    .then(data => document.getElementById("header-placeholder").innerHTML = data);
+</script>
+
+<!-- Gallery -->
+<main class="container mx-auto px-4 py-4">
+  <div class="grid-container" id="tileGrid"></div>
+</main>
+
+<script>
+/* -----------------------------
+   TILE ARRAY WITH EXPLICIT FILES
+   ----------------------------- */
+const tiles = [
+  { name: "Tokyo", img: "tokyo.webp", file: "tokyo.htm" },
+  { name: "Kyoto", img: "kyoto.webp", file: "kyoto.htm" },
+  { name: "Osaka", img: "osaka.webp", file: "osaka.htm" },
+  { name: "Siargao", img: "siargao.webp", file: "siargao.htm" },
+  { name: "Hanoi", img: "hanoi.webp", file: "hanoi.htm" },
+  { name: "Laos", img: "laos.webp", file: "laos.htm" },
+  { name: "Pai", img: "pai.webp", file: "pai.htm" },
+  { name: "Chiang Mai", img: "chiangmai.webp", file: "chiangmai.htm" },
+  { name: "Bangkok", img: "bangkok.webp", file: "bangkok.htm" },
+  { name: "Thai Islands", img: "thaiislands.webp", file: "thaiislands.htm" },
+  { name: "Ladakh", img: "ladakh.webp", file: "ladakh.htm" },
+  { name: "McLeod Ganj", img: "mcleodganj.webp", file: "mcleodganj.htm" },
+  { name: "Rishikesh", img: "rishikesh.webp", file: "rishikesh.htm" },
+  { name: "Agra", img: "agra.webp", file: "agra.htm" },
+  { name: "Masai Mara", img: "masaimara.webp", file: "masaimara.htm" },
+  { name: "Ngecha", img: "nairobi.webp", file: "ngecha.htm" },
+  { name: "Istanbul", img: "istanbul.webp", file: "istanbul.htm" },
+  { name: "Albania", img: "albania.webp", file: "albania.htm" },
+  { name: "Napoli", img: "napoli.webp", file: "napoli.htm" },
+  { name: "Mediterranean", img: "mediterranean.webp", file: "mediterranean.htm" },
+  { name: "Paris again", img: "paris2.webp", file: "paris2.htm" },
+  { name: "Copenhagen", img: "copenhagen.webp", file: "copenhagen.htm" },
+  { name: "Sweden", img: "sweden.webp", file: "sweden.htm" },
+  { name: "Utrecht", img: "utrecht.webp", file: "utrecht.htm" },
+  { name: "Dublin", img: "dublin.webp", file: "dublin.htm" },
+  { name: "Andalucia", img: "andalucia.webp", file: "andalucia.htm" },
+  { name: "Morocco", img: "morocco.webp", file: "morocco.htm" },
+  { name: "Cannes", img: "cannes.webp", file: "cannes.htm" },
+  { name: "Chamonix", img: "chamonix.webp", file: "chamonix.htm" },
+  { name: "Zermatt", img: "zermatt.webp", file: "zermatt.htm" },
+  { name: "Cevio", img: "cevio.webp", file: "cevio.htm" },
+  { name: "Munich Again", img: "munich2.webp", file: "munich2.htm" },
+  { name: "St.Moritz", img: "st.moritz.webp", file: "st.moritz.htm" },
+  { name: "Munich", img: "munich.webp", file: "munich.htm" },
+  { name: "Vienna", img: "vienna.webp", file: "vienna.htm" },
+  { name: "Kitzbuhel", img: "kitzbuhel.webp", file: "kitzbuhel.htm" },
+  { name: "Dolomites", img: "dolomites.webp", file: "dolomites.htm" },
+  { name: "Daffins", img: "daffins.webp", file: "daffins.htm" },
+  { name: "Paris", img: "paris.webp", file: "paris.htm" },
+  { name: "Flers", img: "flers.webp", file: "flers.htm" },
+  { name: "United Kingdom", img: "uk.webp", file: "uk.htm" },
+  { name: "Valparaiso", img: "valparaiso.webp", file: "valparaiso.htm" },
+  { name: "Mendoza", img: "mendoza.webp", file: "mendoza.htm" },
+  { name: "Patagonia", img: "patagonia.webp", file: "patagonia.htm" },
+  { name: "Buenos Aires", img: "buenosaires.webp", file: "buenosaires.htm" }
+];
+
+/* -----------------------------
+   BUILD GRID USING .file
+------------------------------ */
+const grid = document.getElementById("tileGrid");
+
+tiles.forEach(t => {
+  const div = document.createElement("div");
+  div.className = "tile bg-white shadow rounded-lg overflow-hidden";
+
+  div.innerHTML = `
+    <a href="${t.file}">
+      <img src="assets/images/${t.img}" alt="${t.name}">
+      <p>${t.name}</p>
+    </a>
+  `;
+
+  grid.appendChild(div);
+});
+
+/* -----------------------------------------
+   BUBBLE PHYSICS — PUSH NEIGHBORING TILES
+------------------------------------------ */
+const allTiles = document.querySelectorAll(".tile");
+
+allTiles.forEach(tile => {
+  tile.addEventListener("mouseenter", () => {
+    tile.style.transform = "scale(1.3)";
+    tile.style.zIndex = 20;
+    pushNeighbors(tile, 1);
+  });
+
+  tile.addEventListener("mouseleave", () => {
+    tile.style.transform = "scale(1)";
+    tile.style.zIndex = 1;
+    pushNeighbors(tile, 0);
+  });
+});
+
+function pushNeighbors(activeTile, power) {
+  allTiles.forEach(tile => {
+    if (tile === activeTile) return;
+
+    const rect1 = activeTile.getBoundingClientRect();
+    const rect2 = tile.getBoundingClientRect();
+
+    const dx = rect2.x - rect1.x;
+    const dy = rect2.y - rect1.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+
+    if (dist < 250) {
+      const pushX = (dx / dist) * 20 * power;
+      const pushY = (dy / dist) * 20 * power;
+
+      tile.style.transform = power
+        ? `translate(${pushX}px, ${pushY}px)`
+        : `translate(0px, 0px)`;
+    }
+  });
+}
+</script>
+
+</body>
+</html>

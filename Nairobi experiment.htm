@@ -1,0 +1,61 @@
+<section class="relative text-center my-24 space-y-6 overflow-visible bg-white text-black">
+  <!-- Paint splats removed for clean aesthetic -->
+  <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed tracking-tight">
+    Nairobi and the Farm That Feeds It
+  </p>
+  <p class="text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed">
+    When the pilot woke me up on the floor of the airport in Muscat, I didn't know where I was going.
+    When we landed in Kenya, it made more sense. We came in over the mara in the afternoon sun.
+    Just as quickly as we landed, I got myself to the outskirts of Nairobi, near Kibuku, to a camping
+    tent set to overlook the forest farm. My real job, however, was to be apprentice to Esbon, the master carpenter.
+  </p>
+</section>
+
+<section class="gallery max-w-7xl mx-auto my-20 px-4 grid gap-12 md:gap-16">
+  <div class="gallery-row grid md:grid-cols-2 gap-8 md:gap-16">
+    <img src="Albania_files/image001.webp" alt="" class="object-cover w-full h-auto rounded-sm">
+    <img src="Albania_files/image002.webp" alt="" class="object-cover w-full h-auto rounded-sm md:translate-y-20">
+  </div>
+  <div class="gallery-row grid md:grid-cols-2 gap-8 md:gap-16">
+    <img src="Albania_files/image003.webp" alt="" class="object-cover w-full h-auto rounded-sm md:translate-x-20">
+    <img src="Albania_files/image004.webp" alt="" class="object-cover w-full h-auto rounded-sm">
+  </div>
+  <div class="gallery-row grid md:grid-cols-2 gap-8 md:gap-16">
+    <img src="Albania_files/image005.webp" alt="" class="object-cover w-full h-auto rounded-sm md:-translate-y-10">
+  </div>
+</section>
+
+<style>
+body {
+  background-color: #f5f5f5;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.gallery img {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery img:hover {
+  opacity: 0.85;
+  transform: scale(1.01);
+}
+
+.gallery {
+  position: relative;
+  overflow: visible;
+}
+
+.gallery-row:nth-child(even) img:first-child {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .gallery img {
+    transform: none !important;
+  }
+}
+</style>

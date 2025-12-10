@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tiny World</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Courier Prime', monospace;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    overflow-x: hidden;
+    cursor: none;
+    color: white;
+  }
+
+  /* -------- TYPEWRITER INTRO -------- */
+  #intro {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    z-index: 50;
+  }
+
+  #intro-text {
+    font-size: 8vw;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid black;
+    color: black;
+    animation: typing 4s steps(19, end) 1s 1 normal both, blink-caret 0.7s step-end infinite;
+  }
+
+  @keyframes typing { from { width: 0; } to { width: 16ch; } }
+  @keyframes blink-caret { 50% { border-color: transparent; } }
+
+  /* -------- MAIN -------- */
+  #main {
+    display: none;
+    grid-template-columns: 1fr 280px;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* LEFT SIDE: fullscreen image */
+  #left {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #slideshow {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s ease-in-out;
+  }
+
+  #flash {
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+  }
+
+  #site-nav {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+  }
+
+  /* WORD OVERLAY ON SLIDESHOW */
+  #slide-word {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    font-size: 3vw;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+    z-index: 5;
+    letter-spacing: 2px;
+  }
+
+  /* RIGHT SIDE MENU */
+  #right {
+    border-left: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 3;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    background: black;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .menu-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    width: 80%;
+    border-bottom: 2px solid white;
+    opacity: 0.7;
+  }
+
+  .menu-item:last-child::after {
+    content: none;
+  }
+
+  .menu-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+
+  .menu-item:hover {
+    background: white;
+    color: black;
+  }
+
+  /* HEADER LINKS */
+  #site-nav a {
+    color: white;
+    background: black;
+    padding: 0.4rem 0.8rem;
+    margin: 0 0.3rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  #site-nav a:hover {
+    background: white;
+    color: black;
+    text-decoration: none;
+  }
+
+  /* CURSOR STYLING */
+  .dot-cursor {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: background 0.3s ease;
+  }
+
+  #intro-dot, #main-dot {
+    width: 25px;
+    height: 25px;
+    background: white;
+    display: none;
+  }
+
+  #intro-dot {
+    background: black;
+    display: block;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    body { cursor: auto; overflow-y: auto; }
+    #main { display: none !important; }
+
+    #mobile {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 1.5rem;
+      background: #000;
+      color: white;
+    }
+
+    #mobile-slideshow {
+      width: 100%;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    #mobile-slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    #mobile-slide-word {
+      position: absolute;
+      bottom: 0.5rem;
+      left: 1rem;
+      font-size: 1.2rem;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .mobile-menu {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-top: 1px solid white;
+      padding: 1rem 0;
+      cursor: pointer;
+      color: white;
+    }
+
+    .mobile-menu:last-of-type { border-bottom: 1px solid white; }
+    .mobile-menu:hover { background: white; color: black; }
+
+    #mobile-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .mobile-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .mobile-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+
+    .mobile-item span:hover,
+    .mobile-item img:hover {
+      color: black;
+      background: white;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- INTRO -->
+  <div id="intro"><div id="intro-text">home.............</div></div>
+
+  <!-- MAIN -->
+  <div id="main" class="grid">
+    <div id="left">
+      <div id="site-nav"></div>
+      <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
+      <div id="slide-word">pequeño</div>
+      <div id="flash"></div>
+    </div>
+
+    <div id="right">
+      <div class="menu-item" onclick="window.location.href='EsbonNgecha.htm'"><img src="assets/images/title/esbon.webp" alt="Esbon"><span>Esbon</span></div>
+      <div class="menu-item" onclick="window.location.href='Valparaiso.htm'"><img src="assets/images/title/valparaiso.webp" alt="Valparaiso"><span>Valparaiso</span></div>
+      <div class="menu-item" onclick="window.location.href='GillesParis.htm'"><img src="assets/images/title/gilles.webp" alt="Gilles"><span>Gilles</span></div>
+      <div class="menu-item" onclick="window.location.href='Morocco.htm'"><img src="assets/images/title/morocco.webp" alt="Morocco"><span>Morocco</span></div>
+      <div class="menu-item" onclick="window.location.href='BrigitteCannes.htm'"><img src="assets/images/title/brigitte.webp" alt="Brigitte"><span>Brigitte</span></div>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div id="mobile" style="display:none;">
+    <div id="mobile-slideshow">
+      <img id="mobile-slide" src="assets/images/buenosaires.webp" alt="slideshow">
+      <div id="mobile-slide-word">pequeño</div>
+    </div>
+
+    <div class="mobile-menu" onclick="window.location.href='journey.html'">JOURNEY</div>
+    <div class="mobile-menu" onclick="window.location.href='interviews.html'">INTERVIEWS</div>
+    <div class="mobile-menu" onclick="window.location.href='portfolio.htm'">PORTFOLIO</div>
+    <div class="mobile-menu" onclick="window.location.href='map.html'">MAP</div>
+    <div class="mobile-menu" onclick="window.location.href='about.htm'">ABOUT</div>
+
+    <div id="mobile-gallery">
+      <div class="mobile-item" onclick="window.location.href='EsbonNgecha.htm'"><img src="assets/images/title/esbon.webp" alt="Esbon"><span>Esbon</span></div>
+      <div class="mobile-item" onclick="window.location.href='Valparaiso.htm'"><img src="assets/images/title/valparaiso.webp" alt="Valparaiso"><span>Valparaiso</span></div>
+      <div class="mobile-item" onclick="window.location.href='GillesParis.htm'"><img src="assets/images/title/gilles.webp" alt="Gilles"><span>Gilles</span></div>
+      <div class="mobile-item" onclick="window.location.href='Morocco.htm'"><img src="assets/images/title/morocco.webp" alt="Morocco"><span>Morocco</span></div>
+      <div class="mobile-item" onclick="window.location.href='BrigitteCannes.htm'"><img src="assets/images/title/brigitte.webp" alt="Brigitte"><span>Brigitte</span></div>
+    </div>
+  </div>
+
+  <!-- CURSORS -->
+  <div class="dot-cursor" id="intro-dot"></div>
+  <div class="dot-cursor" id="main-dot"></div>
+
+  <script>
+    const intro = document.getElementById('intro');
+    const main = document.getElementById('main');
+    const mobile = document.getElementById('mobile');
+    const introDot = document.getElementById('intro-dot');
+    const mainDot = document.getElementById('main-dot');
+    const slideshow = document.getElementById("slideshow");
+    const flash = document.getElementById("flash");
+    const slideWord = document.getElementById("slide-word");
+    const mobileSlide = document.getElementById("mobile-slide");
+    const mobileSlideWord = document.getElementById("mobile-slide-word");
+
+    // Load header
+    fetch("header.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("site-nav").innerHTML = html)
+      .catch(err => console.error("Header load error:", err));
+
+    // Cursor tracking
+    document.addEventListener('mousemove', e => {
+      introDot.style.left = e.clientX + 'px';
+      introDot.style.top = e.clientY + 'px';
+      mainDot.style.left = e.clientX + 'px';
+      mainDot.style.top = e.clientY + 'px';
+    });
+
+    // Slides
+    const slides = [
+      { src: "assets/images/buenosaires.webp", word: "pequeño" },
+      { src: "assets/images/patagonia_condor 4.webp", word: "nguillen" },
+      { src: "assets/images/mendoza_house tour.webp", word: "chiquito" },
+      { src: "assets/images/valparaiso.webp", word: "pequeñito" },
+      { src: "assets/images/uk.webp", word: "tiny" },
+      { src: "assets/images/flers.webp", word: "petit" },
+      { src: "assets/images/paris.webp", word: "minuscule" },
+      { src: "assets/images/dolomites.webp", word: "piccolo" },
+      { src: "assets/images/kitzbuhel.webp", word: "winzig" }
+    ];
+    slides.forEach(s => new Image().src = s.src);
+    let index = 0;
+
+    function nextSlide() {
+      flash.style.opacity = 1;
+      setTimeout(() => {
+        index = (index + 1) % slides.length;
+        slideshow.src = slides[index].src;
+        slideWord.textContent = slides[index].word;
+        mobileSlide.src = slides[index].src;
+        mobileSlideWord.textContent = slides[index].word;
+        flash.style.opacity = 0;
+      }, 200);
+    }
+
+    // Hover effect for cursor — now includes header items
+    function setHoverEffect(selector) {
+      document.querySelectorAll(selector).forEach(item => {
+        item.addEventListener('mouseenter', () => mainDot.style.background = 'black');
+        item.addEventListener('mouseleave', () => mainDot.style.background = 'white');
+      });
+    }
+
+    setHoverEffect('.menu-item, .mobile-menu, #site-nav a');
+
+    // Intro transition
+    intro.addEventListener('click', () => {
+      intro.style.display = 'none';
+      introDot.style.display = 'none';
+      if (window.innerWidth <= 768) {
+        mobile.style.display = 'flex';
+        setInterval(nextSlide, 4000);
+      } else {
+        main.style.display = 'grid';
+        mainDot.style.display = 'block';
+        setInterval(nextSlide, 4000);
+      }
+    });
+  </script>
+</body>
+</html>

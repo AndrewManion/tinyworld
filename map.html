@@ -21,6 +21,17 @@
     .leaflet-marker-icon:hover { transform: translateY(-4px); transition: transform 120ms; }
   </style>
 </head>
+
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div id="header-placeholder"></div>
+</header>
+
+<script>
+  fetch("header.html")
+    .then(r => r.text())
+    .then(data => document.getElementById("header-placeholder").innerHTML = data);
+</script>
+
 <body>
 
 <div id="map"></div>

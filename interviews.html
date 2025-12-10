@@ -12,7 +12,6 @@
       font-family: 'Courier Prime', monospace;
     }
 
-    /* Tile hover effect */
     .tile {
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       position: relative;
@@ -29,14 +28,8 @@
       margin-top: 0.5rem;
       text-align: center;
       font-weight: bold;
-      color: black;
     }
 
-    .tile a:hover p {
-      text-decoration: underline;
-    }
-
-    /* Grid */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -66,10 +59,10 @@
 
 <script>
 /* -----------------------------
-   INTERVIEWS ARRAY
------------------------------- */
-const interviews = [
-  { name: "Yuki", img: "Yuki.webp", href: "interviewcomingsoon.htm" },
+   TILE ARRAY WITH EXPLICIT FILES
+   ----------------------------- */
+const tiles = [
+   { name: "Yuki", img: "Yuki.webp", href: "interviewcomingsoon.htm" },
   { name: "Moto", img: "Moto.webp", href: "interviewcomingsoon.htm" },
   { name: "Shota", img: "Shota.webp", href: "interviewcomingsoon.htm" },
   { name: "Phil", img: "Phil.webp", href: "interviewcomingsoon.htm" },
@@ -110,27 +103,27 @@ const interviews = [
 ];
 
 /* -----------------------------
-   BUILD THE GRID
+   BUILD GRID USING .file
 ------------------------------ */
 const grid = document.getElementById("tileGrid");
 
-interviews.forEach(i => {
+tiles.forEach(t => {
   const div = document.createElement("div");
   div.className = "tile bg-white shadow rounded-lg overflow-hidden";
 
   div.innerHTML = `
-    <a href="${i.href}">
-      <img src="Interviews_files/${i.img}" alt="${i.name}">
-      <p>${i.name}</p>
+    <a href="${t.file}">
+      <img src="assets/images/${t.img}" alt="${t.name}">
+      <p>${t.name}</p>
     </a>
   `;
 
   grid.appendChild(div);
 });
 
-/* -----------------------------
-   HOVER EFFECTS WITH PUSH
------------------------------- */
+/* -----------------------------------------
+   BUBBLE PHYSICS — PUSH NEIGHBORING TILES
+------------------------------------------ */
 const allTiles = document.querySelectorAll(".tile");
 
 allTiles.forEach(tile => {
@@ -156,7 +149,6 @@ function pushNeighbors(activeTile, power) {
 
     const dx = rect2.x - rect1.x;
     const dy = rect2.y - rect1.y;
-
     const dist = Math.sqrt(dx*dx + dy*dy);
 
     if (dist < 250) {

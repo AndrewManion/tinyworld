@@ -12,7 +12,6 @@
       font-family: 'Courier Prime', monospace;
     }
 
-    /* Bubble hover effect */
     .tile {
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       position: relative;
@@ -31,7 +30,6 @@
       font-weight: bold;
     }
 
-    /* Grid */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -56,76 +54,72 @@
 
 <!-- Gallery -->
 <main class="container mx-auto px-4 py-4">
-
   <div class="grid-container" id="tileGrid"></div>
-
 </main>
 
 <script>
 /* -----------------------------
-   TEMPLATE ARRAY FOR ALL TILES
+   TILE ARRAY WITH EXPLICIT FILES
    ----------------------------- */
 const tiles = [
-
-  { name: "Tokyo", img: "tokyo.webp" },
-  { name: "Kyoto", img: "kyoto.webp" },
-  { name: "Osaka", img: "osaka.webp" },
-  { name: "Siargao", img: "siargao.webp" },
-  { name: "Hanoi", img: "hanoi.webp" },
-  { name: "Laos", img: "laos.webp" },
-  { name: "Pai", img: "pai.webp" },
-  { name: "Chiang Mai", img: "chiangmai.webp" },
-  { name: "Bangkok", img: "bangkok.webp" },
-  { name: "Thai Islands", img: "thaiislands.webp" },
-  { name: "Ladakh", img: "ladakh.webp" },
-  { name: "McLeod Ganj", img: "mcleodganj.webp" },
-  { name: "Rishikesh", img: "rishikesh.webp" },  
-  { name: "Agra", img: "agra.webp" },
-  { name: "Masai Mara", img: "masaimara.webp" },
-  { name: "Ngecha", img: "nairobi.webp" },
-  { name: "Istanbul", img: "istanbul.webp" },
-  { name: "Albania", img: "albania.webp" },
-  { name: "Napoli", img: "napoli.webp" },
-  { name: "Mediterranean", img: "mediterranean.webp" },
-  { name: "Paris again", img: "paris2.webp" },
-  { name: "Copenhagen", img: "copenhagen.webp" },
-  { name: "Sweden", img: "sweden.webp" },
-  { name: "Utrecht", img: "utrecht.webp" },
-  { name: "Dublin", img: "dublin.webp" },
-  { name: "Andalucia", img: "andalucia.webp" },
-  { name: "Morocco", img: "morocco.webp" },
-  { name: "Cannes", img: "cannes.webp" },
-  { name: "Chamonix", img: "chamonix.webp" },
-  { name: "Zermatt", img: "zermatt.webp" },
-  { name: "Cevio", img: "cevio.webp" },
-  { name: "Munich Again", img: "munich2.webp" },
-  { name: "St.Moritz", img: "st.moritz.webp" },
-  { name: "Munich", img: "munich.webp" },
-  { name: "Vienna", img: "vienna.webp" },
-  { name: "Kitzbuhel", img: "kitzbuhel.webp" },
-  { name: "Dolomites", img: "dolomites.webp" },
-  { name: "Daffins", img: "daffins.webp" },
-  { name: "Paris", img: "paris.webp" },
-  { name: "Flers", img: "flers.webp" },
-  { name: "United Kingdom", img: "uk.webp" },
-  { name: "Valparaiso", img: "valparaiso.webp" },
-  { name: "Mendoza", img: "mendoza.webp" },
-  { name: "Patagonia", img: "patagonia.webp" },
-  { name: "Buenos Aires", img: "buenosaires.webp" }
+  { name: "Tokyo", img: "tokyo.webp", file: "tokyo.htm" },
+  { name: "Kyoto", img: "kyoto.webp", file: "kyoto.htm" },
+  { name: "Osaka", img: "osaka.webp", file: "osaka.htm" },
+  { name: "Siargao", img: "siargao.webp", file: "siargao.htm" },
+  { name: "Hanoi", img: "hanoi.webp", file: "hanoi.htm" },
+  { name: "Laos", img: "laos.webp", file: "laos.htm" },
+  { name: "Pai", img: "pai.webp", file: "pai.htm" },
+  { name: "Chiang Mai", img: "chiangmai.webp", file: "chiangmai.htm" },
+  { name: "Bangkok", img: "bangkok.webp", file: "bangkok.htm" },
+  { name: "Thai Islands", img: "thaiislands.webp", file: "thaiislands.htm" },
+  { name: "Ladakh", img: "ladakh.webp", file: "ladakh.htm" },
+  { name: "McLeod Ganj", img: "mcleodganj.webp", file: "mcleodganj.htm" },
+  { name: "Rishikesh", img: "rishikesh.webp", file: "rishikesh.htm" },
+  { name: "Agra", img: "agra.webp", file: "agra.htm" },
+  { name: "Masai Mara", img: "masaimara.webp", file: "masaimara.htm" },
+  { name: "Ngecha", img: "nairobi.webp", file: "ngecha.htm" },
+  { name: "Istanbul", img: "istanbul.webp", file: "istanbul.htm" },
+  { name: "Albania", img: "albania.webp", file: "albania.htm" },
+  { name: "Napoli", img: "napoli.webp", file: "napoli.htm" },
+  { name: "Mediterranean", img: "mediterranean.webp", file: "mediterranean.htm" },
+  { name: "Paris again", img: "paris2.webp", file: "paris2.htm" },
+  { name: "Copenhagen", img: "copenhagen.webp", file: "copenhagen.htm" },
+  { name: "Sweden", img: "sweden.webp", file: "sweden.htm" },
+  { name: "Utrecht", img: "utrecht.webp", file: "utrecht.htm" },
+  { name: "Dublin", img: "dublin.webp", file: "dublin.htm" },
+  { name: "Andalucia", img: "andalucia.webp", file: "andalucia.htm" },
+  { name: "Morocco", img: "morocco.webp", file: "morocco.htm" },
+  { name: "Cannes", img: "cannes.webp", file: "cannes.htm" },
+  { name: "Chamonix", img: "chamonix.webp", file: "chamonix.htm" },
+  { name: "Zermatt", img: "zermatt.webp", file: "zermatt.htm" },
+  { name: "Cevio", img: "cevio.webp", file: "cevio.htm" },
+  { name: "Munich Again", img: "munich2.webp", file: "munich2.htm" },
+  { name: "St.Moritz", img: "st.moritz.webp", file: "st.moritz.htm" },
+  { name: "Munich", img: "munich.webp", file: "munich.htm" },
+  { name: "Vienna", img: "vienna.webp", file: "vienna.htm" },
+  { name: "Kitzbuhel", img: "kitzbuhel.webp", file: "kitzbuhel.htm" },
+  { name: "Dolomites", img: "dolomites.webp", file: "dolomites.htm" },
+  { name: "Daffins", img: "daffins.webp", file: "daffins.htm" },
+  { name: "Paris", img: "paris.webp", file: "paris.htm" },
+  { name: "Flers", img: "flers.webp", file: "flers.htm" },
+  { name: "United Kingdom", img: "uk.webp", file: "uk.htm" },
+  { name: "Valparaiso", img: "valparaiso.webp", file: "valparaiso.htm" },
+  { name: "Mendoza", img: "mendoza.webp", file: "mendoza.htm" },
+  { name: "Patagonia", img: "patagonia.webp", file: "patagonia.htm" },
+  { name: "Buenos Aires", img: "buenosaires.webp", file: "buenosaires.htm" }
 ];
 
 /* -----------------------------
-   BUILD THE GRID
+   BUILD GRID USING .file
 ------------------------------ */
 const grid = document.getElementById("tileGrid");
 
 tiles.forEach(t => {
   const div = document.createElement("div");
-  div.className =
-    "tile bg-white shadow rounded-lg overflow-hidden";
+  div.className = "tile bg-white shadow rounded-lg overflow-hidden";
 
   div.innerHTML = `
-    <a href="${t.name.replace(/\s+/g, '')}.htm">
+    <a href="${t.file}">
       <img src="assets/images/${t.img}" alt="${t.name}">
       <p>${t.name}</p>
     </a>
@@ -143,19 +137,16 @@ allTiles.forEach(tile => {
   tile.addEventListener("mouseenter", () => {
     tile.style.transform = "scale(1.3)";
     tile.style.zIndex = 20;
-
     pushNeighbors(tile, 1);
   });
 
   tile.addEventListener("mouseleave", () => {
     tile.style.transform = "scale(1)";
     tile.style.zIndex = 1;
-
     pushNeighbors(tile, 0);
   });
 });
 
-/* Apply offset to siblings */
 function pushNeighbors(activeTile, power) {
   allTiles.forEach(tile => {
     if (tile === activeTile) return;
@@ -165,7 +156,6 @@ function pushNeighbors(activeTile, power) {
 
     const dx = rect2.x - rect1.x;
     const dy = rect2.y - rect1.y;
-
     const dist = Math.sqrt(dx*dx + dy*dy);
 
     if (dist < 250) {

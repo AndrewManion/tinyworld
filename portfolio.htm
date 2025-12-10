@@ -12,7 +12,6 @@
       font-family: 'Courier Prime', monospace;
     }
 
-    /* Bubble hover effect */
     .tile {
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       position: relative;
@@ -31,7 +30,6 @@
       font-weight: bold;
     }
 
-    /* Grid */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -56,65 +54,52 @@
 
 <!-- Gallery -->
 <main class="container mx-auto px-4 py-4">
-
   <div class="grid-container" id="tileGrid"></div>
-
 </main>
 
 <script>
 /* -----------------------------
-   TEMPLATE ARRAY FOR ALL TILES
+   TILE ARRAY WITH EXPLICIT FILES
    ----------------------------- */
 const tiles = [
-  { name: "Agra", img: "agra.webp" },
-  { name: "Masai Mara", img: "masaimara.webp" },
-  { name: "Ngecha", img: "nairobi.webp" },
-  { name: "Istanbul", img: "istanbul.webp" },
-  { name: "Albania", img: "albania.webp" },
-  { name: "Napoli", img: "napoli.webp" },
-  { name: "Mediterranean", img: "mediterranean.webp" },
-  { name: "Paris again", img: "paris2.webp" },
-  { name: "Copenhagen", img: "copenhagen.webp" },
-  { name: "Sweden", img: "sweden.webp" },
-  { name: "Utrecht", img: "utrecht.webp" },
-  { name: "Dublin", img: "dublin.webp" },
-  { name: "Andalucia", img: "andalucia.webp" },
-  { name: "Morocco", img: "morocco.webp" },
-  { name: "Cannes", img: "cannes.webp" },
-  { name: "Chamonix", img: "chamonix.webp" },
-  { name: "Zermatt", img: "zermatt.webp" },
-  { name: "Cevio", img: "cevio.webp" },
-  { name: "Munich Again", img: "munich2.webp" },
-  { name: "St.Moritz", img: "st.moritz.webp" },
-  { name: "Munich", img: "munich.webp" },
-  { name: "Vienna", img: "vienna.webp" },
-  { name: "Kitzbuhel", img: "kitzbuhel.webp" },
-  { name: "Dolomites", img: "dolomites.webp" },
-  { name: "Daffins", img: "daffins.webp" },
-  { name: "Paris", img: "paris.webp" },
-  { name: "Flers", img: "flers.webp" },
-  { name: "United Kingdom", img: "uk.webp" },
-  { name: "Valparaiso", img: "valparaiso.webp" },
-  { name: "Mendoza", img: "mendoza.webp" },
-  { name: "Patagonia", img: "patagonia.webp" },
-  { name: "Buenos Aires", img: "buenosaires.webp" }
+
+  { name: "Sashimono", subtitle: "Kyoto, Japan.", img: "kyoto.webp", file: "interviewcomingsoon.htm" },
+{ name: "Learning in Accord with Nature", subtitle: "Siargao, Philippines.", img: "siargao.webp", file: "interviewcomingsoon.htm" },
+{ name: "Island Framing", subtitle: "Phuket, Thailand.", img: "phuket.webp", file: "interviewcomingsoon.htm" },
+{ name: "Yoga Vibrations", subtitle: "Rishikesh, India.", img: "rishikesh.webp", file: "interviewcomingsoon.htm" },
+{ name: "Carpentry One-Oh-One", subtitle: "Ngecha, Kenya.", img: "ngechacarpentry.webp", file: "interviewcomingsoon.htm" },
+{ name: "Water for the Farm", subtitle: "Ngecha, Kenya.", img: "ngechawater.webp", file: "interviewcomingsoon.htm" },
+{ name: "Earth Kitchen", subtitle: "Ngecha, Kenya.", img: "mlangoearthkitchen.webp", file: "mlangoearthkitchen.htm" },
+{ name: "Tree House", subtitle: "Ngecha, Kenya.", img: "mlangotreehouse.webp", file: "mlangotreehouse.htm" },
+{ name: "Workshopping", subtitle: "Södra Skoga, Sweden.", img: "karlstad.webp", file: "interviewcomingsoon.htm" },
+{ name: "Bed Rock Tool Shed", subtitle: "Rindö, Sweden.", img: "stockholm.webp", file: "interviewcomingsoon.htm" },
+{ name: "Green Thumb Green House", subtitle: "Askeröd, Sweden.", img: "askerod.webp", file: "interviewcomingsoon.htm" },
+{ name: "Sand Stone Stacking", subtitle: "Tagounite, Morocco.", img: "tagounite.webp", file: "interviewcomingsoon.htm" },
+{ name: "Beach House Blues", subtitle: "Sidi Kaouki, Morocco.", img: "sidi.webp", file: "interviewcomingsoon.htm" },
+{ name: "Sailor's Startup", subtitle: "Cannes, France.", img: "nice.webp", file: "interviewcomingsoon.htm" },
+{ name: "Rocks, Rocks, Rocks", subtitle: "Cevio, Switzerland.", img: "cevio.webp", file: "interviewcomingsoon.htm" },
+{ name: "Alpine Turbine", subtitle: "Daffins, Austria.", img: "karlstad.webp", file: "interviewcomingsoon.htm" },
+{ name: "Building in Accord with Nature", subtitle: "Valparaiso, Chile.", img: "valparaiso.webp", file: "interviewcomingsoon.htm" }
+
 ];
 
 /* -----------------------------
-   BUILD THE GRID
+   BUILD GRID USING .file
 ------------------------------ */
 const grid = document.getElementById("tileGrid");
 
 tiles.forEach(t => {
   const div = document.createElement("div");
-  div.className =
-    "tile bg-white shadow rounded-lg overflow-hidden";
+  div.className = "tile bg-white shadow rounded-lg overflow-hidden";
 
   div.innerHTML = `
-    <a href="${t.name.replace(/\s+/g, '')}.htm">
-      <img src="assets/images/${t.img}" alt="${t.name}">
-      <p>${t.name}</p>
-    </a>
+    <a href="${t.file}">
+    <img src="portfolio_files/${t.img}" alt="${t.name}">
+    <p class="leading-tight text-center font-bold">
+      ${t.name}
+      ${t.subtitle ? `<br><span class="text-sm text-gray-600">${t.subtitle}</span>` : ""}
+    </p>
+  </a>
   `;
 
   grid.appendChild(div);
@@ -129,19 +114,16 @@ allTiles.forEach(tile => {
   tile.addEventListener("mouseenter", () => {
     tile.style.transform = "scale(1.3)";
     tile.style.zIndex = 20;
-
     pushNeighbors(tile, 1);
   });
 
   tile.addEventListener("mouseleave", () => {
     tile.style.transform = "scale(1)";
     tile.style.zIndex = 1;
-
     pushNeighbors(tile, 0);
   });
 });
 
-/* Apply offset to siblings */
 function pushNeighbors(activeTile, power) {
   allTiles.forEach(tile => {
     if (tile === activeTile) return;
@@ -151,7 +133,6 @@ function pushNeighbors(activeTile, power) {
 
     const dx = rect2.x - rect1.x;
     const dy = rect2.y - rect1.y;
-
     const dist = Math.sqrt(dx*dx + dy*dy);
 
     if (dist < 250) {

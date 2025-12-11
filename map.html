@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Map</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tiny world</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
+ 
+
+  
   <style>
-    html,body { height:100%; margin:0; }
+     body {
+      font-family: 'Courier Prime', monospace;
+      background-color: #f4f4f9;
+      color: #333; }
+    
+    html{ height:100%; margin:0; }
     #map { height:100vh; width:100%; }
     .leaflet-tooltip.my-tooltip {
       background: rgba(0,0,0,0.85);
@@ -18,22 +33,28 @@
       font-size:13px;
     }
     /* optional: make markers slightly pop on hover */
-    .leaflet-marker-icon:hover { transform: translateY(-4px); transition: transform 120ms; }
+    /*.leaflet-marker-icon:hover { transform: translateY(-4px); transition: transform 120ms; }*/
   </style>
 </head>
 
-<header class="bg-white shadow-sm sticky top-0 z-50">
-  <div id="header-placeholder"></div>
-</header>
 
-<script>
-  fetch("header.html")
-    .then(r => r.text())
-    .then(data => document.getElementById("header-placeholder").innerHTML = data);
-</script>
 
 <body>
 
+   <!-- Header (Loaded via JS) -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div id="header-placeholder"></div>
+  </header>
+
+  <script>
+    fetch("header.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("header-placeholder").innerHTML = data;
+      });
+  </script>
+
+  
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -93,9 +114,9 @@ function randomColor() {
 const map = L.map('map');
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
-  minZoom: 2,
+  minZoom: 1,
   attribution: '&copy; OpenStreetMap contributors',
-  noWrap: true
+  noWrap: false
 }).addTo(map);
 
 /* --- your locations (unchanged) --- */
@@ -209,6 +230,8 @@ locations.forEach(([name, lat, lon]) => {
   marker.bindPopup(`<strong>${name}</strong>`);
   marker.addTo(markerGroup);
 });
+
+
 
 markerGroup.addTo(map);
 

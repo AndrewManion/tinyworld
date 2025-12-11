@@ -112,8 +112,8 @@ tiles.forEach(t => {
   div.className = "tile bg-white shadow rounded-lg overflow-hidden";
 
   div.innerHTML = `
-    <a href="${t.file}">
-      <img src="assets/images/${t.img}" alt="${t.name}">
+    <a href="${t.href}">
+      <img src="interviews_files/${t.img}" alt="${t.name}">
       <p>${t.name}</p>
     </a>
   `;

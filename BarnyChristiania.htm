@@ -60,150 +60,150 @@
       max-width: 90%;
       max-height: 90%;
       border-radius: 0.75rem;
-      box-shadow: 0 0 60px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 60px rgba(255, 255, 255, 0.4),
+                  0 0 30px rgba(255, 255, 255, 0.2);
       transition: transform 0.3s ease;
     }
   </style>
 </head>
+
 <body class="bg-gray-50 text-gray-900">
 
- <!-- Header (Loaded via JS) -->
+<!-- Header -->
 <header class="bg-white shadow-sm sticky top-0 z-50">
   <div id="header-placeholder"></div>
 </header>
 
 <script>
   fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header-placeholder").innerHTML = data;
-    });
+    .then(r => r.text())
+    .then(d => document.getElementById("header-placeholder").innerHTML = d);
 </script>
 
-  <!-- Main content -->
-  <main class="max-w-4xl mx-auto px-4 pt-8">
+<main class="max-w-4xl mx-auto px-4 pt-8">
 
-    <!-- Hero Image -->
-    <section class="mb-8">
-      <img src="Interviews_files/image013.webp" alt="Interview Main Image" class="rounded-xl w-full h-auto shadow-md">
-    </section>
-
-    <!-- Interview Text -->
-    <section class="space-y-6 text-lg leading-relaxed pb-12">
-      <h1 class="text-2xl font-bold">Barny.</h1>
-      <h2 class="text-xl font-normal mt-1">Christiania, Denmark.</h2>
-
-     <p><strong>When did you move here? </strong><br>
-      </p>
-
-      <p><strong>How did you come to possess this land?</strong><br>
-      </p>
-
-      <p><strong>How does the landscape effect how you perceive your home?</strong><br>
-     </p>
-
-      <p><strong>What is the part of your home which most represents who you are?</strong><br>
-      </p>
-
-      <p><strong>Is there any one thing which you would like to improve about your home or that you feel it is missing?</strong><br>
-      </p>
-     
-      <!-- Add more Q&A as needed -->
-    </section>
-
-   
-</section>
-
-    </section>
-
- <!-- Photo Gallery -->
-    <section class="gallery" id="gallery">
-     <section class="gallery" id="gallery">
-   
-   <img src="BarnyChristiania_files/image003.webp" data-full="BarnyChristiania_files/image003.webp" alt="">
-  <img src="BarnyChristiania_files/image004.webp" data-full="BarnyChristiania_files/image004.webp" alt="">
-  <img src="BarnyChristiania_files/image009.webp" data-full="BarnyChristiania_files/image009.webp" alt="">
-  <img src="BarnyChristiania_files/image010.webp" data-full="BarnyChristiania_files/image010.webp" alt="">
+  <!-- Hero Image -->
+  <section class="mb-8">
+    <img src="Interviews_files/image013.webp"
+         alt="Interview Main Image"
+         class="rounded-xl w-full h-auto shadow-md">
   </section>
 
-  <!-- Navigation Buttons -->
-    <div class="flex justify-between max-w-md mx-auto pb-10">
-      <a href="EllenDAC">
-        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">back</button>
-      </a>
-      <a href="LiseChristiania.htm">
-        <button class="bg-white border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">next</button>
-      </a>
-    </div>
+  <!-- Title + Audio -->
+  <section class="space-y-2 mb-6">
+    <h1 class="text-2xl font-bold">Barny.</h1>
+    <h2 class="text-xl font-normal">Christiania, Denmark.</h2>
 
-  </main>
+    <!-- AUDIO -->
+    <audio id="voice-audio" preload="metadata">
+      <source src="BarnyChristiania/voice.mp3" type="audio/mpeg">
+    </audio>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="" alt="zoomed image">
+    <audio id="ambient-audio" loop preload="metadata">
+      <source src="BarnyChristiania/ambient.mp3" type="audio/mpeg">
+    </audio>
+
+    <p class="text-sm text-gray-500 italic">
+      Audio begins as you read
+    </p>
+  </section>
+
+  <!-- Interview Questions -->
+  <section id="questions" class="space-y-6 text-lg leading-relaxed pb-12">
+
+    <p><strong>When did you move here?</strong></p>
+    <p><strong>How did you come to possess this land?</strong></p>
+    <p><strong>How does the landscape affect how you perceive your home?</strong></p>
+    <p><strong>What is the part of your home which most represents who you are?</strong></p>
+    <p><strong>Is there any one thing you would like to improve or feel is missing?</strong></p>
+
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="gallery" id="gallery">
+    <img src="BarnyChristiania_files/image003.webp" data-full="BarnyChristiania_files/image003.webp">
+    <img src="BarnyChristiania_files/image004.webp" data-full="BarnyChristiania_files/image004.webp">
+    <img src="BarnyChristiania_files/image009.webp" data-full="BarnyChristiania_files/image009.webp">
+    <img src="BarnyChristiania_files/image010.webp" data-full="BarnyChristiania_files/image010.webp">
+  </section>
+
+  <!-- Navigation -->
+  <div class="flex justify-between max-w-md mx-auto pb-10 pt-8">
+    <a href="EllenDAC">
+      <button class="bg-white border px-6 py-2 rounded hover:bg-gray-100">back</button>
+    </a>
+    <a href="LiseChristiania.htm">
+      <button class="bg-white border px-6 py-2 rounded hover:bg-gray-100">next</button>
+    </a>
   </div>
 
-  <!-- Script for Lightbox -->
-  <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const galleryImages = [...document.querySelectorAll('#gallery img')];
-    let currentIndex = -1;
-    let touchStartX = null;
+</main>
 
-    function showImage(index) {
-      const fullRes = galleryImages[index].dataset.full || galleryImages[index].src;
-      lightboxImg.src = fullRes;
-      lightbox.style.display = 'flex';
-      currentIndex = index;
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img">
+</div>
+
+<!-- Lightbox Script -->
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const galleryImages = [...document.querySelectorAll('#gallery img')];
+  let currentIndex = -1;
+  let touchStartX = null;
+
+  function showImage(index) {
+    lightboxImg.src = galleryImages[index].dataset.full;
+    lightbox.style.display = 'flex';
+    currentIndex = index;
+  }
+
+  function hideLightbox() {
+    lightbox.style.display = 'none';
+    currentIndex = -1;
+  }
+
+  galleryImages.forEach((img, i) =>
+    img.addEventListener('click', () => showImage(i))
+  );
+
+  lightbox.addEventListener('click', hideLightbox);
+</script>
+
+<!-- AUDIO LOGIC -->
+<script>
+  const voice = document.getElementById("voice-audio");
+  const ambient = document.getElementById("ambient-audio");
+
+  ambient.volume = 0.35;
+  voice.volume = 0.9;
+
+  let ambientStarted = false;
+  let voiceStarted = false;
+
+  document.addEventListener("click", () => {
+    if (!ambientStarted) {
+      ambient.play().catch(() => {});
+      ambientStarted = true;
     }
+  }, { once: true });
 
-    function hideLightbox() {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-      currentIndex = -1;
-    }
-
-    function showNext() {
-      if (currentIndex < galleryImages.length - 1) {
-        showImage(currentIndex + 1);
-      }
-    }
-
-    function showPrev() {
-      if (currentIndex > 0) {
-        showImage(currentIndex - 1);
-      }
-    }
-
-    galleryImages.forEach((img, index) => {
-      img.addEventListener('click', () => showImage(index));
-    });
-
-    lightbox.addEventListener('click', hideLightbox);
-
-    document.addEventListener('keydown', (e) => {
-      if (lightbox.style.display === 'flex') {
-        if (e.key === 'Escape') hideLightbox();
-        if (e.key === 'ArrowRight') showNext();
-        if (e.key === 'ArrowLeft') showPrev();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !voiceStarted) {
+        voice.play().catch(() => {});
+        ambient.volume = 0.2;
+        voiceStarted = true;
       }
     });
+  }, { threshold: 0.3 });
 
-    lightbox.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-    });
+  observer.observe(document.getElementById("questions"));
 
-    lightbox.addEventListener('touchend', (e) => {
-      if (touchStartX === null) return;
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
+  voice.addEventListener("ended", () => {
+    ambient.volume = 0.35;
+  });
+</script>
 
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) showNext(); else showPrev();
-      }
-      touchStartX = null;
-    });
-  </script>
 </body>
 </html>

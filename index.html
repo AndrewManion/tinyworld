@@ -18,6 +18,34 @@
     color: white;
   }
 
+  /* -------- FILM GRAIN -------- */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    animation: grain 0.4s steps(1) infinite;
+  }
+
+  @keyframes grain {
+    0%   { background-position: 0 0; }
+    10%  { background-position: -30px -60px; }
+    20%  { background-position: 60px 30px; }
+    30%  { background-position: -80px 20px; }
+    40%  { background-position: 40px -70px; }
+    50%  { background-position: -20px 80px; }
+    60%  { background-position: 70px -40px; }
+    70%  { background-position: -60px 60px; }
+    80%  { background-position: 20px -20px; }
+    90%  { background-position: -40px 40px; }
+    100% { background-position: 10px -80px; }
+  }
+
   /* -------- TYPEWRITER INTRO -------- */
   #intro {
     position: fixed;
@@ -30,12 +58,14 @@
   }
 
   #intro-text {
+    font-family: 'Courier Prime', monospace;
     font-size: 8vw;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid black;
+    border-right: 2px solid black;
     color: black;
     animation: typing 4s steps(19, end) 1s 1 normal both, blink-caret 0.7s step-end infinite;
+    letter-spacing: 0.02em;
   }
 
   @keyframes typing { from { width: 0; } to { width: 16ch; } }
@@ -52,7 +82,7 @@
     position: relative;
   }
 
-  /* LEFT SIDE: fullscreen image */
+  /* LEFT SIDE */
   #left {
     position: relative;
     height: 100vh;
@@ -66,18 +96,58 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.6s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
   }
 
-  #flash {
+  /* -------- CAMERA SHUTTER -------- */
+  #shutter-white {
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0s;
+  }
+
+  #shutter-black {
     position: absolute;
     inset: 0;
     background: black;
     opacity: 0;
-    z-index: 0;
-    transition: opacity 0.2s ease-in-out;
+    z-index: 1;
     pointer-events: none;
+    transition: opacity 0s;
   }
+
+  /* -------- SLIDE WORD -------- */
+  #slide-word {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 3vw;
+    color: white;
+    text-shadow: 1px 1px 12px rgba(0,0,0,0.7);
+    z-index: 5;
+    letter-spacing: 0.03em;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid white;
+    width: 0;
+  }
+
+  #slide-word.typing {
+    animation: wordType var(--type-duration) steps(var(--type-steps), end) forwards,
+               wordCaret 0.6s step-end infinite;
+  }
+
+  #slide-word.done {
+    border-color: transparent;
+  }
+
+  @keyframes wordType  { from { width: 0; } to { width: var(--type-width); } }
+  @keyframes wordCaret { 50% { border-color: transparent; } }
 
   #site-nav {
     position: absolute;
@@ -86,21 +156,9 @@
     z-index: 10;
   }
 
-  /* WORD OVERLAY ON SLIDESHOW */
-  #slide-word {
-    position: absolute;
-    bottom: 3rem;
-    left: 3rem;
-    font-size: 3vw;
-    color: white;
-    text-shadow: 2px 2px 10px black;
-    z-index: 5;
-    letter-spacing: 2px;
-  }
-
   /* RIGHT SIDE MENU */
   #right {
-    border-left: 2px solid white;
+    border-left: 1px solid rgba(255,255,255,0.5);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -122,6 +180,8 @@
     padding: 1rem;
     transition: all 0.3s ease;
     position: relative;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
   }
 
   .menu-item::after {
@@ -130,25 +190,28 @@
     bottom: 0;
     left: 30px;
     width: 80%;
-    border-bottom: 2px solid white;
-    opacity: 0.7;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
   }
 
-  .menu-item:last-child::after {
-    content: none;
-  }
+  .menu-item:last-child::after { content: none; }
 
   .menu-item img {
     width: 60px;
     height: 60px;
     object-fit: cover;
-    border-radius: 0;
     flex-shrink: 0;
+    transition: transform 0.35s ease;
+    filter: grayscale(20%);
   }
 
   .menu-item:hover {
     background: white;
     color: black;
+  }
+
+  .menu-item:hover img {
+    transform: scale(1.06);
+    filter: grayscale(0%);
   }
 
   /* HEADER LINKS */
@@ -159,6 +222,9 @@
     margin: 0 0.3rem;
     transition: all 0.3s ease;
     text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   #site-nav a:hover {
@@ -167,26 +233,29 @@
     text-decoration: none;
   }
 
-  /* CURSOR STYLING */
+  /* CURSOR */
   .dot-cursor {
     position: fixed;
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    z-index: 1000;
-    transition: background 0.3s ease;
-  }
-
-  #intro-dot, #main-dot {
-    width: 25px;
-    height: 25px;
-    background: white;
-    display: none;
+    z-index: 9999;
+    transition: background 0.25s ease, transform 0.15s ease;
   }
 
   #intro-dot {
+    width: 20px;
+    height: 20px;
     background: black;
     display: block;
+  }
+
+  #main-dot {
+    width: 20px;
+    height: 20px;
+    background: white;
+    display: none;
+    mix-blend-mode: difference;
   }
 
   /* MOBILE */
@@ -224,9 +293,23 @@
       position: absolute;
       bottom: 0.5rem;
       left: 1rem;
+      font-family: 'Courier Prime', monospace;
       font-size: 1.2rem;
       color: white;
-      text-shadow: 2px 2px 6px black;
+      text-shadow: 1px 1px 8px black;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid white;
+      width: 0;
+    }
+
+    #mobile-slide-word.typing {
+      animation: wordType var(--type-duration) steps(var(--type-steps), end) forwards,
+                 wordCaret 0.6s step-end infinite;
+    }
+
+    #mobile-slide-word.done {
+      border-color: transparent;
     }
 
     .mobile-menu {
@@ -234,10 +317,12 @@
       text-align: center;
       font-weight: bold;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
       border-top: 1px solid white;
       padding: 1rem 0;
       cursor: pointer;
       color: white;
+      font-size: 0.85rem;
     }
 
     .mobile-menu:last-of-type { border-bottom: 1px solid white; }
@@ -259,6 +344,8 @@
       cursor: pointer;
       text-transform: uppercase;
       font-weight: bold;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
     }
 
     .mobile-item img {
@@ -266,16 +353,11 @@
       height: 60px;
       object-fit: cover;
     }
-
-    .mobile-item span:hover,
-    .mobile-item img:hover {
-      color: black;
-      background: white;
-    }
   }
 </style>
 </head>
 <body>
+
   <!-- INTRO -->
   <div id="intro"><div id="intro-text">Gran Colombia...</div></div>
 
@@ -285,7 +367,8 @@
       <div id="site-nav"></div>
       <img id="slideshow" src="assets/images/buenosaires.webp" alt="slideshow">
       <div id="slide-word">pequeño</div>
-      <div id="flash"></div>
+      <div id="shutter-white"></div>
+      <div id="shutter-black"></div>
     </div>
 
     <div id="right">
@@ -304,11 +387,11 @@
       <div id="mobile-slide-word">pequeño</div>
     </div>
 
-    <div class="mobile-menu" onclick="window.location.href='journey.html'">JOURNEY</div>
-    <div class="mobile-menu" onclick="window.location.href='interviews.html'">INTERVIEWS</div>
-    <div class="mobile-menu" onclick="window.location.href='portfolio.htm'">PORTFOLIO</div>
-    <div class="mobile-menu" onclick="window.location.href='map.html'">MAP</div>
-    <div class="mobile-menu" onclick="window.location.href='about.htm'">ABOUT</div>
+    <div class="mobile-menu" onclick="window.location.href='journey.html'">Journey</div>
+    <div class="mobile-menu" onclick="window.location.href='interviews.html'">Interviews</div>
+    <div class="mobile-menu" onclick="window.location.href='portfolio.htm'">Portfolio</div>
+    <div class="mobile-menu" onclick="window.location.href='map.html'">Map</div>
+    <div class="mobile-menu" onclick="window.location.href='about.htm'">About</div>
 
     <div id="mobile-gallery">
       <div class="mobile-item" onclick="window.location.href='EsbonNgecha.htm'"><img src="assets/images/title/esbon.webp" alt="Esbon"><span>Esbon</span></div>
@@ -324,16 +407,17 @@
   <div class="dot-cursor" id="main-dot"></div>
 
   <script>
-    const intro = document.getElementById('intro');
-    const main = document.getElementById('main');
-    const mobile = document.getElementById('mobile');
-    const introDot = document.getElementById('intro-dot');
-    const mainDot = document.getElementById('main-dot');
-    const slideshow = document.getElementById("slideshow");
-    const flash = document.getElementById("flash");
-    const slideWord = document.getElementById("slide-word");
+    const intro       = document.getElementById('intro');
+    const main        = document.getElementById('main');
+    const mobile      = document.getElementById('mobile');
+    const introDot    = document.getElementById('intro-dot');
+    const mainDot     = document.getElementById('main-dot');
+    const slideshow   = document.getElementById("slideshow");
+    const shutterW    = document.getElementById("shutter-white");
+    const shutterB    = document.getElementById("shutter-black");
+    const slideWord   = document.getElementById("slide-word");
     const mobileSlide = document.getElementById("mobile-slide");
-    const mobileSlideWord = document.getElementById("mobile-slide-word");
+    const mobileWord  = document.getElementById("mobile-slide-word");
 
     // Load header
     fetch("header.html")
@@ -344,43 +428,98 @@
     // Cursor tracking
     document.addEventListener('mousemove', e => {
       introDot.style.left = e.clientX + 'px';
-      introDot.style.top = e.clientY + 'px';
-      mainDot.style.left = e.clientX + 'px';
-      mainDot.style.top = e.clientY + 'px';
+      introDot.style.top  = e.clientY + 'px';
+      mainDot.style.left  = e.clientX + 'px';
+      mainDot.style.top   = e.clientY + 'px';
     });
 
     // Slides
     const slides = [
-      { src: "assets/images/buenosaires.webp", word: "pequeño" },
-      { src: "assets/images/patagonia_condor 4.webp", word: "nguillen" },
-      { src: "assets/images/mendoza_house tour.webp", word: "chiquito" },
-      { src: "assets/images/valparaiso.webp", word: "pequeñito" },
-      { src: "assets/images/uk.webp", word: "tiny" },
-      { src: "assets/images/flers.webp", word: "petit" },
-      { src: "assets/images/paris.webp", word: "minuscule" },
-      { src: "assets/images/dolomites.webp", word: "piccolo" },
-      { src: "assets/images/kitzbuhel.webp", word: "winzig" }
+      { src: "assets/images/buenosaires.webp",          word: "pequeño"   },
+      { src: "assets/images/patagonia_condor 4.webp",   word: "nguillen"  },
+      { src: "assets/images/mendoza_house tour.webp",   word: "chiquito"  },
+      { src: "assets/images/valparaiso.webp",           word: "pequeñito" },
+      { src: "assets/images/uk.webp",                   word: "tiny"      },
+      { src: "assets/images/flers.webp",                word: "petit"     },
+      { src: "assets/images/paris.webp",                word: "minuscule" },
+      { src: "assets/images/dolomites.webp",            word: "piccolo"   },
+      { src: "assets/images/kitzbuhel.webp",            word: "winzig"    }
     ];
     slides.forEach(s => new Image().src = s.src);
     let index = 0;
 
-    function nextSlide() {
-      flash.style.opacity = 1;
+    // Typewriter helper
+    function typeWord(el, word) {
+      el.textContent = word;
+      el.classList.remove('typing', 'done');
+      el.style.width = '0';
+      // measure full width
+      el.style.width = 'auto';
+      const fullWidth = el.scrollWidth + 'px';
+      el.style.width = '0';
+      el.style.setProperty('--type-width', fullWidth);
+      el.style.setProperty('--type-steps', word.length);
+      el.style.setProperty('--type-duration', (word.length * 80) + 'ms');
+      // force reflow then start
+      void el.offsetWidth;
+      el.classList.add('typing');
+      // stop caret after typing finishes
       setTimeout(() => {
-        index = (index + 1) % slides.length;
-        slideshow.src = slides[index].src;
-        slideWord.textContent = slides[index].word;
-        mobileSlide.src = slides[index].src;
-        mobileSlideWord.textContent = slides[index].word;
-        flash.style.opacity = 0;
+        el.classList.remove('typing');
+        el.classList.add('done');
+        el.style.width = fullWidth;
+      }, word.length * 80 + 50);
+    }
+
+    // Show first word on load (after a beat)
+    setTimeout(() => typeWord(slideWord, slides[0].word), 400);
+
+    function nextSlide() {
+      // 1. Clear current word
+      slideWord.classList.remove('typing', 'done');
+      slideWord.style.width = '0';
+      mobileWord.classList.remove('typing', 'done');
+      mobileWord.style.width = '0';
+
+      // 2. Camera shutter
+      setTimeout(() => {
+        shutterW.style.transition = 'opacity 0.04s ease';
+        shutterW.style.opacity = 0.85;
+
+        setTimeout(() => {
+          shutterW.style.transition = 'opacity 0.08s ease';
+          shutterW.style.opacity = 0;
+          shutterB.style.transition = 'opacity 0.08s ease';
+          shutterB.style.opacity = 1;
+
+          setTimeout(() => {
+            index = (index + 1) % slides.length;
+            slideshow.src = slides[index].src;
+            mobileSlide.src = slides[index].src;
+
+            shutterB.style.transition = 'opacity 0.28s ease';
+            shutterB.style.opacity = 0;
+
+            // Typewrite the new word in
+            setTimeout(() => {
+              typeWord(slideWord, slides[index].word);
+              typeWord(mobileWord, slides[index].word);
+            }, 180);
+
+          }, 120);
+        }, 60);
       }, 200);
     }
 
-    // Hover effect for cursor — now includes header items
+    // Hover effect for cursor
     function setHoverEffect(selector) {
       document.querySelectorAll(selector).forEach(item => {
-        item.addEventListener('mouseenter', () => mainDot.style.background = 'black');
-        item.addEventListener('mouseleave', () => mainDot.style.background = 'white');
+        item.addEventListener('mouseenter', () => {
+          mainDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        });
+        item.addEventListener('mouseleave', () => {
+          mainDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
       });
     }
 
@@ -388,16 +527,21 @@
 
     // Intro transition
     intro.addEventListener('click', () => {
-      intro.style.display = 'none';
-      introDot.style.display = 'none';
-      if (window.innerWidth <= 768) {
-        mobile.style.display = 'flex';
-        setInterval(nextSlide, 4000);
-      } else {
-        main.style.display = 'grid';
-        mainDot.style.display = 'block';
-        setInterval(nextSlide, 4000);
-      }
+      intro.style.transition = 'opacity 0.6s ease';
+      intro.style.opacity = 0;
+      setTimeout(() => {
+        intro.style.display = 'none';
+        introDot.style.display = 'none';
+        if (window.innerWidth <= 768) {
+          mobile.style.display = 'flex';
+          setTimeout(() => typeWord(mobileWord, slides[0].word), 400);
+          setInterval(nextSlide, 4000);
+        } else {
+          main.style.display = 'grid';
+          mainDot.style.display = 'block';
+          setInterval(nextSlide, 4000);
+        }
+      }, 600);
     });
   </script>
 </body>

@@ -86,18 +86,55 @@
   <main class="max-w-5xl mx-auto px-4">
 
    <section class="text-center my-8 space-y-4">
-      <p class="text-lg">Hello!</p>
-      <p class="text-lg">
-        My name is Andrew and this is a site for my vanity. And secondly to promote a vision of the tiny world. I am from a small town in Connecticut that
-connects to the little island of Manhattan by a short train ride. In November of the year Twenty-Twenty-Four
-I started moving around, exploring continents and cultures while collecting inspiration for the future. As I skip around the earth, I will be taking fun-sized photographs with my
-Poppop's Pentax ME Super.
-      </p>
-    </section>
+  <p class="text-lg" id="line1"></p>
+  <p class="text-lg" id="line2"></p>
+</section>
+
+<script>
+  const lines = [
+    { id: 'line1', text: 'Hello!', speed: 90 },
+    { id: 'line2', text: "My name is Andrew and this is a site for my vanity. And secondly to promote a vision of the tiny world. I am from a small town in Connecticut that connects to the little island of Manhattan by a short train ride. In November of the year Twenty-Twenty-Four I started moving around, exploring continents and cultures while collecting inspiration for the future. As I skip around the earth, I will be taking fun-sized photographs with my Poppop's Pentax ME Super.", speed: 40 }
+  ];
+
+  function typeText(el, text, speed, onDone) {
+    let i = 0;
+    el.innerHTML = '';
+    const cursor = document.createElement('span');
+    cursor.style.cssText = 'display:inline-block;width:2px;height:1em;background:#333;vertical-align:text-bottom;margin-left:1px;animation:blink 0.7s step-end infinite;';
+    el.appendChild(cursor);
+
+    const style = document.createElement('style');
+    style.textContent = '@keyframes blink { 50% { opacity: 0; } }';
+    document.head.appendChild(style);
+
+    function tick() {
+      if (i < text.length) {
+        el.insertBefore(document.createTextNode(text[i++]), cursor);
+        setTimeout(tick, speed);
+      } else {
+        if (onDone) onDone(cursor);
+      }
+    }
+    tick();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const el1 = document.getElementById('line1');
+    const el2 = document.getElementById('line2');
+
+    typeText(el1, lines[0].text, lines[0].speed, (cursor1) => {
+      setTimeout(() => {
+        cursor1.remove();
+        typeText(el2, lines[1].text, lines[1].speed, () => {});
+      }, 300);
+    });
+  });
+</script>
 
   <section class="my-8 flex justify-center" id="gallery">
-  <img src="assets/images/portrait1.jpg" data-full="assets/images/about_self-portrait.jpg" alt="" class="rounded-xl shadow-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer max-h-[300px]">
+  <img src="assets/images/portrait1.jpg" data-full="assets/images/portrait1.jpg" alt="" class="rounded-xl shadow-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer max-h-[300px]">
 </section>
+
 
 
 
